@@ -1,0 +1,16 @@
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+bin/
+gen/
+tmp/
+.settings/
+.project
+.classpath
+.DS_Store
+local.properties
+*.iml
+Thumbs.db
+*.apk
