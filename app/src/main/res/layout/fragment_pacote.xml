@@ -1,0 +1,55 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    tools:context="postaltracker.app.alexandrealessi.com.br.postal.PacoteFragment">
+
+    <LinearLayout
+        android:id="@+id/layCodeSearch"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        >
+
+        <EditText
+            android:id="@+id/txtCode"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="30dp"
+
+            android:gravity="center_horizontal"
+            android:text="SF 583 949 355 BR"
+
+            />
+
+        <ImageButton
+            android:id="@+id/btnQrCode"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@null"
+            android:scaleType="fitXY"
+            android:src="@drawable/unnamed"
+
+
+            />
+
+
+    </LinearLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+
+        android:id="@+id/listDetalhe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/layCodeSearch"
+        android:layout_gravity="start"></android.support.v7.widget.RecyclerView>
+
+
+</RelativeLayout>

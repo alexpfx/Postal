@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:gravity="center_vertical" android:background="#ffa">
+
+    <TextView
+        android:id="@+id/txtInfo"
+        android:layout_width="84dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="16dp"
+        android:gravity="center"
+        android:text="21/11/2014\n10:26\nFlorianopolis / SC"
+        android:textSize="10dp" />
+
+    <LinearLayout
+        android:id="@+id/layStatus"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/txtInfo"
+        android:layout_toRightOf="@+id/txtInfo"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/txtStatus"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="4dp"
+            android:gravity="left|center_vertical"
+            android:text="Objeto Saiu Para entrega ao Destinatario"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:id="@+id/txtDetalhe"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="2dp"
+            android:gravity="left|top"
+            android:text="de Unidade Operacional em Sao Jose / SC Para Unidade de Distribuicao Palhoca / SC"
+            android:textSize="12dp"
+            />
+    </LinearLayout>
+</RelativeLayout>

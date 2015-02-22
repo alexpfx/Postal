@@ -3,4 +3,11 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="menu_item_meus_pacotes">Meus Pacotes</string>
+    <string name="menu_item_consultas_uteis">Consultas Úteis</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="abrir">Abrir</string>
+    <string name="fechar">Fechar</string>
 </resources>
