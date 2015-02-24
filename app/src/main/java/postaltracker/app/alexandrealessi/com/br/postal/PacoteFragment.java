@@ -45,13 +45,8 @@ public class PacoteFragment extends Fragment {
 
         ListDetalheAdapter adapter = new ListDetalheAdapter(this.getActivity().getApplicationContext(),createFakeList ());
         listDetalhe.setAdapter(adapter);
-
         return v;
     }
-
-
-
-
 
     private List<ViewModel> createFakeList() {
         List<ViewModel> list = new ArrayList<>();
