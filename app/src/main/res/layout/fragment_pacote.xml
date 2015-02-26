@@ -8,21 +8,20 @@
         android:id="@+id/layCodeSearch"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:orientation="horizontal"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        >
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/txtCode"
+            android:id="@+id/edtCode"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textSize="30dp"
-
             android:gravity="center_horizontal"
+
             android:text="SF 583 949 355 BR"
+            android:textSize="30dp"
 
             />
 
@@ -32,24 +31,29 @@
             android:layout_height="48dp"
             android:background="@null"
             android:scaleType="fitXY"
-            android:src="@drawable/unnamed"
+            android:src="@drawable/unnamed" />
 
-
-            />
+        <TextView
+            android:id="@+id/txtSroStatusInfo"
+            android:layout_width="match_parent"
+            android:layout_height="12dp" />
 
 
     </LinearLayout>
 
 
     <android.support.v7.widget.RecyclerView
-
         android:id="@+id/listDetalhe"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/layCodeSearch"
-        android:layout_gravity="start"></android.support.v7.widget.RecyclerView>
+        android:layout_gravity="start"
+        android:visibility="invisible">
+
+
+    </android.support.v7.widget.RecyclerView>
 
 
 </RelativeLayout>

@@ -2,27 +2,32 @@ package postaltracker.app.alexandrealessi.com.br.postal;
 
 
 import android.os.Bundle;
-
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static postaltracker.app.alexandrealessi.com.br.postal.ListDetalheAdapter.*;
+import static postaltracker.app.alexandrealessi.com.br.postal.ListDetalheAdapter.ViewModel;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PacoteFragment extends Fragment {
+public class PacoteFragment extends Fragment implements DetalheSroView{
     private ShowPacoteDetalhadoPresenter detalhePresenter;
-
+    private TextView txtSroStatusInfo;
+    private EditText edtCode;
     public PacoteFragment() {
+
 
     }
 
@@ -30,6 +35,8 @@ public class PacoteFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        detalhePresenter = new ShowPacoteDetalhadoPresenetarImpl(this);
         View v = inflater.inflate(R.layout.fragment_pacote, container, false);
 
         RecyclerView listDetalhe = (RecyclerView) v.findViewById(R.id.listDetalhe);
@@ -40,8 +47,24 @@ public class PacoteFragment extends Fragment {
 
         ListDetalheAdapter adapter = new ListDetalheAdapter(this.getActivity().getApplicationContext(),createFakeList ());
         listDetalhe.setAdapter(adapter);
+
+        txtSroStatusInfo = (TextView) v.findViewById(R.id.txtSroStatusInfo);
+        edtCode = (EditText) v.findViewById(R.id.edtCode);
+        edtCode.addTextChangedListener(edtCodeTextWatcher);
         return v;
     }
+
+    private TextWatcher edtCodeTextWatcher = new TextWatcherAdapter() {
+        @Override
+        public void afterTextChanged(Editable s) {
+            System.out.println(s);
+            if (s.length() < 13){
+                  return;
+            }
+            detalhePresenter.buscarSroValido(s.toString());
+        }
+    } ;
+
 
     private List<ViewModel> createFakeList() {
         List<ViewModel> list = new ArrayList<>();
@@ -54,4 +77,13 @@ public class PacoteFragment extends Fragment {
     }
 
 
+    @Override
+    public void mostrarQueEhInvalido() {
+        txtSroStatusInfo.setText("Digite um SRO Válido.");
+    }
+
+    @Override
+    public void mostrarQueEhValido() {
+        txtSroStatusInfo.setText("SRO Válido. Buscando informações...");
+    }
 }

@@ -5,8 +5,6 @@ package postaltracker.app.alexandrealessi.com.br.postal;
  */
 public interface ShowPacoteDetalhadoPresenter {
 
-
-    public void buscarSroValido (String sro);
-
+    public void buscarSroValido(String sro);
 
 }
