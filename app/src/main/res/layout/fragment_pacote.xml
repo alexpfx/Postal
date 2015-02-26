@@ -33,13 +33,19 @@
             android:scaleType="fitXY"
             android:src="@drawable/unnamed" />
 
-        <TextView
-            android:id="@+id/txtSroStatusInfo"
-            android:layout_width="match_parent"
-            android:layout_height="12dp" />
 
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtSroStatusInfo"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/layCodeSearch"
+
+        />
 
 
     <android.support.v7.widget.RecyclerView
@@ -48,7 +54,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/layCodeSearch"
+        android:layout_below="@+id/txtSroStatusInfo"
         android:layout_gravity="start"
         android:visibility="invisible">
 
