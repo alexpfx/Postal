@@ -10,11 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.Conversion;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.math.NumberUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +20,7 @@ import static postaltracker.app.alexandrealessi.com.br.postal.ListDetalheAdapter
  * A simple {@link Fragment} subclass.
  */
 public class PacoteFragment extends Fragment {
-
+    private ShowPacoteDetalhadoPresenter detalhePresenter;
 
     public PacoteFragment() {
 
