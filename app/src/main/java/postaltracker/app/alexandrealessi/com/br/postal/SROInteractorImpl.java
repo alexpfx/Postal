@@ -28,5 +28,6 @@ public class SROInteractorImpl implements SROInteractor {
     @Override
     public void consultarCorreiosSro(SRO sro) {
 
+
     }
 }
