@@ -1,5 +1,7 @@
 package postaltracker.app.alexandrealessi.com.br.postal;
 
+import org.apache.commons.lang3.StringUtils;
+
 import br.com.alexpfx.api.postal.SRO;
 import br.com.alexpfx.api.postal.SROFactory;
 import br.com.alexpfx.api.postal.SROInvalidoException;
@@ -20,6 +22,11 @@ public class SROInteractorImpl implements SROInteractor {
         } catch (SROInvalidoException e){
             listener.onCodigoSroInvalido(sroString);
         }
+
+    }
+
+    @Override
+    public void consultarCorreiosSro(SRO sro) {
 
     }
 }

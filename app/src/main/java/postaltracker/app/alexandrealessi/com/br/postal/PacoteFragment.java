@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +24,9 @@ import static postaltracker.app.alexandrealessi.com.br.postal.ListDetalheAdapter
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PacoteFragment extends Fragment implements DetalheSroView{
-    private ShowPacoteDetalhadoPresenter detalhePresenter;
+public class PacoteFragment extends Fragment implements ValidadeSroView {
+    private ValidadorSroPresenter detalhePresenter;
+
     private TextView txtSroStatusInfo;
     private EditText edtCode;
     public PacoteFragment() {
@@ -32,11 +35,11 @@ public class PacoteFragment extends Fragment implements DetalheSroView{
     }
 
 
-    @Override
+     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        detalhePresenter = new ShowPacoteDetalhadoPresenetarImpl(this);
+        detalhePresenter = new ValidadorSroPresenterImpl(this);
         View v = inflater.inflate(R.layout.fragment_pacote, container, false);
 
         RecyclerView listDetalhe = (RecyclerView) v.findViewById(R.id.listDetalhe);
@@ -57,11 +60,11 @@ public class PacoteFragment extends Fragment implements DetalheSroView{
     private TextWatcher edtCodeTextWatcher = new TextWatcherAdapter() {
         @Override
         public void afterTextChanged(Editable s) {
-            System.out.println(s);
-            if (s.length() < 13){
+            String code = StringUtils.deleteWhitespace(s.toString());
+            if (code.length() != 13){
                   return;
             }
-            detalhePresenter.buscarSroValido(s.toString());
+            detalhePresenter.verificarValidadeSro(code);
         }
     } ;
 

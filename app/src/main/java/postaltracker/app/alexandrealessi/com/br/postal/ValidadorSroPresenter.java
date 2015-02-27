@@ -3,8 +3,8 @@ package postaltracker.app.alexandrealessi.com.br.postal;
 /**
  * Created by alex on 24/02/2015.
  */
-public interface ShowPacoteDetalhadoPresenter {
+public interface ValidadorSroPresenter {
 
-    public void buscarSroValido(String sro);
+    public void verificarValidadeSro(String sro);
 
 }
