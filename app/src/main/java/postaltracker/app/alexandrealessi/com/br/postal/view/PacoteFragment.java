@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.alexpfx.api.postal.Sro;
-import br.com.alexpfx.api.postal.SroRetornoInfo;
+import br.com.alexpfx.api.postal.dao.SroRetornoInfo;
 import postaltracker.app.alexandrealessi.com.br.postal.R;
 import postaltracker.app.alexandrealessi.com.br.postal.presenter.DetalheSroPresenter;
 import postaltracker.app.alexandrealessi.com.br.postal.presenter.DetalheSroPresenterImpl;
@@ -99,6 +99,7 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
             ViewModel.create(info, status, detalhe).addTo(lista);
         }
         detalheListAdapter.setModelItemList(lista);
+        detalheListAdapter.notifyDataSetChanged();
     }
 
     @Override

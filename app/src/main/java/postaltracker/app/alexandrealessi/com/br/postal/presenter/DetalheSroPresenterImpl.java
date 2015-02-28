@@ -3,7 +3,7 @@ package postaltracker.app.alexandrealessi.com.br.postal.presenter;
 import java.util.List;
 
 import br.com.alexpfx.api.postal.Sro;
-import br.com.alexpfx.api.postal.SroRetornoInfo;
+import br.com.alexpfx.api.postal.dao.SroRetornoInfo;
 import postaltracker.app.alexandrealessi.com.br.postal.model.ConsultarCorreiosSroCallback;
 import postaltracker.app.alexandrealessi.com.br.postal.model.ResultadoAvaliacaoSroCallback;
 import postaltracker.app.alexandrealessi.com.br.postal.model.SroInteractor;
