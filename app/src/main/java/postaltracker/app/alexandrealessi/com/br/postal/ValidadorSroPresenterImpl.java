@@ -1,18 +1,20 @@
 package postaltracker.app.alexandrealessi.com.br.postal;
 
+import java.util.List;
+
 import br.com.alexpfx.api.postal.SRO;
 
 /**
  * Created by alex on 24/02/2015.
  */
-public class ValidadorSroPresenterImpl implements ValidadorSroPresenter, OnSroValidoListener {
+public class ValidadorSroPresenterImpl implements ValidadorSroPresenter, OnSroValidoListener, OnReceiveDetailSroListener {
 
     private SROInteractor sroInteractor;
-    private ValidadeSroView validadeSroView;
+    private SroDetalheView sroDetalheView;
 
 
-    public ValidadorSroPresenterImpl(ValidadeSroView validadeSroView) {
-        this.validadeSroView = validadeSroView;
+    public ValidadorSroPresenterImpl(SroDetalheView sroDetalheView) {
+        this.sroDetalheView = sroDetalheView;
         this.sroInteractor = new SROInteractorImpl();
     }
 
@@ -22,23 +24,26 @@ public class ValidadorSroPresenterImpl implements ValidadorSroPresenter, OnSroVa
         sroInteractor.avaliarSro(sro, this);
     }
 
-    @Override
-    public void obterInformacoesSro(SRO sro) {
-        sroInteractor.consultarCorreiosSro(sro);
-    }
-
 
     @Override
     public void onCodigoSroValido(SRO sro) {
-        validadeSroView.mostrarQueEhValido();
-
-
+        sroDetalheView.mostrarQueEhValido();
+        sroInteractor.consultarCorreiosSro(sro, this);
     }
 
     @Override
     public void onCodigoSroInvalido(String invalidSro) {
-        validadeSroView.mostrarQueEhInvalido();
+        sroDetalheView.mostrarQueEhInvalido();
     }
 
 
+    @Override
+    public void receive(SRO sro, List<SroRetornoInfo> listaInfos) {
+        sroDetalheView.mostrarDetalhesRecebidos(listaInfos);
+    }
+
+    @Override
+    public void naoEncontrado(SRO sro) {
+        sroDetalheView.mostrarDetalhesNaoEncontrados(sro);
+    }
 }

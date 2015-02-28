@@ -1,5 +1,7 @@
 package postaltracker.app.alexandrealessi.com.br.postal;
 
+import java.util.List;
+
 import br.com.alexpfx.api.postal.SRO;
 
 /**
@@ -7,7 +9,7 @@ import br.com.alexpfx.api.postal.SRO;
  */
 public interface SroRepository {
 
-    public void send (SRO sro) throws InfraException;
+    public List<SroRetornoInfo> send (SRO sro) throws InfraException;
 
 
 

@@ -2,6 +2,7 @@ package postaltracker.app.alexandrealessi.com.br.postal;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Collections;
 import java.util.List;
 
 import br.com.alexpfx.api.postal.SRO;
@@ -11,7 +12,7 @@ import br.com.alexpfx.api.postal.SROInvalidoException;
 /**
  * Created by alex on 25/02/2015.
  */
-public class SROInteractorImpl implements SROInteractor, SroRepositoryListener{
+public class SROInteractorImpl implements SROInteractor{
     private SroRepository sroRepository;
 
     public SROInteractorImpl() {
@@ -19,33 +20,29 @@ public class SROInteractorImpl implements SROInteractor, SroRepositoryListener{
     }
 
     @Override
-    public void avaliarSro(String sroString, OnSroValidoListener listener) {
+    public void avaliarSro(String sroString, OnSroValidoListener validoListener) {
         try {
             SRO objetoSro = new SROFactory().criar(sroString);
             if (objetoSro.isValid()){
-                listener.onCodigoSroValido(objetoSro);
+                validoListener.onCodigoSroValido(objetoSro);
             }else{
-                listener.onCodigoSroInvalido(sroString);
+                validoListener.onCodigoSroInvalido(sroString);
             }
         } catch (SROInvalidoException e){
-            listener.onCodigoSroInvalido(sroString);
+            validoListener.onCodigoSroInvalido(sroString);
         }
 
     }
 
     @Override
-    public void consultarCorreiosSro(SRO sro) {
-        sroRepository.send(sro);
+    public void consultarCorreiosSro(SRO sro, OnReceiveDetailSroListener listener) {
+        List<SroRetornoInfo> send = sroRepository.send(sro);
+        if (send == null || send.isEmpty()){
+            listener.naoEncontrado(sro);
+        }else {
+            listener.receive(sro, send);
+        }
     }
 
-    @Override
-    public void receive(SRO sro, List<SroRetornoInfo> listaInfos) {
 
-
-    }
-
-    @Override
-    public void naoEncontrado(SRO sro) {
-
-    }
 }

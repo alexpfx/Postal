@@ -19,13 +19,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.alexpfx.api.postal.SRO;
+
 import static postaltracker.app.alexandrealessi.com.br.postal.ListDetalheAdapter.ViewModel;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PacoteFragment extends Fragment implements ValidadeSroView {
+public class PacoteFragment extends Fragment implements SroDetalheView {
     private ValidadorSroPresenter detalhePresenter;
     private TextView txtSroStatusInfo;
     private EditText edtCode;
@@ -63,6 +65,7 @@ public class PacoteFragment extends Fragment implements ValidadeSroView {
         public void afterTextChanged(Editable s) {
             String code = StringUtils.deleteWhitespace(s.toString());
             if (code.length() != 13){
+                  mostrarQueEhInvalido();
                   return;
             }
             detalhePresenter.verificarValidadeSro(code);
@@ -92,6 +95,11 @@ public class PacoteFragment extends Fragment implements ValidadeSroView {
             ViewModel.create(info, status, detalhe).addTo(lista);
         }
         detalheListAdapter.setModelItemList(lista);
+    }
+
+    @Override
+    public void mostrarDetalhesNaoEncontrados(SRO sro) {
+        txtSroStatusInfo.setText("Nao encontrados detalhes para o pacote ".concat(sro.getNumero().toString()).concat(" no sistema de rastreamento dos correios. "));
     }
 
     //TODO remover

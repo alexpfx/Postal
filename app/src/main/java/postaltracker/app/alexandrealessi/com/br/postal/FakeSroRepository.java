@@ -14,12 +14,7 @@ import br.com.alexpfx.api.postal.SROFactory;
  */
 public class FakeSroRepository implements SroRepository {
     private Map<SRO, List<SroRetornoInfo>> map;
-    private SroRepositoryListener listener;
 
-
-    public FakeSroRepository(SroRepositoryListener listener) {
-        this.listener = listener;
-    }
 
     public FakeSroRepository() {
         this.map = new HashMap<>();
@@ -37,12 +32,8 @@ public class FakeSroRepository implements SroRepository {
     }
 
     @Override
-    public void send(SRO sro) throws InfraException {
+    public List<SroRetornoInfo> send(SRO sro) throws InfraException {
         List<SroRetornoInfo> retorno = map.get(sro);
-        if (retorno == null || retorno.isEmpty()) {
-            listener.receive(sro, retorno);
-        } else {
-            listener.naoEncontrado(sro);
-        }
+        return retorno;
    }
 }
