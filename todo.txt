@@ -1,1 +1,4 @@
-puxar PostalApi para dentro do projeto.
+- enviar acesso aos correios para a api java.
+- revisar o codigo
+- externalizar strings
+
