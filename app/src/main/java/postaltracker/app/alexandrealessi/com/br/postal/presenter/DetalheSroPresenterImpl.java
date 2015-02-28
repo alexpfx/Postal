@@ -2,12 +2,12 @@ package postaltracker.app.alexandrealessi.com.br.postal.presenter;
 
 import java.util.List;
 
-import br.com.alexpfx.api.postal.SRO;
+import br.com.alexpfx.api.postal.Sro;
+import br.com.alexpfx.api.postal.SroRetornoInfo;
 import postaltracker.app.alexandrealessi.com.br.postal.model.ConsultarCorreiosSroCallback;
 import postaltracker.app.alexandrealessi.com.br.postal.model.ResultadoAvaliacaoSroCallback;
 import postaltracker.app.alexandrealessi.com.br.postal.model.SroInteractor;
 import postaltracker.app.alexandrealessi.com.br.postal.model.SroInteractorImpl;
-import postaltracker.app.alexandrealessi.com.br.postal.model.SroRetornoInfo;
 import postaltracker.app.alexandrealessi.com.br.postal.view.SroDetalheView;
 
 /**
@@ -32,7 +32,7 @@ public class DetalheSroPresenterImpl implements DetalheSroPresenter, ResultadoAv
 
 
     @Override
-    public void onCodigoSroValido(SRO sro) {
+    public void onCodigoSroValido(Sro sro) {
         sroDetalheView.mostrarQueEhValido();
         sroInteractor.consultarCorreiosSro(sro, this);
     }
@@ -44,12 +44,12 @@ public class DetalheSroPresenterImpl implements DetalheSroPresenter, ResultadoAv
 
 
     @Override
-    public void receive(SRO sro, List<SroRetornoInfo> listaInfos) {
+    public void receive(Sro sro, List<SroRetornoInfo> listaInfos) {
         sroDetalheView.mostrarDetalhesRecebidos(listaInfos);
     }
 
     @Override
-    public void naoEncontrado(SRO sro) {
+    public void naoEncontrado(Sro sro) {
         sroDetalheView.mostrarDetalhesNaoEncontrados(sro);
     }
 }

@@ -19,9 +19,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.alexpfx.api.postal.SRO;
+import br.com.alexpfx.api.postal.Sro;
+import br.com.alexpfx.api.postal.SroRetornoInfo;
 import postaltracker.app.alexandrealessi.com.br.postal.R;
-import postaltracker.app.alexandrealessi.com.br.postal.model.SroRetornoInfo;
 import postaltracker.app.alexandrealessi.com.br.postal.presenter.DetalheSroPresenter;
 import postaltracker.app.alexandrealessi.com.br.postal.presenter.DetalheSroPresenterImpl;
 
@@ -102,7 +102,7 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
     }
 
     @Override
-    public void mostrarDetalhesNaoEncontrados(SRO sro) {
+    public void mostrarDetalhesNaoEncontrados(Sro sro) {
         txtSroStatusInfo.setText("Nao encontrados detalhes para o pacote ".concat(sro.getNumero().toString()).concat(" no sistema de rastreamento dos correios. "));
     }
 
