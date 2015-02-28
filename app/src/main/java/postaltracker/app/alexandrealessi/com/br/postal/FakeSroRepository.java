@@ -20,8 +20,6 @@ public class FakeSroRepository implements SroRepository {
         this.map = new HashMap<>();
         map.put(new SROFactory().criar("DM180464317BR"), criarLista());
         map.put(new SROFactory().criar("DM180638790BR"), criarLista());
-
-
     }
 
     private List<SroRetornoInfo> criarLista() {
