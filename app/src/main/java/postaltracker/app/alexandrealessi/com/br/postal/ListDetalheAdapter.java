@@ -23,6 +23,20 @@ public class ListDetalheAdapter extends RecyclerView.Adapter <ListDetalheAdapter
         this.modelItemList = modelItemList;
     }
 
+    public void add (ViewModel model){
+        this.modelItemList.add(model);
+    }
+    public void remove (ViewModel model){
+        this.modelItemList.remove(model);
+    }
+    public void clear (){
+        this.modelItemList.clear();
+    }
+
+    public void setModelItemList(List<ViewModel> modelItemList) {
+        this.modelItemList = modelItemList;
+    }
+
     @Override
     public ListDetalheAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int position) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.detalhe_item, parent, false);

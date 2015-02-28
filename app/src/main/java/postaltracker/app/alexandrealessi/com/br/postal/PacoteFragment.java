@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,9 +27,10 @@ import static postaltracker.app.alexandrealessi.com.br.postal.ListDetalheAdapter
  */
 public class PacoteFragment extends Fragment implements ValidadeSroView {
     private ValidadorSroPresenter detalhePresenter;
-
     private TextView txtSroStatusInfo;
     private EditText edtCode;
+    private ListDetalheAdapter detalheListAdapter;
+
     public PacoteFragment() {
 
 
@@ -38,7 +40,6 @@ public class PacoteFragment extends Fragment implements ValidadeSroView {
      @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         detalhePresenter = new ValidadorSroPresenterImpl(this);
         View v = inflater.inflate(R.layout.fragment_pacote, container, false);
 
@@ -48,8 +49,8 @@ public class PacoteFragment extends Fragment implements ValidadeSroView {
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         listDetalhe.setLayoutManager(manager);
 
-        ListDetalheAdapter adapter = new ListDetalheAdapter(this.getActivity().getApplicationContext(),createFakeList ());
-        listDetalhe.setAdapter(adapter);
+        detalheListAdapter = new ListDetalheAdapter(this.getActivity().getApplicationContext(),createFakeList ());
+        listDetalhe.setAdapter(detalheListAdapter);
 
         txtSroStatusInfo = (TextView) v.findViewById(R.id.txtSroStatusInfo);
         edtCode = (EditText) v.findViewById(R.id.edtCode);
@@ -69,15 +70,6 @@ public class PacoteFragment extends Fragment implements ValidadeSroView {
     } ;
 
 
-    private List<ViewModel> createFakeList() {
-        List<ViewModel> list = new ArrayList<>();
-        ViewModel.create("21/11/2014 17:48 Palhoca / SC", "Objeto entregue ao destinatário ", "").addTo(list);
-        ViewModel.create("21/11/2014 10:26 Palhoca / SC", "Objeto saiu para entrega ao destinatário ", "").addTo(list);
-        ViewModel.create("21/11/2014 06:39 Sao Jose / SC", "Objeto encaminhado ", "de Unidade Operacional em Sao Jose / SC para Unidade de Distribuição em Palhoca / SC ").addTo(list);
-        ViewModel.create("20/11/2014 17:57 Florianopolis / SC", "Objeto encaminhado ", "de Agência dos Correios em Florianopolis / SC para Unidade Operacional em Sao Jose / SC ").addTo(list);
-        ViewModel.create("20/11/2014 16:20 Florianopolis / SC", "Objeto postado", "").addTo(list);
-        return list;
-    }
 
 
     @Override
@@ -89,4 +81,28 @@ public class PacoteFragment extends Fragment implements ValidadeSroView {
     public void mostrarQueEhValido() {
         txtSroStatusInfo.setText("SRO Válido. Buscando informações...");
     }
+
+    @Override
+    public void mostrarDetalhesRecebidos(List<SroRetornoInfo> listaInfos) {
+        List<ViewModel> lista = new ArrayList<>();
+        for (SroRetornoInfo rinfo:listaInfos){
+            String info = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(rinfo.getData()).concat(" ").concat(rinfo.getLocal());
+            String status = rinfo.getAcao();
+            String detalhe = rinfo.getDetalhes();
+            ViewModel.create(info, status, detalhe).addTo(lista);
+        }
+        detalheListAdapter.setModelItemList(lista);
+    }
+
+    //TODO remover
+    private List<ViewModel> createFakeList() {
+        List<ViewModel> list = new ArrayList<>();
+        ViewModel.create("21/11/2014 17:48 Palhoca / SC", "Objeto entregue ao destinatário ", "").addTo(list);
+        ViewModel.create("21/11/2014 10:26 Palhoca / SC", "Objeto saiu para entrega ao destinatário ", "").addTo(list);
+        ViewModel.create("21/11/2014 06:39 Sao Jose / SC", "Objeto encaminhado ", "de Unidade Operacional em Sao Jose / SC para Unidade de Distribuição em Palhoca / SC ").addTo(list);
+        ViewModel.create("20/11/2014 17:57 Florianopolis / SC", "Objeto encaminhado ", "de Agência dos Correios em Florianopolis / SC para Unidade Operacional em Sao Jose / SC ").addTo(list);
+        ViewModel.create("20/11/2014 16:20 Florianopolis / SC", "Objeto postado", "").addTo(list);
+        return list;
+    }
+
 }

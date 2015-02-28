@@ -22,6 +22,11 @@ public class ValidadorSroPresenterImpl implements ValidadorSroPresenter, OnSroVa
         sroInteractor.avaliarSro(sro, this);
     }
 
+    @Override
+    public void obterInformacoesSro(SRO sro) {
+        sroInteractor.consultarCorreiosSro(sro);
+    }
+
 
     @Override
     public void onCodigoSroValido(SRO sro) {
@@ -34,4 +39,6 @@ public class ValidadorSroPresenterImpl implements ValidadorSroPresenter, OnSroVa
     public void onCodigoSroInvalido(String invalidSro) {
         validadeSroView.mostrarQueEhInvalido();
     }
+
+
 }
