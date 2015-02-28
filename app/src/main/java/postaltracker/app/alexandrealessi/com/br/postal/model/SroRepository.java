@@ -1,4 +1,4 @@
-package postaltracker.app.alexandrealessi.com.br.postal;
+package postaltracker.app.alexandrealessi.com.br.postal.model;
 
 import java.util.List;
 
@@ -10,6 +10,6 @@ import br.com.alexpfx.api.postal.SRO;
 //TODO: enviar para Java APi
 public interface SroRepository {
 
-    public List<SroRetornoInfo> send (SRO sro) throws InfraException;
+    public List<SroRetornoInfo> consultarSro(SRO sro) throws InfraException;
 
 }

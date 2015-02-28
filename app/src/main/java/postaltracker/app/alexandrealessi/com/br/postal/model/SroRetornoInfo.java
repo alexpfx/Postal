@@ -1,4 +1,4 @@
-package postaltracker.app.alexandrealessi.com.br.postal;
+package postaltracker.app.alexandrealessi.com.br.postal.model;
 
 import java.util.Date;
 

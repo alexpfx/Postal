@@ -14,8 +14,10 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
-import static postaltracker.app.alexandrealessi.com.br.postal.OverflowMenuViewAdapter.OnOverflowMenuItemClickListener;
-import static postaltracker.app.alexandrealessi.com.br.postal.OverflowMenuViewAdapter.ViewModel;
+import postaltracker.app.alexandrealessi.com.br.postal.view.OverflowMenuViewAdapter;
+
+import static postaltracker.app.alexandrealessi.com.br.postal.view.OverflowMenuViewAdapter.OnOverflowMenuItemClickListener;
+import static postaltracker.app.alexandrealessi.com.br.postal.view.OverflowMenuViewAdapter.ViewModel;
 
 
 public class MainActivity extends ActionBarActivity implements OnOverflowMenuItemClickListener {

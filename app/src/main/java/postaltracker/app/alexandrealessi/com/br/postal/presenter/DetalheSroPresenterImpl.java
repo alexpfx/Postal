@@ -1,21 +1,27 @@
-package postaltracker.app.alexandrealessi.com.br.postal;
+package postaltracker.app.alexandrealessi.com.br.postal.presenter;
 
 import java.util.List;
 
 import br.com.alexpfx.api.postal.SRO;
+import postaltracker.app.alexandrealessi.com.br.postal.model.ConsultarCorreiosSroCallback;
+import postaltracker.app.alexandrealessi.com.br.postal.model.ResultadoAvaliacaoSroCallback;
+import postaltracker.app.alexandrealessi.com.br.postal.model.SroInteractor;
+import postaltracker.app.alexandrealessi.com.br.postal.model.SroInteractorImpl;
+import postaltracker.app.alexandrealessi.com.br.postal.model.SroRetornoInfo;
+import postaltracker.app.alexandrealessi.com.br.postal.view.SroDetalheView;
 
 /**
  * Created by alex on 24/02/2015.
  */
-public class ValidadorSroPresenterImpl implements ValidadorSroPresenter, OnSroValidoListener, OnReceiveDetailSroListener {
+public class DetalheSroPresenterImpl implements DetalheSroPresenter, ResultadoAvaliacaoSroCallback, ConsultarCorreiosSroCallback {
 
-    private SROInteractor sroInteractor;
+    private SroInteractor sroInteractor;
     private SroDetalheView sroDetalheView;
 
 
-    public ValidadorSroPresenterImpl(SroDetalheView sroDetalheView) {
+    public DetalheSroPresenterImpl(SroDetalheView sroDetalheView) {
         this.sroDetalheView = sroDetalheView;
-        this.sroInteractor = new SROInteractorImpl();
+        this.sroInteractor = new SroInteractorImpl();
     }
 
 

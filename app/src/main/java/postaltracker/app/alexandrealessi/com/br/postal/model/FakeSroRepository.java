@@ -1,4 +1,4 @@
-package postaltracker.app.alexandrealessi.com.br.postal;
+package postaltracker.app.alexandrealessi.com.br.postal.model;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,7 +30,7 @@ public class FakeSroRepository implements SroRepository {
     }
 
     @Override
-    public List<SroRetornoInfo> send(SRO sro) throws InfraException {
+    public List<SroRetornoInfo> consultarSro(SRO sro) throws InfraException {
         List<SroRetornoInfo> retorno = map.get(sro);
         return retorno;
    }

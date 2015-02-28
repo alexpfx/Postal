@@ -1,4 +1,4 @@
-package postaltracker.app.alexandrealessi.com.br.postal;
+package postaltracker.app.alexandrealessi.com.br.postal.view;
 
 
 import android.os.Bundle;
@@ -20,15 +20,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.alexpfx.api.postal.SRO;
+import postaltracker.app.alexandrealessi.com.br.postal.R;
+import postaltracker.app.alexandrealessi.com.br.postal.model.SroRetornoInfo;
+import postaltracker.app.alexandrealessi.com.br.postal.presenter.DetalheSroPresenter;
+import postaltracker.app.alexandrealessi.com.br.postal.presenter.DetalheSroPresenterImpl;
 
-import static postaltracker.app.alexandrealessi.com.br.postal.ListDetalheAdapter.ViewModel;
+import static postaltracker.app.alexandrealessi.com.br.postal.view.ListDetalheAdapter.ViewModel;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class PacoteFragment extends Fragment implements SroDetalheView {
-    private ValidadorSroPresenter detalhePresenter;
+    private DetalheSroPresenter detalhePresenter;
     private TextView txtSroStatusInfo;
     private EditText edtCode;
     private ListDetalheAdapter detalheListAdapter;
@@ -42,7 +46,7 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
      @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        detalhePresenter = new ValidadorSroPresenterImpl(this);
+        detalhePresenter = new DetalheSroPresenterImpl(this);
         View v = inflater.inflate(R.layout.fragment_pacote, container, false);
 
         RecyclerView listDetalhe = (RecyclerView) v.findViewById(R.id.listDetalhe);

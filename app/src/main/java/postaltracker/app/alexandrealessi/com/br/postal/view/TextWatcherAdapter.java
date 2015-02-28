@@ -1,4 +1,4 @@
-package postaltracker.app.alexandrealessi.com.br.postal;
+package postaltracker.app.alexandrealessi.com.br.postal.view;
 
 import android.text.Editable;
 import android.text.TextWatcher;

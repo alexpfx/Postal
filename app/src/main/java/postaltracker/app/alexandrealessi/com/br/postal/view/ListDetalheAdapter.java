@@ -1,4 +1,4 @@
-package postaltracker.app.alexandrealessi.com.br.postal;
+package postaltracker.app.alexandrealessi.com.br.postal.view;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 
 import java.util.List;
+
+import postaltracker.app.alexandrealessi.com.br.postal.R;
 
 /**
  * Created by alexandre on 22/02/15.
