@@ -16,7 +16,5 @@ public class ListDetalheDividersItemDecoration extends RecyclerView.ItemDecorati
         if (parent.getChildPosition(view) == 0){
             outRect.top = space;
         }
-
-
     }
 }

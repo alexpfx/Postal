@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,47 +46,40 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
     private AutoCompleteTextView edtTipoServico;
     private AutoCompleteTextView edtPais;
 
-    public PacoteFragment() {
-
-
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         detalhePresenter = new DetalheSroPresenterImpl(this);
+
         View v = inflater.inflate(R.layout.fragment_pacote, container, false);
-
-        RecyclerView listDetalhe = (RecyclerView) v.findViewById(R.id.listDetalhe);
-        listDetalhe.setHasFixedSize(false);
-
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        listDetalhe.setLayoutManager(manager);
-
-        detalheListAdapter = new ListDetalheAdapter(this.getActivity().getApplicationContext(), new ArrayList<ViewModel>());
-        listDetalhe.setAdapter(detalheListAdapter);
-        listDetalhe.addItemDecoration(new ListDetalheDividersItemDecoration());
-
-
+        configurarDetalheRecycler(v);
         txtSroStatusInfo = (TextView) v.findViewById(R.id.txtSroStatusInfo);
-        edtCode = (EditText) v.findViewById(R.id.edtCode);
+        setupEditTexts(v);
+
+        return v;
+    }
 
 
-        ArrayAdapter<String> adapterEdtTipoServico = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_dropdown_item_1line, criarArrayTipoServico());
-        ArrayAdapter<String> adapterEdtPais = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_dropdown_item_1line, criarArrayCodigoPais());
+    private ArrayAdapter<String> criarStringArrayAdapter(List<String> arrayList) {
+        return new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_dropdown_item_1line, criarArrayTipoServico());
+    }
 
-        edtTipoServico = (AutoCompleteTextView) v.findViewById(R.id.edtTipoServico);
-        edtTipoServico.setAdapter(adapterEdtTipoServico);
-        edtPais = (AutoCompleteTextView) v.findViewById(R.id.edtPais);
-        edtPais.setAdapter(adapterEdtPais);
+    private void atribuirListAdapter(AutoCompleteTextView editText, ArrayAdapter<String> arrayAdapter) {
+        editText.setAdapter(arrayAdapter);
+    }
 
 
-        TextWatcher validadorSroTextWatcher = new TextWatcherAdapter(edtTipoServico.getText(), edtCode.getText(), edtPais.getText()) {
+    /**
+     * Edits devem ser passados em ordem.
+     *
+     * @param edts
+     */
+    public void configurarTextWatcher(EditText... edts) {
+        TextWatcherAdapter validadorSroTextWatcher = new TextWatcherAdapter() {
             @Override
             public void afterTextChanged(Editable s) {
                 String code = StringUtils.deleteWhitespace(getConcatText(s));
-                Log.d(tag,code);
+                Log.d(tag, code);
                 if (code.length() != 13) {
                     mostrarQueEhInvalido();
                     return;
@@ -95,14 +87,30 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
                 detalhePresenter.verificarValidadeSro(code);
             }
         };
+        for (EditText edt : edts) {
+            validadorSroTextWatcher.addEditable(edt.getText());
+            edt.addTextChangedListener(validadorSroTextWatcher);
+        }
+    }
 
+    private void setupEditTexts(View v) {
+        edtTipoServico = (AutoCompleteTextView) v.findViewById(R.id.edtTipoServico);
+        edtPais = (AutoCompleteTextView) v.findViewById(R.id.edtPais);
+        atribuirListAdapter(edtTipoServico, criarStringArrayAdapter(criarArrayTipoServico()));
+        atribuirListAdapter(edtPais, criarStringArrayAdapter(criarArrayCodigoPais()));
+        edtCode = (EditText) v.findViewById(R.id.edtCode);
+        configurarTextWatcher(edtTipoServico, edtCode, edtPais);
 
-        edtCode.addTextChangedListener(validadorSroTextWatcher);
-        edtTipoServico.addTextChangedListener(validadorSroTextWatcher);
-        edtPais.addTextChangedListener(validadorSroTextWatcher);
+    }
 
-
-        return v;
+    private void configurarDetalheRecycler(View v) {
+        RecyclerView listDetalhe = (RecyclerView) v.findViewById(R.id.listDetalhe);
+        listDetalhe.setHasFixedSize(false);
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        listDetalhe.setLayoutManager(manager);
+        detalheListAdapter = new ListDetalheAdapter(this.getActivity().getApplicationContext(), new ArrayList<ViewModel>());
+        listDetalhe.setAdapter(detalheListAdapter);
+        listDetalhe.addItemDecoration(new ListDetalheDividersItemDecoration());
     }
 
     private List<String> criarArrayTipoServico() {
@@ -113,6 +121,7 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
         return tipos;
     }
 
+    //TODO: pegar lista possivel de paises.
     private List<String> criarArrayCodigoPais() {
         List<String> tipos = new ArrayList<String>();
         tipos.add("BR");
