@@ -1,11 +1,14 @@
 package postaltracker.app.alexandrealessi.com.br.postal.model;
 
+import android.os.AsyncTask;
+
 import java.util.List;
 
 import br.com.alexpfx.api.postal.Sro;
 import br.com.alexpfx.api.postal.SroFactory;
 import br.com.alexpfx.api.postal.SroInvalidoException;
-import br.com.alexpfx.api.postal.dao.FakeSroRepository;
+import br.com.alexpfx.api.postal.dao.AgenciaIdeiaRepository;
+import br.com.alexpfx.api.postal.dao.InfraException;
 import br.com.alexpfx.api.postal.dao.SroRepository;
 import br.com.alexpfx.api.postal.dao.SroRetornoInfo;
 
@@ -17,7 +20,7 @@ public class SroInteractorImpl implements SroInteractor {
     private SroRepository sroRepository;
 
     public SroInteractorImpl() {
-        this.sroRepository = new FakeSroRepository();
+        this.sroRepository = new AgenciaIdeiaRepository();
     }
 
     @Override
@@ -36,13 +39,28 @@ public class SroInteractorImpl implements SroInteractor {
     }
 
     @Override
-    public void consultarCorreiosSro(Sro sro, ConsultarCorreiosSroCallback callback) {
-        List<SroRetornoInfo> retorno = sroRepository.consultarSro(sro);
-        if (retorno == null || retorno.isEmpty()) {
-            callback.naoEncontrado(sro);
-        } else {
-            callback.receive(sro, retorno);
-        }
+    public void consultarCorreiosSro(final Sro sro, final ConsultarCorreiosSroCallback callback) {
+        new AsyncTask<Sro, Void, List<SroRetornoInfo>>() {
+            @Override
+            protected List<SroRetornoInfo> doInBackground(Sro... params) {
+                try {
+                    List<SroRetornoInfo> sroRetornoInfos = sroRepository.consultarSro(params[0]);
+                    return sroRetornoInfos;
+                } catch (InfraException e) {
+                    return null;
+                }
+
+            }
+
+            @Override
+            protected void onPostExecute(List<SroRetornoInfo> sroRetornoInfos) {
+                if (sroRetornoInfos == null || sroRetornoInfos.isEmpty()) {
+                    callback.naoEncontrado(sro);
+                } else {
+                    callback.receive(sro, sroRetornoInfos);
+                }
+            }
+        }.execute(sro);
     }
 
 

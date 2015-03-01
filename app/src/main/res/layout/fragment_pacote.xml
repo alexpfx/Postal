@@ -13,17 +13,52 @@
         android:layout_alignParentTop="true"
         android:orientation="horizontal">
 
+
+        <AutoCompleteTextView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:text=""
+            android:inputType="textAutoComplete|textCapCharacters"
+            android:id="@+id/edtTipoServico"
+            android:completionThreshold="1"
+            android:textColor="#012"
+            android:dropDownWidth="80dp"
+            android:textSize="20dp"
+            android:hint="SS"
+            android:gravity="center"
+            android:selectAllOnFocus="true"
+            />
+
         <EditText
             android:id="@+id/edtCode"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center_horizontal"
-
-            android:text="SF 583 949 355 BR"
-            android:textSize="30dp"
+            android:gravity="center"
+            android:textSize="20dp"
+            style="?android:autoCompleteTextViewStyle"
+            android:hint="123456789"
+            android:maxLength="9"
+            android:inputType="number"
+            android:selectAllOnFocus="true"
 
             />
+
+        <AutoCompleteTextView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:text="BR"
+            android:inputType="textAutoComplete|textCapCharacters"
+            android:id="@+id/edtPais"
+            android:completionThreshold="1"
+            android:textColor="#012"
+            android:dropDownWidth="80dp"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:selectAllOnFocus="true"
+            />
+
+
 
         <ImageButton
             android:id="@+id/btnQrCode"
@@ -32,8 +67,6 @@
             android:background="@null"
             android:scaleType="fitXY"
             android:src="@drawable/unnamed" />
-
-
 
     </LinearLayout>
 
@@ -44,12 +77,13 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@id/layCodeSearch"
-
+        android:background="#dff"
+        android:text=""
         />
-
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listDetalhe"
+        android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
@@ -58,8 +92,9 @@
         android:layout_gravity="start"
         >
 
-
     </android.support.v7.widget.RecyclerView>
+
+
 
 
 </RelativeLayout>

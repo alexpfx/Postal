@@ -7,5 +7,4 @@ public interface DetalheSroPresenter {
 
     public void verificarValidadeSro(String sro);
 
-
 }
