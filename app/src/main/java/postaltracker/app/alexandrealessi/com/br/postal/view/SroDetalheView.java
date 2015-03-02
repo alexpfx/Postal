@@ -14,4 +14,6 @@ public interface SroDetalheView {
     public void mostrarQueEhValido ();
     public void mostrarDetalhesRecebidos (List<SroRetornoInfo> retornoInfo);
     public void mostrarDetalhesNaoEncontrados (Sro sro);
+    public void mostrarSroScaneado (Sro sro);
+    public void onQrCodeChange ();
 }

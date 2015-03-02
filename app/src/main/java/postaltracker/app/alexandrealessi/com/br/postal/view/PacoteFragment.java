@@ -2,11 +2,11 @@ package postaltracker.app.alexandrealessi.com.br.postal.view;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,15 +15,21 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
-import org.apache.commons.lang3.StringUtils;
+import com.google.zxing.client.android.Intents;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import br.com.alexpfx.api.postal.Sro;
+import br.com.alexpfx.api.postal.SroFactory;
+import br.com.alexpfx.api.postal.SroInvalidoException;
 import br.com.alexpfx.api.postal.TipoSro;
 import br.com.alexpfx.api.postal.dao.SroRetornoInfo;
 import postaltracker.app.alexandrealessi.com.br.postal.R;
@@ -45,6 +51,8 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
     private EditText edtCode;
     private AutoCompleteTextView edtTipoServico;
     private AutoCompleteTextView edtPais;
+    private ImageButton btnScanQrCode;
+    private IntentIntegrator scanIntegrator;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,13 +60,63 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
         detalhePresenter = new DetalheSroPresenterImpl(this);
 
         View v = inflater.inflate(R.layout.fragment_pacote, container, false);
-        configurarDetalheRecycler(v);
-        txtSroStatusInfo = (TextView) v.findViewById(R.id.txtSroStatusInfo);
-        setupEditTexts(v);
-
+        configurarRecycleViews(v);
+        configurarTextViews(v);
+        configurarEditTexts(v);
+        configurarQRCodeScanner();
+        configurarBotoes(v);
         return v;
     }
 
+    private void configurarTextViews(View v) {
+        txtSroStatusInfo = (TextView) v.findViewById(R.id.txtSroStatusInfo);
+    }
+
+    private void configurarBotoes(View v) {
+        btnScanQrCode = (ImageButton) v.findViewById(R.id.btnScanQrCode);
+        btnScanQrCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scanIntegrator.setPrompt("Aponte a camera para o QRCode do objeto de rastreamento");
+//                scanIntegrator.setCaptureLayout(R.layout.custom_capture_layout);
+                Map<String, ?> moreExtras = scanIntegrator.getMoreExtras();
+
+                scanIntegrator.initiateScan();
+
+            }
+        });
+    }
+
+    private void configurarQRCodeScanner() {
+        scanIntegrator = IntentIntegrator.forSupportFragment(this);
+
+
+   }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (scanResult != null) {
+            String contents = scanResult.getContents();
+            if (contents != null) {
+                Sro sro;
+                try {
+                    Log.d(tag, contents);
+                    sro = new SroFactory().criar(contents);
+                    if (sro.isValid()) {
+                        mostrarSroScaneado(sro);
+                    } else {
+                        mostrarQueEhInvalido();
+                    }
+                } catch (SroInvalidoException e) {
+                    mostrarQueEhInvalido();
+                }
+            }
+
+        }
+
+    }
 
     private ArrayAdapter<String> criarStringArrayAdapter(List<String> arrayList) {
         return new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_dropdown_item_1line, criarArrayTipoServico());
@@ -75,25 +133,26 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
      * @param edts
      */
     public void configurarTextWatcher(EditText... edts) {
-        TextWatcherAdapter validadorSroTextWatcher = new TextWatcherAdapter() {
-            @Override
-            public void afterTextChanged(Editable s) {
-                String code = StringUtils.deleteWhitespace(getConcatText(s));
-                Log.d(tag, code);
-                if (code.length() != 13) {
-                    mostrarQueEhInvalido();
-                    return;
-                }
-                detalhePresenter.verificarValidadeSro(code);
-            }
-        };
+
         for (EditText edt : edts) {
-            validadorSroTextWatcher.addEditable(edt.getText());
-            edt.addTextChangedListener(validadorSroTextWatcher);
+            edt.addTextChangedListener(new TextWatcherAdapter(this));
         }
+
+
     }
 
-    private void setupEditTexts(View v) {
+
+    private void configurarRecycleViews(View v) {
+        RecyclerView listDetalhe = (RecyclerView) v.findViewById(R.id.listDetalhe);
+        listDetalhe.setHasFixedSize(false);
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        listDetalhe.setLayoutManager(manager);
+        detalheListAdapter = new ListDetalheAdapter(this.getActivity().getApplicationContext(), new ArrayList<ViewModel>());
+        listDetalhe.setAdapter(detalheListAdapter);
+        listDetalhe.addItemDecoration(new ListDetalheDividersItemDecoration());
+    }
+
+    private void configurarEditTexts(View v) {
         edtTipoServico = (AutoCompleteTextView) v.findViewById(R.id.edtTipoServico);
         edtPais = (AutoCompleteTextView) v.findViewById(R.id.edtPais);
         atribuirListAdapter(edtTipoServico, criarStringArrayAdapter(criarArrayTipoServico()));
@@ -103,15 +162,6 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
 
     }
 
-    private void configurarDetalheRecycler(View v) {
-        RecyclerView listDetalhe = (RecyclerView) v.findViewById(R.id.listDetalhe);
-        listDetalhe.setHasFixedSize(false);
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        listDetalhe.setLayoutManager(manager);
-        detalheListAdapter = new ListDetalheAdapter(this.getActivity().getApplicationContext(), new ArrayList<ViewModel>());
-        listDetalhe.setAdapter(detalheListAdapter);
-        listDetalhe.addItemDecoration(new ListDetalheDividersItemDecoration());
-    }
 
     private List<String> criarArrayTipoServico() {
         List<String> tipos = new ArrayList<String>();
@@ -156,15 +206,38 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
         detalheListAdapter.setModelItemList(lista);
         detalheListAdapter.notifyDataSetChanged();
         txtSroStatusInfo.setText("Detalhes para o pacote encontrados");
+        esconderTeclado();
+    }
+
+    private void esconderTeclado() {
         InputMethodManager m = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         m.hideSoftInputFromWindow(txtSroStatusInfo.getWindowToken(), InputMethodManager.HIDE_IMPLICIT_ONLY);
-
     }
 
     @Override
     public void mostrarDetalhesNaoEncontrados(Sro sro) {
         txtSroStatusInfo.setText("Nao encontrados detalhes para o pacote ".concat(sro.toString()).concat(" no sistema de rastreamento dos correios. "));
+        esconderTeclado();
     }
 
+    @Override
+    public void mostrarSroScaneado(Sro sro) {
+        this.edtTipoServico.setText(sro.getCodigoServico().getCodigo());
+        this.edtPais.setText(sro.getPaisOrigem());
+        this.edtCode.setText(sro.getNumero().toString() + sro.getDigitoVerificador().toString());
+    }
 
+    @Override
+    public void onQrCodeChange() {
+        Log.d(tag, getQroCode());
+        if (getQroCode().length() != 13) {
+            mostrarQueEhInvalido();
+            return;
+        }
+        detalhePresenter.verificarValidadeSro(getQroCode());
+    }
+
+    public synchronized String getQroCode() {
+        return edtTipoServico.getText().toString() + edtCode.getText().toString() + edtPais.getText().toString();
+    }
 }

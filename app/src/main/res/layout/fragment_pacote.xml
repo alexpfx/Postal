@@ -58,7 +58,7 @@
 
 
         <ImageButton
-            android:id="@+id/btnQrCode"
+            android:id="@+id/btnScanQrCode"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@null"
