@@ -99,8 +99,7 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
     private void configurarQRCodeScanner() {
         scanIntegrator = IntentIntegrator.forSupportFragment(this);
 
-
-   }
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -197,17 +196,17 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
 
     @Override
     public void mostrarQueEhInvalido() {
-        toaster.error("SRO Inválido");
+        toaster.error("SRO Incorreto.");
 
     }
 
     @Override
     public void mostrarQueEhValido() {
-        toaster.info("Sro Válido. Buscando...");
+        toaster.info("Sro Válido, buscando informações...");
     }
 
     @Override
-    public void mostrarDetalhesRecebidos(List<SroRetornoInfo> listaInfos) {
+    public void mostrarDetalhesRecebidos(Sro sro, List<SroRetornoInfo> listaInfos) {
         List<ViewModel> lista = new ArrayList<>();
         for (SroRetornoInfo rinfo : listaInfos) {
             String info = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(rinfo.getData()).concat(" ").concat(rinfo.getLocal());
@@ -217,7 +216,7 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
         }
         detalheListAdapter.setModelItemList(lista);
         detalheListAdapter.notifyDataSetChanged();
-        toaster.success("Detalhes encontrados ");
+        toaster.success("código de rastreio encontrado: " + sro);
         esconderTeclado();
     }
 
@@ -228,7 +227,7 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
 
     @Override
     public void mostrarDetalhesNaoEncontrados(Sro sro) {
-
+        toaster.info("não foram encontradas informações para o pacote " + sro);
         esconderTeclado();
     }
 
@@ -243,7 +242,10 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
     public void onQrCodeChange() {
         Log.d(tag, getQroCode());
         if (getQroCode().length() != 13) {
-            mostrarQueEhInvalido();
+            if (detalheListAdapter.getItemCount() > 0){
+                detalheListAdapter.clear();
+                detalheListAdapter.notifyDataSetChanged();
+            }
             return;
         }
         detalhePresenter.verificarValidadeSro(getQroCode());

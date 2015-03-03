@@ -12,7 +12,7 @@ import br.com.alexpfx.api.postal.dao.SroRetornoInfo;
 public interface SroDetalheView {
     public void mostrarQueEhInvalido ();
     public void mostrarQueEhValido ();
-    public void mostrarDetalhesRecebidos (List<SroRetornoInfo> retornoInfo);
+    public void mostrarDetalhesRecebidos (Sro sro, List<SroRetornoInfo> retornoInfo);
     public void mostrarDetalhesNaoEncontrados (Sro sro);
     public void mostrarSroScaneado (Sro sro);
     public void onQrCodeChange ();

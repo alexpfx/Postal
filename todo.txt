@@ -1,4 +1,9 @@
-- enviar acesso aos correios para a api java.
-- revisar o codigo
+- inverter a ordem da lista de detalhes do pacote
+- limitar tamanho dos campos Tipo Servico e Pais
+- buscar a lista de paises possiveis
 - externalizar strings
+ok - limpar lista ao 'des'digitar
+ok- enviar acesso aos correios para a api java.
+ok - revisar o codigo
+
 

@@ -45,7 +45,7 @@ public class DetalheSroPresenterImpl implements DetalheSroPresenter, ResultadoAv
 
     @Override
     public void receive(Sro sro, List<SroRetornoInfo> listaInfos) {
-        sroDetalheView.mostrarDetalhesRecebidos(listaInfos);
+        sroDetalheView.mostrarDetalhesRecebidos(sro, listaInfos);
     }
 
     @Override
