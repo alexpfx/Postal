@@ -10,7 +10,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -48,6 +46,7 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
     private static final String tag = PacoteFragment.class.getSimpleName();
     private DetalheSroPresenter detalhePresenter;
     private ListDetalheAdapter detalheListAdapter;
+    private StatusToast toaster;
 
     private EditText edtCode;
     private AutoCompleteTextView edtTipoServico;
@@ -55,11 +54,16 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
     private ImageButton btnScanQrCode;
     private IntentIntegrator scanIntegrator;
     private View toastPosition;
+    private Context context;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        context = getActivity().getApplicationContext();
         detalhePresenter = new DetalheSroPresenterImpl(this);
+        toaster = StatusToast.make(context);
+
 
         View v = inflater.inflate(R.layout.fragment_pacote, container, false);
         configurarRecycleViews(v);
@@ -193,19 +197,13 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
 
     @Override
     public void mostrarQueEhInvalido() {
-//        txtSroStatusInfo.setText("Digite um SRO Válido.");
-        //TODO: prototipo
-        Toast t = Toast.makeText(getActivity().getApplicationContext(), "Teste", Toast.LENGTH_SHORT);
-        t.getView().setBackgroundColor(getResources().getColor(android.R.color.holo_orange_dark));
-//        int []coord = new int [2];
-//        toastPosition.getLocationOnScreen(coord);
-        t.setGravity(Gravity.TOP | Gravity.RIGHT, 0, 0);
-        t.show();
+        toaster.error("SRO Inválido");
+
     }
 
     @Override
     public void mostrarQueEhValido() {
-//        txtSroStatusInfo.setText("SRO Válido. Buscando informações...");
+        toaster.info("Sro Válido. Buscando...");
     }
 
     @Override
@@ -219,7 +217,7 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
         }
         detalheListAdapter.setModelItemList(lista);
         detalheListAdapter.notifyDataSetChanged();
-//        txtSroStatusInfo.setText("Detalhes para o pacote encontrados");
+        toaster.success("Detalhes encontrados ");
         esconderTeclado();
     }
 
