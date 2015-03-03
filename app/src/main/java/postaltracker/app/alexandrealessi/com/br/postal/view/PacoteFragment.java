@@ -1,13 +1,16 @@
 package postaltracker.app.alexandrealessi.com.br.postal.view;
 
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +19,8 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.zxing.client.android.Intents;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -45,7 +47,6 @@ import static postaltracker.app.alexandrealessi.com.br.postal.view.ListDetalheAd
 public class PacoteFragment extends Fragment implements SroDetalheView {
     private static final String tag = PacoteFragment.class.getSimpleName();
     private DetalheSroPresenter detalhePresenter;
-    private TextView txtSroStatusInfo;
     private ListDetalheAdapter detalheListAdapter;
 
     private EditText edtCode;
@@ -53,6 +54,7 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
     private AutoCompleteTextView edtPais;
     private ImageButton btnScanQrCode;
     private IntentIntegrator scanIntegrator;
+    private View toastPosition;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,14 +67,17 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
         configurarEditTexts(v);
         configurarQRCodeScanner();
         configurarBotoes(v);
+        toastPosition = v.findViewById(R.id.layToastPosition);
         return v;
     }
 
     private void configurarTextViews(View v) {
-        txtSroStatusInfo = (TextView) v.findViewById(R.id.txtSroStatusInfo);
+
+
     }
 
     private void configurarBotoes(View v) {
+
         btnScanQrCode = (ImageButton) v.findViewById(R.id.btnScanQrCode);
         btnScanQrCode.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,6 +147,7 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
     }
 
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private void configurarRecycleViews(View v) {
         RecyclerView listDetalhe = (RecyclerView) v.findViewById(R.id.listDetalhe);
         listDetalhe.setHasFixedSize(false);
@@ -150,6 +156,7 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
         detalheListAdapter = new ListDetalheAdapter(this.getActivity().getApplicationContext(), new ArrayList<ViewModel>());
         listDetalhe.setAdapter(detalheListAdapter);
         listDetalhe.addItemDecoration(new ListDetalheDividersItemDecoration());
+
     }
 
     private void configurarEditTexts(View v) {
@@ -186,12 +193,19 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
 
     @Override
     public void mostrarQueEhInvalido() {
-        txtSroStatusInfo.setText("Digite um SRO Válido.");
+//        txtSroStatusInfo.setText("Digite um SRO Válido.");
+        //TODO: prototipo
+        Toast t = Toast.makeText(getActivity().getApplicationContext(), "Teste", Toast.LENGTH_SHORT);
+        t.getView().setBackgroundColor(getResources().getColor(android.R.color.holo_orange_dark));
+//        int []coord = new int [2];
+//        toastPosition.getLocationOnScreen(coord);
+        t.setGravity(Gravity.TOP | Gravity.RIGHT, 0, 0);
+        t.show();
     }
 
     @Override
     public void mostrarQueEhValido() {
-        txtSroStatusInfo.setText("SRO Válido. Buscando informações...");
+//        txtSroStatusInfo.setText("SRO Válido. Buscando informações...");
     }
 
     @Override
@@ -205,18 +219,18 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
         }
         detalheListAdapter.setModelItemList(lista);
         detalheListAdapter.notifyDataSetChanged();
-        txtSroStatusInfo.setText("Detalhes para o pacote encontrados");
+//        txtSroStatusInfo.setText("Detalhes para o pacote encontrados");
         esconderTeclado();
     }
 
     private void esconderTeclado() {
         InputMethodManager m = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        m.hideSoftInputFromWindow(txtSroStatusInfo.getWindowToken(), InputMethodManager.HIDE_IMPLICIT_ONLY);
+        m.hideSoftInputFromWindow(edtCode.getWindowToken(), InputMethodManager.HIDE_IMPLICIT_ONLY);
     }
 
     @Override
     public void mostrarDetalhesNaoEncontrados(Sro sro) {
-        txtSroStatusInfo.setText("Nao encontrados detalhes para o pacote ".concat(sro.toString()).concat(" no sistema de rastreamento dos correios. "));
+
         esconderTeclado();
     }
 

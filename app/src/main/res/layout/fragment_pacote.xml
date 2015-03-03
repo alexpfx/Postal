@@ -1,18 +1,31 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="56dp"
+    android:layout_height="200dp"
+    android:paddingLeft="16dp"
     tools:context="postaltracker.app.alexandrealessi.com.br.postal.view.PacoteFragment">
+
+
+    <ImageButton
+        android:id="@+id/btnScanQrCode"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@null"
+        android:backgroundTint="#a15"
+        android:scaleType="fitXY"
+        android:src="@drawable/postal" />
+
 
     <LinearLayout
         android:id="@+id/layCodeSearch"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:orientation="horizontal">
-
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignTop="@id/btnScanQrCode"
+        android:layout_toRightOf="@id/btnScanQrCode"
+        >
 
         <AutoCompleteTextView
             android:id="@+id/edtTipoServico"
@@ -32,7 +45,7 @@
             android:id="@+id/edtCode"
             style="?android:autoCompleteTextViewStyle"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:hint="123456789"
@@ -46,7 +59,7 @@
         <AutoCompleteTextView
             android:id="@+id/edtPais"
             android:layout_width="60dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:completionThreshold="1"
             android:dropDownWidth="80dp"
             android:gravity="center"
@@ -55,40 +68,36 @@
             android:text="BR"
             android:textColor="#012"
             android:textSize="20dp" />
-
-
-        <ImageButton
-            android:id="@+id/btnScanQrCode"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@null"
-            android:scaleType="fitXY"
-            android:src="@drawable/unnamed" />
-
     </LinearLayout>
+    
+    <FrameLayout
+        android:id="@+id/layToastPosition"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        />
 
-    <TextView
-        android:id="@+id/txtSroStatusInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/layCodeSearch"
-        android:background="#dff"
-        android:maxHeight="48dp"
-        android:text="" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/listDetalhe"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/txtSroStatusInfo"
+        android:layout_below="@+id/btnScanQrCode">
+
+        <android.support.v7.widget.RecyclerView
+
+        android:id="@+id/listDetalhe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="start"
         android:scrollbars="vertical">
 
-    </android.support.v7.widget.RecyclerView>
+        </android.support.v7.widget.RecyclerView>
+
+
+    </FrameLayout>
 
 
 </RelativeLayout>
