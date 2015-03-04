@@ -53,7 +53,6 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
     private AutoCompleteTextView edtPais;
     private ImageButton btnScanQrCode;
     private IntentIntegrator scanIntegrator;
-    private View toastPosition;
     private Context context;
 
     @Override
@@ -71,7 +70,6 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
         configurarEditTexts(v);
         configurarQRCodeScanner();
         configurarBotoes(v);
-        toastPosition = v.findViewById(R.id.layToastPosition);
         return v;
     }
 
@@ -154,9 +152,13 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
     private void configurarRecycleViews(View v) {
         RecyclerView listDetalhe = (RecyclerView) v.findViewById(R.id.listDetalhe);
         listDetalhe.setHasFixedSize(false);
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        manager.setReverseLayout(true);
         listDetalhe.setLayoutManager(manager);
-        detalheListAdapter = new ListDetalheAdapter(this.getActivity().getApplicationContext(), new ArrayList<ViewModel>());
+
+
+        detalheListAdapter = new ListDetalheAdapter(this.getActivity().getApplicationContext(), new ArrayList <ViewModel>());
         listDetalhe.setAdapter(detalheListAdapter);
         listDetalhe.addItemDecoration(new ListDetalheDividersItemDecoration());
 
@@ -207,7 +209,7 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
 
     @Override
     public void mostrarDetalhesRecebidos(Sro sro, List<SroRetornoInfo> listaInfos) {
-        List<ViewModel> lista = new ArrayList<>();
+        ArrayList<ViewModel> lista = new ArrayList<>();
         for (SroRetornoInfo rinfo : listaInfos) {
             String info = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(rinfo.getData()).concat(" ").concat(rinfo.getLocal());
             String status = rinfo.getAcao();
@@ -217,6 +219,7 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
         detalheListAdapter.setModelItemList(lista);
         detalheListAdapter.notifyDataSetChanged();
         toaster.success("código de rastreio encontrado: " + sro);
+
         esconderTeclado();
     }
 

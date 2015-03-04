@@ -4,7 +4,9 @@
     android:layout_height="200dp"
     android:paddingLeft="8dp"
     android:paddingRight="8dp"
-    tools:context="postaltracker.app.alexandrealessi.com.br.postal.view.PacoteFragment">
+    tools:context="postaltracker.app.alexandrealessi.com.br.postal.view.PacoteFragment"
+    android:background="@color/md_white_1000"
+    >
 
     <ImageButton
         android:id="@+id/btnScanQrCode"
@@ -75,14 +77,129 @@
             android:maxLength="2"
             />
     </LinearLayout>
-    
-    <FrameLayout
-        android:id="@+id/layToastPosition"
-        android:layout_alignParentTop="true"
+    <LinearLayout
+        android:id="@+id/layActionButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_toRightOf="@id/btnScanQrCode"
+        android:layout_below="@id/layCodeSearch"
+        android:orientation="horizontal"
+        android:background="@null"
+        >
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <ImageButton
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_action_copy"
+                android:scaleType="fitXY"
+                android:background="@color/md_white_1000"
+                android:tint="@color/md_grey_700"
+                android:layout_gravity="center_horizontal|top"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="copy"
+                android:layout_gravity="center_horizontal|bottom"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <ImageButton
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_action_paste"
+                android:scaleType="fitXY"
+                android:background="@color/md_white_1000"
+                android:tint="@color/md_grey_900"
+                android:layout_gravity="center_horizontal|top"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="paste"
+                android:layout_gravity="center_horizontal|bottom"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                />
+        </FrameLayout>
+        <Space
+            android:layout_width="8dp"
+            android:layout_height="match_parent" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <ImageButton
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_action_send_now"
+                android:scaleType="fitXY"
+                android:background="@color/md_white_1000"
+                android:tint="@color/md_cyan_500"
+                android:layout_gravity="center_horizontal|top"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="send"
+                android:layout_gravity="center_horizontal|bottom"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                />
+        </FrameLayout>
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/laySaveDiscardButton"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
         android:layout_alignParentRight="true"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@id/layActionButtons"
+        android:layout_below="@id/layCodeSearch"
+        android:gravity="right"
+        >
+
+
+
+        <ImageButton
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_action_cancel"
+            android:scaleType="fitXY"
+            android:background="@null"
+            android:tint="@color/md_pink_500"
+            />
+
+        <ImageButton
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_action_accept"
+            android:scaleType="fitXY"
+            android:background="@null"
+            android:tint="@color/md_green_500"
+            />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divisor"
+        android:layout_below="@+id/layActionButtons"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/md_grey_300"
+        android:layout_gravity="top"
+        android:layout_margin="8dp"
         />
+
 
 
     <FrameLayout
@@ -90,7 +207,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/btnScanQrCode"
+        android:layout_below="@+id/divisor"
         android:layout_marginTop="8dp"
         >
 
@@ -100,7 +217,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:scrollbars="vertical">
+        android:scrollbars="vertical"
+            >
 
         </android.support.v7.widget.RecyclerView>
 

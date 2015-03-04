@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import java.util.List;
 
 import postaltracker.app.alexandrealessi.com.br.postal.R;
@@ -24,6 +23,11 @@ public class ListDetalheAdapter extends RecyclerView.Adapter <ListDetalheAdapter
         this.context = context;
         this.modelItemList = modelItemList;
     }
+
+
+
+
+
 
     public void add (ViewModel model){
         this.modelItemList.add(model);
@@ -49,6 +53,7 @@ public class ListDetalheAdapter extends RecyclerView.Adapter <ListDetalheAdapter
                 Toast.makeText(context,""+modelItemList.get(vh.getPosition()), Toast.LENGTH_SHORT).show();
             }
         });
+
         return vh;
     }
 
