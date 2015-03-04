@@ -1,9 +1,2 @@
 - buscar a lista de paises possiveis
 - externalizar strings
-ok- inverter a ordem da lista de detalhes do pacote
-ok- limitar tamanho dos campos Tipo Servico e Pais
-ok - limpar lista ao 'des'digitar
-ok- enviar acesso aos correios para a api java.
-ok - revisar o codigo
-
-
