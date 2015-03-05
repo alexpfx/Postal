@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="48dp"
+        android:layout_height="48dp">
+
+        <ImageButton
+            android:id="@+id/btnPasteButton"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center_horizontal|top"
+            android:background="@null"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_action_paste"
+            android:tint="@color/md_black_1000" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:text="@string/send"
+            android:textSize="10dp"
+            android:textStyle="bold" />
+
+    </FrameLayout>
+</merge>

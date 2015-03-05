@@ -86,27 +86,8 @@
         android:orientation="horizontal"
         android:background="@null"
         >
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-            <ImageButton
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/ic_action_copy"
-                android:scaleType="fitXY"
-                android:background="@color/md_white_1000"
-                android:tint="@color/md_grey_700"
-                android:layout_gravity="center_horizontal|top"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="copy"
-                android:layout_gravity="center_horizontal|bottom"
-                android:textStyle="bold"
-                android:textSize="12dp"
-                />
-        </FrameLayout>
+
+        <include layout="@layout/copy_button_layout"/>
 
         <FrameLayout
             android:layout_width="wrap_content"
