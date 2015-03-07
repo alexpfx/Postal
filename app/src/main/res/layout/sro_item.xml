@@ -21,6 +21,18 @@
         android:background="@color/md_grey_500" />
 
 
+
+    <TextView
+        android:id="@+id/txtSro"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_below="@id/div1"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:text="DM 123456789 BR"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,6 +42,16 @@
         >
         <include layout="@layout/location_button_layout"/>
     </FrameLayout>
+
+
+    <View
+        android:id="@+id/div2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/txtSro"
+        android:background="@color/md_grey_500" />
+
+
 
     <FrameLayout
         android:layout_below="@id/div1"
@@ -52,23 +74,7 @@
         </FrameLayout>
 
 
-    <TextView
-        android:id="@+id/txtSro"
-        android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        android:layout_below="@id/div1"
-        android:gravity="center"
-        android:layout_centerHorizontal="true"
-        android:text="DM 123456789 BR"
-        android:textSize="20dp"
-        android:textStyle="bold" />
 
 
-    <View
-        android:id="@+id/div2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@id/txtSro"
-        android:background="@color/md_grey_500" />
 
 </RelativeLayout>

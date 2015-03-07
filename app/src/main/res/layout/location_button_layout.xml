@@ -8,7 +8,7 @@
         android:layout_height="32dp">
 
         <ImageButton
-            android:id="@+id/btnPasteButton"
+            android:id="@+id/btnLocationButton"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_gravity="center_horizontal|top"
