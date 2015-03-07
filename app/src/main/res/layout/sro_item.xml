@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@id/inc_datas_sro"
-        android:background="@color/md_grey_500" />
+        android:background="@color/md_grey_300" />
 
 
 
@@ -44,12 +44,12 @@
     </FrameLayout>
 
 
-    <View
-        android:id="@+id/div2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@id/txtSro"
-        android:background="@color/md_grey_500" />
+    <!--<View-->
+        <!--android:id="@+id/div2"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:layout_below="@id/txtSro"-->
+        <!--android:background="@color/md_grey_300" />-->
 
 
 
@@ -57,9 +57,9 @@
         android:layout_below="@id/div1"
         android:layout_toLeftOf="@id/txtSro"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/div2"
+        android:layout_height="32dp"
         >
+        <!--android:layout_above="@id/div2"-->
         <TextView
             android:id="@+id/txtDetalhes"
             android:layout_width="match_parent"

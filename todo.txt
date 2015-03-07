@@ -1,2 +1,4 @@
 - buscar a lista de paises possiveis
 - externalizar strings
+- alterar pacote app;
+- revisar codigo do lista pacotes fragment

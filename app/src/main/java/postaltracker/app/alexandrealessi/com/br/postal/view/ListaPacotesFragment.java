@@ -37,10 +37,14 @@ public class ListaPacotesFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_lista_pacotes, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.listPacotes);
+        recyclerView.addItemDecoration(new ListDetalheDividersItemDecoration());
+
         LinearLayoutManager lm = new LinearLayoutManager(this.getActivity());
         lm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(lm);
         adapter = new ListPacotesAdapter(createFakeItems());
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
 
         return v;
     }
@@ -49,6 +53,8 @@ public class ListaPacotesFragment extends Fragment {
         return new ArrayList<ListPacotesAdapter.Item>(){
             {
                 add(new ListPacotesAdapter.Item(new Date(),new Date(), "detalhe", "DM 123456789 BR"));
+                add(new ListPacotesAdapter.Item(new Date(),new Date(), "palhoca", "XP 446797914 CN"));
+                add(new ListPacotesAdapter.Item(new Date(),new Date(), "floripa", "DR 149740790 BR"));
             }
         };
 
