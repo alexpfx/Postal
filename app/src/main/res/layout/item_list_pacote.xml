@@ -5,12 +5,10 @@
     android:layout_marginLeft="16dp">
 
 
-    <include
+    <View
         android:id="@+id/inc_datas_sro"
-        layout="@layout/datas_sro_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_margin="4dp" />
 
     <View
@@ -40,7 +38,7 @@
         android:layout_toRightOf="@id/txtSro"
         android:layout_marginLeft="4dp"
         >
-        <include layout="@layout/location_button_layout"/>
+        <include layout="@layout/button_location"/>
     </FrameLayout>
 
 

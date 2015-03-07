@@ -36,8 +36,9 @@ public class ListPacotesAdapter  extends RecyclerView.Adapter<ListPacotesAdapter
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
-        View v = LayoutInflater.from(context).inflate(R.layout.sro_item, parent, false);
-        return ViewHolder.newInstance(v);
+        View v = LayoutInflater.from(context).inflate(R.layout.item_list_pacote, parent, false);
+//        return ViewHolder.newInstance(v);
+        return null;
     }
 
     @Override
@@ -88,15 +89,15 @@ public class ListPacotesAdapter  extends RecyclerView.Adapter<ListPacotesAdapter
             this.btnLocationButton = btnLocationButton;
         }
 
-        private static ViewHolder newInstance (View v){
-            TextView txtDataPostagem, txtDataInsercao, txtDetalhes, txtSro;
-            txtDataPostagem = (TextView) v.findViewById(R.id.txtDataPostagem);
-            txtDataInsercao = (TextView) v.findViewById(R.id.txtDataInsercao);
-            txtDetalhes = (TextView) v.findViewById(R.id.txtDataPostagem);
-            txtSro = (TextView) v.findViewById(R.id.txtSro);
-            ImageButton btnLocationButton = (ImageButton) v.findViewById(R.id.btnLocationButton);
-           return new ViewHolder(v, txtDataPostagem, txtDataInsercao, txtDetalhes,txtSro, btnLocationButton);
-        }
+//        private static ViewHolder newInstance (View v){
+//            TextView txtDataPostagem, txtDataInsercao, txtDetalhes, txtSro;
+//            txtDataPostagem = (TextView) v.findViewById(R.id.txtDataPostagem);
+//            txtDataInsercao = (TextView) v.findViewById(R.id.txtDataInsercao);
+//            txtDetalhes = (TextView) v.findViewById(R.id.txtDataPostagem);
+//            txtSro = (TextView) v.findViewById(R.id.txtSro);
+//            ImageButton btnLocationButton = (ImageButton) v.findViewById(R.id.btnLocationButton);
+//           return new ViewHolder(v, txtDataPostagem, txtDataInsercao, txtDetalhes,txtSro, btnLocationButton);
+//        }
 
         public ViewHolder(View itemView) {
             super(itemView);

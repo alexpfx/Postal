@@ -64,7 +64,7 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
         toaster = StatusToast.make(context);
 
 
-        View v = inflater.inflate(R.layout.fragment_pacote, container, false);
+        View v = inflater.inflate(R.layout.fragment_lista_detalhes, container, false);
         configurarRecycleViews(v);
         configurarTextViews(v);
         configurarEditTexts(v);

@@ -87,7 +87,7 @@
         android:background="@null"
         >
 
-        <include layout="@layout/copy_button_layout"/>
+        <include layout="@layout/button_copy"/>
 
         <FrameLayout
             android:layout_width="wrap_content"

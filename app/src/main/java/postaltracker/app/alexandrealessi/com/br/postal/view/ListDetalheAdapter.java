@@ -45,7 +45,7 @@ public class ListDetalheAdapter extends RecyclerView.Adapter <ListDetalheAdapter
 
     @Override
     public ListDetalheAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int position) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.detalhe_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_detalhe, parent, false);
         final ViewHolder vh = new ViewHolder(v);
         v.setOnClickListener(new View.OnClickListener() {
             @Override

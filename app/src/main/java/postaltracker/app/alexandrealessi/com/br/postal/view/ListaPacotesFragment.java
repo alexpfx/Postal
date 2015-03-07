@@ -1,7 +1,6 @@
 package postaltracker.app.alexandrealessi.com.br.postal.view;
 
 
-import android.content.ClipData;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
