@@ -42,8 +42,8 @@ import static postaltracker.app.alexandrealessi.com.br.postal.view.ListDetalheAd
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PacoteFragment extends Fragment implements SroDetalheView {
-    private static final String tag = PacoteFragment.class.getSimpleName();
+public class ListaDetalhesFragment extends Fragment implements SroDetalheView {
+    private static final String tag = ListaDetalhesFragment.class.getSimpleName();
     private DetalheSroPresenter detalhePresenter;
     private ListDetalheAdapter detalheListAdapter;
     private StatusToast toaster;
@@ -150,17 +150,16 @@ public class PacoteFragment extends Fragment implements SroDetalheView {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private void configurarRecycleViews(View v) {
-        RecyclerView listDetalhe = (RecyclerView) v.findViewById(R.id.listDetalhe);
-        listDetalhe.setHasFixedSize(false);
+        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.listDetalhe);
+        recyclerView.setHasFixedSize(false);
 
-        LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        manager.setReverseLayout(true);
-        listDetalhe.setLayoutManager(manager);
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, true);
+        recyclerView.setLayoutManager(manager);
 
 
         detalheListAdapter = new ListDetalheAdapter(this.getActivity().getApplicationContext(), new ArrayList <ViewModel>());
-        listDetalhe.setAdapter(detalheListAdapter);
-        listDetalhe.addItemDecoration(new ListDetalheDividersItemDecoration());
+        recyclerView.setAdapter(detalheListAdapter);
+        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),  null));
 
     }
 

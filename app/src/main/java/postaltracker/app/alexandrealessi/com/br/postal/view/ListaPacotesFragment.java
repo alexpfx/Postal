@@ -36,14 +36,14 @@ public class ListaPacotesFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_lista_pacotes, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.listPacotes);
-        recyclerView.addItemDecoration(new ListDetalheDividersItemDecoration());
+        recyclerView.setHasFixedSize(false);
 
-        LinearLayoutManager lm = new LinearLayoutManager(this.getActivity());
-        lm.setOrientation(LinearLayoutManager.VERTICAL);
+
+        LinearLayoutManager lm = new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(lm);
         adapter = new ListPacotesAdapter(createFakeItems());
         recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),  null));
 
         return v;
     }
