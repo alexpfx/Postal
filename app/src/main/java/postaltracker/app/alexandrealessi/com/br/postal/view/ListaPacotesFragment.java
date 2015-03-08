@@ -51,9 +51,9 @@ public class ListaPacotesFragment extends Fragment {
     private List<ListPacotesAdapter.Item> createFakeItems() {
         return new ArrayList<ListPacotesAdapter.Item>(){
             {
-                add(new ListPacotesAdapter.Item(new Date(),new Date(), "detalhe", "DM 123456789 BR"));
-                add(new ListPacotesAdapter.Item(new Date(),new Date(), "palhoca", "XP 446797914 CN"));
-                add(new ListPacotesAdapter.Item(new Date(),new Date(), "floripa", "DR 149740790 BR"));
+                add(new ListPacotesAdapter.Item("detalhe", "DM 123456789 BR"));
+                add(new ListPacotesAdapter.Item("palhoca", "XP 446797914 CN"));
+                add(new ListPacotesAdapter.Item("floripa", "DR 149740790 BR"));
             }
         };
 

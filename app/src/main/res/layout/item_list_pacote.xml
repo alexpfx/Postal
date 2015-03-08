@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="56dp"
-    android:layout_marginLeft="16dp">
+    android:layout_margin="16dp"
+
+    >
 
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -13,10 +15,19 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="8dp">
 
+        <TextView
+            android:id="@+id/txtDataAcao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|top"
+            android:text="02/02 - 02:24:"
+            style="@style/Base.TextAppearance.AppCompat.Caption"
+            />
+
         <ImageButton
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:layout_gravity="left|center_vertical"
+            android:layout_gravity="left|bottom"
             android:background="@null"
             android:scaleType="fitCenter"
             android:src="@drawable/icon_new_notification" />
@@ -24,7 +35,7 @@
         <ImageButton
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:layout_gravity="center"
+            android:layout_gravity="center|bottom"
             android:background="@null"
             android:scaleType="fitCenter"
             android:src="@drawable/icon_directions" />
@@ -33,7 +44,7 @@
             android:id="@+id/btnLocation"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:layout_gravity="right|center_vertical"
+            android:layout_gravity="right|bottom"
             android:background="@null"
             android:scaleType="fitCenter"
             android:src="@drawable/icon_action_localization"
@@ -46,12 +57,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <TextView
+            android:id="@+id/txtAcao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left|top"
             android:text="saiu para entrega"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            style="@style/Base.TextAppearance.AppCompat.Caption"
             />
 
         <TextView
@@ -59,7 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_gravity="left|center"
+            android:layout_gravity="left|bottom"
             android:layout_toEndOf="@+id/frameLayout"
             android:layout_toRightOf="@+id/frameLayout"
             android:text="MD 123456789 BR"

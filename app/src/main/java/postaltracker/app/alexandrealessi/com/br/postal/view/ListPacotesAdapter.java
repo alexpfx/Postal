@@ -48,7 +48,7 @@ public class ListPacotesAdapter  extends RecyclerView.Adapter<ListPacotesAdapter
         holder.btnLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), "teste", Toast.LENGTH_LONG).show();
+                Toast.makeText(v.getContext(), "teste", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -59,13 +59,11 @@ public class ListPacotesAdapter  extends RecyclerView.Adapter<ListPacotesAdapter
     }
 
     public static final class Item {
-        private Date dataPostagem, dataInsercao;
-        private String detalhe, sro;
+        private String acao, sro;
+        private boolean atualizado;
 
-        public Item(Date dataPostagem, Date dataInsercao, String detalhe, String sro) {
-            this.dataPostagem = dataPostagem;
-            this.dataInsercao = dataInsercao;
-            this.detalhe = detalhe;
+        public Item(String acao, String sro) {
+            this.acao = acao;
             this.sro = sro;
         }
 
@@ -88,7 +86,7 @@ public class ListPacotesAdapter  extends RecyclerView.Adapter<ListPacotesAdapter
         }
 
         private static ViewHolder newInstance (View v){
-            TextView txtDataPostagem, txtDataInsercao, txtDetalhes, txtSro;
+            TextView txtAcao, txtSro;
             txtSro = (TextView) v.findViewById(R.id.txtSro);
             ImageButton btnLocationButton = (ImageButton) v.findViewById(R.id.btnLocation);
            return new ViewHolder(v, txtSro, btnLocationButton);
