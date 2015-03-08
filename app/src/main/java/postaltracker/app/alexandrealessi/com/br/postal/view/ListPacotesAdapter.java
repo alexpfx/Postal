@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -37,19 +38,19 @@ public class ListPacotesAdapter  extends RecyclerView.Adapter<ListPacotesAdapter
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         View v = LayoutInflater.from(context).inflate(R.layout.item_list_pacote, parent, false);
-//        return ViewHolder.newInstance(v);
-        return null;
+        return ViewHolder.newInstance(v);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Item item = items.get(position);
-        holder.setDetalhes(item.detalhe);
-        holder.setDataInsercao(dateFormat.format(item.dataInsercao));
-        holder.setDataPostagem(dateFormat.format(item.dataPostagem));
         holder.setSro(item.sro);
-
-
+        holder.btnLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), "teste", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override
@@ -71,8 +72,8 @@ public class ListPacotesAdapter  extends RecyclerView.Adapter<ListPacotesAdapter
     }
 
      static class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView txtDataPostagem, txtDataInsercao, txtDetalhes, txtSro;
-        private ImageButton btnLocationButton;
+        private TextView txtSro;
+        private ImageButton btnLocation;
         private ItemClickListener itemClickListener;
 
         public void setItemClickListener(ItemClickListener itemClickListener) {
@@ -80,47 +81,29 @@ public class ListPacotesAdapter  extends RecyclerView.Adapter<ListPacotesAdapter
         }
 
 
-        private  ViewHolder(View itemView, TextView txtDataPostagem, TextView txtDataInsercao, TextView txtDetalhes, TextView txtSro, ImageButton btnLocationButton) {
+        private  ViewHolder(View itemView, TextView txtSro, ImageButton btnLocation) {
             super(itemView);
-            this.txtDataPostagem = txtDataPostagem;
-            this.txtDataInsercao = txtDataInsercao;
-            this.txtDetalhes = txtDetalhes;
             this.txtSro = txtSro;
-            this.btnLocationButton = btnLocationButton;
+            this.btnLocation = btnLocation;
         }
 
-//        private static ViewHolder newInstance (View v){
-//            TextView txtDataPostagem, txtDataInsercao, txtDetalhes, txtSro;
-//            txtDataPostagem = (TextView) v.findViewById(R.id.txtDataPostagem);
-//            txtDataInsercao = (TextView) v.findViewById(R.id.txtDataInsercao);
-//            txtDetalhes = (TextView) v.findViewById(R.id.txtDataPostagem);
-//            txtSro = (TextView) v.findViewById(R.id.txtSro);
-//            ImageButton btnLocationButton = (ImageButton) v.findViewById(R.id.btnLocationButton);
-//           return new ViewHolder(v, txtDataPostagem, txtDataInsercao, txtDetalhes,txtSro, btnLocationButton);
-//        }
+        private static ViewHolder newInstance (View v){
+            TextView txtDataPostagem, txtDataInsercao, txtDetalhes, txtSro;
+            txtSro = (TextView) v.findViewById(R.id.txtSro);
+            ImageButton btnLocationButton = (ImageButton) v.findViewById(R.id.btnLocation);
+           return new ViewHolder(v, txtSro, btnLocationButton);
+        }
 
         public ViewHolder(View itemView) {
             super(itemView);
-        }
-
-        public void setDataPostagem(String txtDataPostagem) {
-            this.txtDataPostagem.setText(txtDataPostagem);
-        }
-
-        public void setDataInsercao(String txtDataInsercao) {
-            this.txtDataInsercao.setText(txtDataInsercao);
-        }
-
-        public void setDetalhes(String txtDetalhes) {
-            this.txtDetalhes.setText(txtDetalhes);
         }
 
         public void setSro(String txtSro) {
             this.txtSro.setText(txtSro);
         }
 
-        public void setBtnLocationButton(ImageButton btnLocationButton) {
-            this.btnLocationButton = btnLocationButton;
+        public void setBtnLocation(ImageButton btnLocation) {
+            this.btnLocation = btnLocation;
         }
     }
 

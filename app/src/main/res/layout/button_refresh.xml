@@ -10,6 +10,6 @@
         android:background="@null"
         android:scaleType="fitXY"
         android:src="@drawable/ic_action_refresh"
-        android:tint="@color/md_teal_500" />
+         />
 
 </merge>

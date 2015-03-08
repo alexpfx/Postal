@@ -8,6 +8,5 @@
         android:src="@drawable/ic_action_cancel"
         android:scaleType="fitXY"
         android:background="@null"
-        android:tint="@color/md_pink_500"
         />
 </merge>

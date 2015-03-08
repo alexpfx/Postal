@@ -15,7 +15,7 @@
             android:background="@null"
             android:scaleType="fitXY"
             android:src="@drawable/ic_action_send_now"
-            android:tint="@color/md_black_1000" />
+            />
 
 
     </FrameLayout>
