@@ -1,83 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="56dp"
-    android:layout_margin="16dp"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="4dp"
 
+    android:divider="@drawable/line_divider"
     >
 
-    <FrameLayout
-        android:id="@+id/frameLayout"
+    <LinearLayout
         android:layout_width="120dp"
-        android:layout_height="56dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="8dp">
-
+        android:layout_height="match_parent"
+        android:background="@drawable/border_all"
+        android:padding="2dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:showDividers="middle"
+        android:dividerPadding="10dp"
+        android:divider="@drawable/line_divider"
+        >
         <TextView
             android:id="@+id/txtDataAcao"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right|top"
-            android:text="02/02 - 02:24:"
-            style="@style/Base.TextAppearance.AppCompat.Caption"
+            android:text="02/02/80 20:20"
+            android:gravity="center"
+            style="@style/TextAppearance.AppCompat.Caption.Small"
+            android:layout_weight="1"
             />
 
-        <ImageButton
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_gravity="left|bottom"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            android:src="@drawable/icon_new_notification" />
+        <TextView
+            android:id="@+id/txtLocal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Florianopolis /SC"
+            android:gravity="center"
+            style="@style/TextAppearance.AppCompat.Caption.Small"
+            android:layout_weight="1"
 
-        <ImageButton
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_gravity="center|bottom"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            android:src="@drawable/icon_directions" />
-
-        <ImageButton
-            android:id="@+id/btnLocation"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_gravity="right|bottom"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            android:src="@drawable/icon_action_localization"
-            android:tint="@color/icons" />
-
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+            />
 
         <TextView
             android:id="@+id/txtAcao"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left|top"
-            android:text="saiu para entrega"
-            style="@style/Base.TextAppearance.AppCompat.Caption"
+            android:text="destinatário não apresentou-se para receber"
+            android:gravity="center"
+            style="@style/TextAppearance.AppCompat.Caption.Small"
+            android:layout_weight="1"
             />
+
+
+   </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.35"
+        android:background="@drawable/border_all_but_left"
+        android:padding="2dp"
+        android:orientation="vertical"
+        android:showDividers="middle"
+        android:divider="@drawable/line_divider"
+        android:dividerPadding="10dp"
+        >
 
         <TextView
             android:id="@+id/txtSro"
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|top"
+            android:text="MD 123456789 BR"
+            />
+
+        <TextView
+            android:id="@+id/txtTags"
+            style="@style/Base.TextAppearance.AppCompat.Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:layout_gravity="left|bottom"
-            android:layout_toEndOf="@+id/frameLayout"
-            android:layout_toRightOf="@+id/frameLayout"
-            android:text="MD 123456789 BR"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
-    </FrameLayout>
+            android:text="livro, submarino, presente, natal, familia" />
 
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.65"
+        android:background="@drawable/border_all_but_left"
+        android:padding="2dp"
+        >
+        <ImageButton
+            android:id="@+id/btnExpand"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon_expand"
+
+            />
+
+    </FrameLayout>
 
 </LinearLayout>

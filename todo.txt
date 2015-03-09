@@ -1,3 +1,11 @@
++ Lista Pacotes +
+Ao dar click long em item da lista deverá aparecer um menu de contexto, com os botões:
+ Ver no mapa, Ver informações, Apagar.
+
+
+
+
+
 - buscar a lista de paises possiveis
 - externalizar strings
 - alterar pacote app;
