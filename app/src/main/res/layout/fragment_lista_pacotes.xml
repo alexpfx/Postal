@@ -1,8 +1,50 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="postaltracker.app.alexandrealessi.com.br.postal.view.ListaPacotesFragment">
+    tools:context="postaltracker.app.alexandrealessi.com.br.postal.view.ListaPacotesFragment"
+    android:orientation="vertical"
+    android:showDividers="end"
+    android:divider="@drawable/line_divider"
+    android:dividerPadding="10dp"
+    >
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp" android:orientation="horizontal"
+        android:showDividers="middle"
+        android:divider="@drawable/line_divider"
+        android:dividerPadding="10dp"
+        >
+
+        <ImageButton
+            android:id="@+id/btnRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon_refresh"
+            android:layout_weight="4"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="filtrar"
+            android:layout_weight="1"
+            android:background="@null"
+            android:padding="8dp"
+            />
+        <ImageButton
+            android:id="@+id/btnClear"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon_cancel"
+            android:layout_weight="4"
+            />
+    </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listPacotes"
@@ -15,4 +57,4 @@
 
     </android.support.v7.widget.RecyclerView>
 
-</FrameLayout>
+</LinearLayout>

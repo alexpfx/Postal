@@ -1,6 +1,7 @@
-+ Lista Pacotes +
-Ao dar click long em item da lista deverá aparecer um menu de contexto, com os botões:
- Ver no mapa, Ver informações, Apagar.
+- Lista Pacotes:
+- Ao dar click long em item da lista deverá aparecer um menu de contexto, com os botões:
+Ver no mapa, Ver informações, Apagar.
+- Adicionar painel com um botão atualizar uma caixa de filtro e um botao clear.
 
 
 
