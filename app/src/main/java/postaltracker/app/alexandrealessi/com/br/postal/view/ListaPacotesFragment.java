@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Random;
 
 import postaltracker.app.alexandrealessi.com.br.postal.R;
+import postaltracker.app.alexandrealessi.com.br.postal.model.domain.Pacote;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -233,12 +234,13 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView{
 
 
     @Override
-    public void mostrarListaPacotes() {
+    public void mostrarListaPacotes(List<Pacote> pacotes) {
+        adapter.getItems().clear();
+        for (Pacote pacote:pacotes){
+
+        }
+
 
     }
 
-    @Override
-    public void limparListaPacotes() {
-
-    }
 }
