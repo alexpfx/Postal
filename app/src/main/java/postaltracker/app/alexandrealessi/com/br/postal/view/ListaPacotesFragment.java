@@ -1,8 +1,8 @@
 package postaltracker.app.alexandrealessi.com.br.postal.view;
 
 
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,14 +19,11 @@ import postaltracker.app.alexandrealessi.com.br.postal.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ListaPacotesFragment extends Fragment {
-
-
+public class ListaPacotesFragment extends Fragment implements ListaPacotesView{
     private RecyclerView recyclerView;
     private ListPacotesAdapter adapter;
 
     public ListaPacotesFragment() {
-
 
     }
 
@@ -38,6 +35,8 @@ public class ListaPacotesFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_lista_pacotes, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.listPacotes);
         recyclerView.setHasFixedSize(false);
+
+
 
 
         LinearLayoutManager lm = new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false);
@@ -233,4 +232,13 @@ public class ListaPacotesFragment extends Fragment {
     }
 
 
+    @Override
+    public void mostrarListaPacotes() {
+
+    }
+
+    @Override
+    public void limparListaPacotes() {
+
+    }
 }

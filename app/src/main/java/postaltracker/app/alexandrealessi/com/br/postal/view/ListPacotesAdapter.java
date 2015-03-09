@@ -25,6 +25,9 @@ public class ListPacotesAdapter extends RecyclerView.Adapter<ListPacotesAdapter.
     private DateFormat dateFormat = SimpleDateFormat.getDateTimeInstance(SimpleDateFormat.SHORT, SimpleDateFormat.SHORT, Locale.getDefault());
     private List<Item> items;
 
+    public List<Item> getItems() {
+        return items;
+    }
 
     public ListPacotesAdapter(List<Item> items) {
         this.items = items;
@@ -45,12 +48,12 @@ public class ListPacotesAdapter extends RecyclerView.Adapter<ListPacotesAdapter.
     public void onBindViewHolder(ViewHolder holder, int position) {
         Item item = items.get(position);
         holder.txtSro.setText(item.sro);
-                holder.txtDataAcao.setText(dateFormat.format(item.dataAcao).concat(": "));
+        holder.txtDataAcao.setText(dateFormat.format(item.dataAcao).concat(": "));
         holder.txtAcao.setText(item.acao);
         StringBuilder sb = new StringBuilder();
         List<String> tags = item.tags;
-        if (tags != null){
-            for (String tag:tags){
+        if (tags != null) {
+            for (String tag : tags) {
                 sb.append(tag).append(" ");
             }
         }
@@ -75,6 +78,7 @@ public class ListPacotesAdapter extends RecyclerView.Adapter<ListPacotesAdapter.
         private final Date dataAcao;
         private final List<String> tags;
         private String acao, sro;
+
         public Item(String acao, Date dataAcao, String sro, List<String> tags) {
             this.acao = acao;
             this.sro = sro;
