@@ -22,6 +22,10 @@ import android.widget.ImageButton;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,9 +36,6 @@ import br.com.alexpfx.api.postal.SroFactory;
 import br.com.alexpfx.api.postal.SroInvalidoException;
 import br.com.alexpfx.api.postal.TipoSro;
 import br.com.alexpfx.api.postal.dao.SroRetornoInfo;
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-import butterknife.OnClick;
 import postaltracker.app.alexandrealessi.com.br.postal.R;
 import postaltracker.app.alexandrealessi.com.br.postal.presenter.DetalheSroPresenter;
 import postaltracker.app.alexandrealessi.com.br.postal.presenter.DetalheSroPresenterImpl;
@@ -45,6 +46,7 @@ import static postaltracker.app.alexandrealessi.com.br.postal.view.ListDetalheAd
 /**
  * A simple {@link Fragment} subclass.
  */
+@EFragment
 public class ListaDetalhesFragment extends Fragment implements SroDetalheView {
 
     private static final String tag = ListaDetalhesFragment.class.getSimpleName();
@@ -52,19 +54,19 @@ public class ListaDetalhesFragment extends Fragment implements SroDetalheView {
     private ListDetalheAdapter detalheListAdapter;
     private StatusToast toaster;
 
-    @InjectView(R.id.edtCode)
+    @ViewById
     EditText edtCode;
 
-    @InjectView(R.id.edtTipoServico)
+    @ViewById
     AutoCompleteTextView edtTipoServico;
 
-    @InjectView(R.id.edtPais)
+    @ViewById
     AutoCompleteTextView edtPais;
 
-    @InjectView(R.id.btnScanQrCode)
+    @ViewById
     ImageButton btnScanQrCode;
 
-    @InjectView(R.id.listDetalhe)
+    @ViewById(R.id.listDetalhe)
     RecyclerView recyclerView;
 
     private IntentIntegrator scanIntegrator;
@@ -79,7 +81,6 @@ public class ListaDetalhesFragment extends Fragment implements SroDetalheView {
         detalhePresenter = new DetalheSroPresenterImpl(this);
         toaster = StatusToast.make(context);
         View view = inflater.inflate(R.layout.fragment_lista_detalhes, container, false);
-        ButterKnife.inject(this, view);
         configurarRecycleViews(view);
         configurarEditTexts(view);
         configurarQRCodeScanner();
@@ -87,7 +88,7 @@ public class ListaDetalhesFragment extends Fragment implements SroDetalheView {
     }
 
 
-    @OnClick(R.id.btnScanQrCode)
+    @Click(R.id.btnScanQrCode)
     public void onBtnScanClick() {
         scanIntegrator.setPrompt("Aponte a camera para o QRCode do objeto de rastreamento");
 
