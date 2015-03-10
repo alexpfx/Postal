@@ -5,4 +5,12 @@ package postaltracker.app.alexandrealessi.com.br.postal.model.domain;
  */
 public class Local {
     private String descricao;
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 }

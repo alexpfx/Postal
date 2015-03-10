@@ -15,12 +15,13 @@ import java.util.List;
 import java.util.Random;
 
 import postaltracker.app.alexandrealessi.com.br.postal.R;
+import postaltracker.app.alexandrealessi.com.br.postal.model.domain.ItemAcao;
 import postaltracker.app.alexandrealessi.com.br.postal.model.domain.Pacote;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ListaPacotesFragment extends Fragment implements ListaPacotesView{
+public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
     private RecyclerView recyclerView;
     private ListPacotesAdapter adapter;
 
@@ -38,8 +39,6 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView{
         recyclerView.setHasFixedSize(false);
 
 
-
-
         LinearLayoutManager lm = new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(lm);
         adapter = new ListPacotesAdapter(createFakeItems());
@@ -50,197 +49,33 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView{
     }
 
     private Random rand = new Random();
+
     private List<ListPacotesAdapter.Item> createFakeItems() {
-        return new ArrayList<ListPacotesAdapter.Item>(){
+        return new ArrayList<ListPacotesAdapter.Item>() {
             {
 
-                add(new ListPacotesAdapter.Item("Entrega não efetuada por motivos operacionais", new Date (rand.nextLong()), "DM 543496494 BR", new ArrayList<String>(){
+                add(new ListPacotesAdapter.Item("Entrega não efetuada por motivos operacionais", new Date(rand.nextLong()), "DM 543496494 BR", new ArrayList<String>() {
                     {
                         add("Siciliano");
                         add("Livro");
                         add("Presente");
-                    }
-                }));
-
-                add(new ListPacotesAdapter.Item("Entrega não efetuada por motivos operacionais", new Date (rand.nextLong()), "DM 543496494 BR", new ArrayList<String>(){
-                    {
-                        add("Siciliano");
-                        add("Livro");
-                        add("Presente");
-                    }
-                }));
-
-                add(new ListPacotesAdapter.Item("Entrega não efetuada por motivos operacionais", new Date (rand.nextLong()), "DM 543496494 BR", new ArrayList<String>(){
-                    {
-                        add("Siciliano");
-                        add("Livro");
-                        add("Presente");
-                    }
-                }));
-
-
-                add(new ListPacotesAdapter.Item("Entrega não efetuada por motivos operacionais", new Date (rand.nextLong()), "DM 543496494 BR", new ArrayList<String>(){
-                    {
-                        add("Siciliano");
-                        add("Livro");
-                        add("Presente");
-                    }
-                }));
-
-
-                add(new ListPacotesAdapter.Item("Entrega não efetuada por motivos operacionais", new Date (rand.nextLong()), "DM 543496494 BR", new ArrayList<String>(){
-                    {
-                        add("Siciliano");
-                        add("Livro");
-                        add("Presente");
-                    }
-                }));
-
-
-                add(new ListPacotesAdapter.Item("Entrega não efetuada por motivos operacionais", new Date (rand.nextLong()), "DM 543496494 BR", new ArrayList<String>(){
-                    {
-                        add("Siciliano");
-                        add("Livro");
-                        add("Presente");
-                    }
-                }));
-
-
-                add(new ListPacotesAdapter.Item("Entrega não efetuada por motivos operacionais", new Date (rand.nextLong()), "DM 543496494 BR", new ArrayList<String>(){
-                    {
-                        add("Siciliano");
-                        add("Livro");
-                        add("Presente");
-                    }
-                }));
-
-                add(new ListPacotesAdapter.Item("Entrega não efetuada por motivos operacionais", new Date (rand.nextLong()), "DM 543496494 BR", new ArrayList<String>(){
-                    {
-                        add("Siciliano");
-                        add("Livro");
-                        add("Presente");
-                    }
-                }));
-
-
-                add(new ListPacotesAdapter.Item("destinatário não apresentou-se para receber", new Date (rand.nextLong()),   "DM 123456789 BR", new ArrayList<String>(){
-                    {
-                        add("Submarino");
-                        add("laptop");
-                    }
-                }));
-                add(new ListPacotesAdapter.Item("entregue", new Date (rand.nextLong()), "DP 123646449 AR", new ArrayList<String>(){
-                    {
-                        add("xxxxxxxxxx");
-                        add("xxxxxxxxx");
-                        add("xxxxxxxxx");
-                    }
-                }));
-
-                add(new ListPacotesAdapter.Item("Entrega não efetuada por motivos operacionais", new Date (rand.nextLong()), "DM 543496494 BR", new ArrayList<String>(){
-                    {
-                        add("Siciliano");
-                        add("Livro");
-                        add("Presente");
-                    }
-                }));
-
-
-                add(new ListPacotesAdapter.Item("destinatário não apresentou-se para receber", new Date (rand.nextLong()),   "DM 123456789 BR", new ArrayList<String>(){
-                    {
-                        add("Submarino");
-                        add("laptop");
-                    }
-                }));
-                add(new ListPacotesAdapter.Item("entregue", new Date (rand.nextLong()), "DP 123646449 AR", new ArrayList<String>(){
-                    {
-                        add("xxxxxxxxxx");
-                        add("xxxxxxxxx");
-                        add("xxxxxxxxx");
-                    }
-                }));
-                add(new ListPacotesAdapter.Item("Entrega não efetuada por motivos operacionais", new Date (rand.nextLong()), "DM 543496494 BR", new ArrayList<String>(){
-                    {
-                        add("Siciliano");
-                        add("Livro");
-                        add("Presente");
-                    }
-                }));
-
-
-                add(new ListPacotesAdapter.Item("destinatário não apresentou-se para receber", new Date (rand.nextLong()),   "DM 123456789 BR", new ArrayList<String>(){
-                    {
-                        add("Submarino");
-                        add("laptop");
-                    }
-                }));
-                add(new ListPacotesAdapter.Item("entregue", new Date (rand.nextLong()), "DP 123646449 AR", new ArrayList<String>(){
-                    {
-                        add("xxxxxxxxxx");
-                        add("xxxxxxxxx");
-                        add("xxxxxxxxx");
-                    }
-                }));
-                add(new ListPacotesAdapter.Item("Entrega não efetuada por motivos operacionais", new Date (rand.nextLong()), "DM 543496494 BR", new ArrayList<String>(){
-                    {
-                        add("Siciliano");
-                        add("Livro");
-                        add("Presente");
-                    }
-                }));
-
-
-                add(new ListPacotesAdapter.Item("destinatário não apresentou-se para receber", new Date (rand.nextLong()),   "DM 123456789 BR", new ArrayList<String>(){
-                    {
-                        add("Submarino");
-                        add("laptop");
-                    }
-                }));
-                add(new ListPacotesAdapter.Item("entregue", new Date (rand.nextLong()), "DP 123646449 AR", new ArrayList<String>(){
-                    {
-                        add("xxxxxxxxxx");
-                        add("xxxxxxxxx");
-                        add("xxxxxxxxx");
-                    }
-                }));
-                add(new ListPacotesAdapter.Item("Entrega não efetuada por motivos operacionais", new Date (rand.nextLong()), "DM 543496494 BR", new ArrayList<String>(){
-                    {
-                        add("Siciliano");
-                        add("Livro");
-                        add("Presente");
-                    }
-                }));
-
-
-                add(new ListPacotesAdapter.Item("destinatário não apresentou-se para receber", new Date (rand.nextLong()),   "DM 123456789 BR", new ArrayList<String>(){
-                    {
-                        add("Submarino");
-                        add("laptop");
-                    }
-                }));
-                add(new ListPacotesAdapter.Item("entregue", new Date (rand.nextLong()), "DP 123646449 AR", new ArrayList<String>(){
-                    {
-                        add("xxxxxxxxxx");
-                        add("xxxxxxxxx");
-                        add("xxxxxxxxx");
                     }
                 }));
 
             }
         };
-
-
     }
 
 
     @Override
     public void mostrarListaPacotes(List<Pacote> pacotes) {
         adapter.getItems().clear();
-        for (Pacote pacote:pacotes){
-
+        for (Pacote pacote : pacotes) {
+            ItemAcao itemAcao = pacote.obterItemAcaoRecente();
+            String acao = itemAcao.getAcao().getDescricao();
+            Date dataAcao = itemAcao.getData();
+            adapter.getItems().add(new ListPacotesAdapter.Item(acao, dataAcao, pacote.getSro(), pacote.getTags()));
         }
-
-
     }
 
 }
