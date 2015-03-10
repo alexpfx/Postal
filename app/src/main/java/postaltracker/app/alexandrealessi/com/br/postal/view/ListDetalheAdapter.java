@@ -10,12 +10,14 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import postaltracker.app.alexandrealessi.com.br.postal.R;
 
 /**
  * Created by alexandre on 22/02/15.
  */
-public class ListDetalheAdapter extends RecyclerView.Adapter <ListDetalheAdapter.ViewHolder>{
+public class ListDetalheAdapter extends RecyclerView.Adapter<ListDetalheAdapter.ViewHolder> {
     private Context context;
     private List<ViewModel> modelItemList;
 
@@ -25,17 +27,15 @@ public class ListDetalheAdapter extends RecyclerView.Adapter <ListDetalheAdapter
     }
 
 
-
-
-
-
-    public void add (ViewModel model){
+    public void add(ViewModel model) {
         this.modelItemList.add(model);
     }
-    public void remove (ViewModel model){
+
+    public void remove(ViewModel model) {
         this.modelItemList.remove(model);
     }
-    public void clear (){
+
+    public void clear() {
         this.modelItemList.clear();
     }
 
@@ -50,7 +50,7 @@ public class ListDetalheAdapter extends RecyclerView.Adapter <ListDetalheAdapter
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,""+modelItemList.get(vh.getPosition()), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "" + modelItemList.get(vh.getPosition()), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -70,7 +70,7 @@ public class ListDetalheAdapter extends RecyclerView.Adapter <ListDetalheAdapter
         return modelItemList.size();
     }
 
-    public static class ViewModel{
+    public static class ViewModel {
         private String info;
         private String detalhe;
         private String status;
@@ -81,12 +81,12 @@ public class ListDetalheAdapter extends RecyclerView.Adapter <ListDetalheAdapter
             this.status = status;
         }
 
-        public static ViewModel create (String info, String status, String detalhe){
+        public static ViewModel create(String info, String status, String detalhe) {
             ViewModel vm = new ViewModel(info, detalhe, status);
             return vm;
         }
 
-        public ViewModel addTo (List<ViewModel> list){
+        public ViewModel addTo(List<ViewModel> list) {
             list.add(this);
             return this;
         }
@@ -105,21 +105,20 @@ public class ListDetalheAdapter extends RecyclerView.Adapter <ListDetalheAdapter
         }
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView txtInfo;
-        private TextView txtDetalhe;
-        private TextView txtStatus;
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        @InjectView(R.id.txtInfo)
+        TextView txtInfo;
 
-        public ViewHolder(View itemView) {
-            super(itemView);
-            txtInfo = (TextView) itemView.findViewById(R.id.txtInfo);
-            txtDetalhe = (TextView) itemView.findViewById(R.id.txtDetalhe);
-            txtStatus = (TextView) itemView.findViewById(R.id.txtStatus);
+        @InjectView(R.id.txtDetalhe)
+        TextView txtDetalhe;
+
+        @InjectView(R.id.txtStatus)
+        TextView txtStatus;
+
+        public ViewHolder(View view) {
+            super(view);
+            ButterKnife.inject(this, view);
         }
-
-
     }
-
-
 
 }

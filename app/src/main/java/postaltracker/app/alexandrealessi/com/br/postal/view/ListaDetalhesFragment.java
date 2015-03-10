@@ -32,6 +32,9 @@ import br.com.alexpfx.api.postal.SroFactory;
 import br.com.alexpfx.api.postal.SroInvalidoException;
 import br.com.alexpfx.api.postal.TipoSro;
 import br.com.alexpfx.api.postal.dao.SroRetornoInfo;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
 import postaltracker.app.alexandrealessi.com.br.postal.R;
 import postaltracker.app.alexandrealessi.com.br.postal.presenter.DetalheSroPresenter;
 import postaltracker.app.alexandrealessi.com.br.postal.presenter.DetalheSroPresenterImpl;
@@ -43,16 +46,29 @@ import static postaltracker.app.alexandrealessi.com.br.postal.view.ListDetalheAd
  * A simple {@link Fragment} subclass.
  */
 public class ListaDetalhesFragment extends Fragment implements SroDetalheView {
+
     private static final String tag = ListaDetalhesFragment.class.getSimpleName();
     private DetalheSroPresenter detalhePresenter;
     private ListDetalheAdapter detalheListAdapter;
     private StatusToast toaster;
 
-    private EditText edtCode;
-    private AutoCompleteTextView edtTipoServico;
-    private AutoCompleteTextView edtPais;
-    private ImageButton btnScanQrCode;
+    @InjectView(R.id.edtCode)
+    EditText edtCode;
+
+    @InjectView(R.id.edtTipoServico)
+    AutoCompleteTextView edtTipoServico;
+
+    @InjectView(R.id.edtPais)
+    AutoCompleteTextView edtPais;
+
+    @InjectView(R.id.btnScanQrCode)
+    ImageButton btnScanQrCode;
+
+    @InjectView(R.id.listDetalhe)
+    RecyclerView recyclerView;
+
     private IntentIntegrator scanIntegrator;
+
     private Context context;
 
     @Override
@@ -62,37 +78,23 @@ public class ListaDetalhesFragment extends Fragment implements SroDetalheView {
         context = getActivity().getApplicationContext();
         detalhePresenter = new DetalheSroPresenterImpl(this);
         toaster = StatusToast.make(context);
-
-
-        View v = inflater.inflate(R.layout.fragment_lista_detalhes, container, false);
-        configurarRecycleViews(v);
-        configurarTextViews(v);
-        configurarEditTexts(v);
+        View view = inflater.inflate(R.layout.fragment_lista_detalhes, container, false);
+        ButterKnife.inject(this, view);
+        configurarRecycleViews(view);
+        configurarEditTexts(view);
         configurarQRCodeScanner();
-        configurarBotoes(v);
-        return v;
+        return view;
     }
 
-    private void configurarTextViews(View v) {
 
+    @OnClick(R.id.btnScanQrCode)
+    public void onBtnScanClick() {
+        scanIntegrator.setPrompt("Aponte a camera para o QRCode do objeto de rastreamento");
 
+        Map<String, ?> moreExtras = scanIntegrator.getMoreExtras();
+        scanIntegrator.initiateScan();
     }
 
-    private void configurarBotoes(View v) {
-
-        btnScanQrCode = (ImageButton) v.findViewById(R.id.btnScanQrCode);
-        btnScanQrCode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                scanIntegrator.setPrompt("Aponte a camera para o QRCode do objeto de rastreamento");
-//                scanIntegrator.setCaptureLayout(R.layout.custom_capture_layout);
-                Map<String, ?> moreExtras = scanIntegrator.getMoreExtras();
-
-                scanIntegrator.initiateScan();
-
-            }
-        });
-    }
 
     private void configurarQRCodeScanner() {
         scanIntegrator = IntentIntegrator.forSupportFragment(this);
@@ -147,30 +149,21 @@ public class ListaDetalhesFragment extends Fragment implements SroDetalheView {
 
     }
 
-
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private void configurarRecycleViews(View v) {
-        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.listDetalhe);
         recyclerView.setHasFixedSize(false);
-
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, true);
         recyclerView.setLayoutManager(manager);
-
-
-        detalheListAdapter = new ListDetalheAdapter(this.getActivity().getApplicationContext(), new ArrayList <ViewModel>());
+        detalheListAdapter = new ListDetalheAdapter(this.getActivity().getApplicationContext(), new ArrayList<ViewModel>());
         recyclerView.setAdapter(detalheListAdapter);
-        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),  null));
+        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), null));
 
     }
 
     private void configurarEditTexts(View v) {
-        edtTipoServico = (AutoCompleteTextView) v.findViewById(R.id.edtTipoServico);
-        edtPais = (AutoCompleteTextView) v.findViewById(R.id.edtPais);
         atribuirListAdapter(edtTipoServico, criarStringArrayAdapter(criarArrayTipoServico()));
         atribuirListAdapter(edtPais, criarStringArrayAdapter(criarArrayCodigoPais()));
-        edtCode = (EditText) v.findViewById(R.id.edtCode);
         configurarTextWatcher(edtTipoServico, edtCode, edtPais);
-
     }
 
 
@@ -218,7 +211,6 @@ public class ListaDetalhesFragment extends Fragment implements SroDetalheView {
         detalheListAdapter.setModelItemList(lista);
         detalheListAdapter.notifyDataSetChanged();
         toaster.success("código de rastreio encontrado: " + sro);
-
         esconderTeclado();
     }
 
@@ -244,7 +236,7 @@ public class ListaDetalhesFragment extends Fragment implements SroDetalheView {
     public void onQrCodeChange() {
         Log.d(tag, getQroCode());
         if (getQroCode().length() != 13) {
-            if (detalheListAdapter.getItemCount() > 0){
+            if (detalheListAdapter.getItemCount() > 0) {
                 detalheListAdapter.clear();
                 detalheListAdapter.notifyDataSetChanged();
             }
@@ -256,4 +248,4 @@ public class ListaDetalhesFragment extends Fragment implements SroDetalheView {
     public synchronized String getQroCode() {
         return edtTipoServico.getText().toString() + edtCode.getText().toString() + edtPais.getText().toString();
     }
-}
+} //270

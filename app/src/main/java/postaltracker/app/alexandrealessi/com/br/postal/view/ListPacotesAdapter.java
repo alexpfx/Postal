@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -15,6 +14,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
 import postaltracker.app.alexandrealessi.com.br.postal.R;
 
 /**
@@ -41,7 +43,7 @@ public class ListPacotesAdapter extends RecyclerView.Adapter<ListPacotesAdapter.
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         View v = LayoutInflater.from(context).inflate(R.layout.item_list_pacote, parent, false);
-        return ViewHolder.newInstance(v);
+        return new ViewHolder(v);
     }
 
     @Override
@@ -58,15 +60,6 @@ public class ListPacotesAdapter extends RecyclerView.Adapter<ListPacotesAdapter.
             }
         }
         holder.txtTags.setText(sb.toString());
-
-        holder.btnLocation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(v.getContext(), "teste", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
     }
 
     @Override
@@ -88,8 +81,24 @@ public class ListPacotesAdapter extends RecyclerView.Adapter<ListPacotesAdapter.
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView txtSro, txtDataAcao, txtAcao, txtTags;
-        private final ImageButton btnLocation, btnExpand, btnDirections;
+        @InjectView(R.id.txtSro)
+        TextView txtSro;
+        @InjectView(R.id.txtDataAcao)
+        TextView txtDataAcao;
+        @InjectView(R.id.txtAcao)
+        TextView txtAcao;
+        @InjectView(R.id.txtTags)
+        TextView txtTags;
+
+        @InjectView(R.id.btnExpand)
+        ImageButton btnExpand;
+
+
+        @OnClick(R.id.btnExpand)
+        public void btnExpandClick() {
+            System.out.println("click");
+        }
+
 
         private ItemClickListener itemClickListener;
 
@@ -97,32 +106,10 @@ public class ListPacotesAdapter extends RecyclerView.Adapter<ListPacotesAdapter.
             this.itemClickListener = itemClickListener;
         }
 
-
-        private ViewHolder(View itemView, TextView txtSro, TextView txtAcao, TextView txtDataAcao, TextView txtTags, ImageButton btnLocation, ImageButton btnDirections, ImageButton btnExpand) {
-            super(itemView);
-            this.txtSro = txtSro;
-            this.btnLocation = btnLocation;
-            this.txtAcao = txtAcao;
-            this.txtDataAcao = txtDataAcao;
-            this.btnDirections = btnDirections;
-            this.btnExpand = btnExpand;
-            this.txtTags = txtTags;
-
+        private ViewHolder(View view) {
+            super(view);
+            ButterKnife.inject(this, view);
         }
-
-        private static ViewHolder newInstance(View v) {
-            TextView txtAcao, txtSro, txtDataAcao, txtTags;
-            txtSro = (TextView) v.findViewById(R.id.txtSro);
-            ImageButton btnLocation = (ImageButton) v.findViewById(R.id.btnExpand);
-            ImageButton btnExpand = (ImageButton) v.findViewById(R.id.btnExpand);
-            ImageButton btnDirections = (ImageButton) v.findViewById(R.id.btnExpand);
-            txtAcao = (TextView) v.findViewById(R.id.txtAcao);
-            txtDataAcao = (TextView) v.findViewById(R.id.txtDataAcao);
-            txtTags = (TextView) v.findViewById(R.id.txtTags);
-            return new ViewHolder(v, txtSro, txtAcao, txtDataAcao, txtTags, btnLocation, btnDirections, btnExpand);
-        }
-
     }
-
 
 }

@@ -14,6 +14,8 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import postaltracker.app.alexandrealessi.com.br.postal.view.OverflowMenuViewAdapter;
 
 import static postaltracker.app.alexandrealessi.com.br.postal.view.OverflowMenuViewAdapter.OnOverflowMenuItemClickListener;
@@ -22,24 +24,31 @@ import static postaltracker.app.alexandrealessi.com.br.postal.view.OverflowMenuV
 
 public class MainActivity extends ActionBarActivity implements OnOverflowMenuItemClickListener {
 
-    private Toolbar toolbar;
-    private RecyclerView overflowMenu;
+    @InjectView(R.id.toolbar)
+    Toolbar toolbar;
+
+    @InjectView(R.id.list_overflow_menu)
+    RecyclerView overflowMenu;
+
+    @InjectView(R.id.dwrOverflowMenu)
+    DrawerLayout drawerLayout;
+
     private RecyclerView.Adapter overflowMenuAdapt;
+
     private ActionBarDrawerToggle drawerToggle;
-    private DrawerLayout drawerLayout;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.inject(this); //??
         setupToolbar();
         setupOverflowMenu();
         setupDrawerLayout ();
     }
 
     private void setupDrawerLayout() {
-        drawerLayout = (DrawerLayout) findViewById(R.id.dwrOverflowMenu);
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.abrir, R.string.fechar);
         drawerToggle.setDrawerIndicatorEnabled(true);
         drawerLayout.setDrawerListener(drawerToggle);
@@ -47,15 +56,12 @@ public class MainActivity extends ActionBarActivity implements OnOverflowMenuIte
     }
 
     private void setupToolbar() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
     }
 
 
 
     private void setupOverflowMenu() {
-        overflowMenu = (RecyclerView) findViewById(R.id.list_overflow_menu);
         overflowMenu.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         overflowMenu.setLayoutManager(layoutManager);
