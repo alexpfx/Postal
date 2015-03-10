@@ -1,10 +1,48 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        // replace with the current version of the Android plugin
+        classpath 'com.android.tools.build:gradle:1.0.0'
+        // replace with the current version of the android-apt plugin
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
+    }
+}
+
+
 apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+def AAVersion = '3.2'
+
+dependencies {
+    apt "org.androidannotations:androidannotations:$AAVersion"
+    compile "org.androidannotations:androidannotations-api:$AAVersion"
+}
+
+apt {
+    arguments {
+        androidManifestFile variant.outputs[0].processResources.manifestFile
+        // if you have multiple outputs (when using splits), you may want to have other index than 0
+
+        resourcePackageName 'postaltracker.app.alexandrealessi.com.br.postal'
+
+        // If you're using Android NBS flavors you should use the following line instead of hard-coded packageName
+        // resourcePackageName android.defaultConfig.packageName
+
+        // You can set optional annotation processing options here, like these commented options:
+        // logLevel 'INFO'
+        // logFile '/var/log/aa.log'
+    }
+}
+
 repositories {
     mavenCentral()
 
     maven {
         url "http://dl.bintray.com/journeyapps/maven"
     }
+
 }
 
 android {
@@ -28,6 +66,15 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
+    }
+    sourceSets {
+        main {
+             manifest.srcFile 'src/main/AndroidManifest.xml'
+             java.srcDirs = ['src/main/java', 'build/generated/source/apt/${variant.dirName}']
+             resources.srcDirs = ['src/main/resources']
+             res.srcDirs = ['src/main/res']
+             assets.srcDirs = ['src/main/assets']
+        }
     }
 }
 
