@@ -2,6 +2,8 @@ package postaltracker.app.alexandrealessi.com.br.postal.presenter;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import br.com.alexpfx.api.postal.Sro;
 import br.com.alexpfx.api.postal.dao.SroRetornoInfo;
 import postaltracker.app.alexandrealessi.com.br.postal.model.ConsultarCorreiosSroCallback;
@@ -19,8 +21,13 @@ public class DetalheSroPresenterImpl implements DetalheSroPresenter, ResultadoAv
     private SroDetalheView sroDetalheView;
 
 
-    public DetalheSroPresenterImpl(SroDetalheView sroDetalheView) {
-        this.sroDetalheView = sroDetalheView;
+    @Override
+    public void init(SroDetalheView view) {
+        this.sroDetalheView = view;
+    }
+
+    @Inject
+    public DetalheSroPresenterImpl() {
         this.sroInteractor = new SroInteractorImpl();
     }
 
@@ -52,4 +59,6 @@ public class DetalheSroPresenterImpl implements DetalheSroPresenter, ResultadoAv
     public void naoEncontrado(Sro sro) {
         sroDetalheView.mostrarDetalhesNaoEncontrados(sro);
     }
+
+
 }

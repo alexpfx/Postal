@@ -22,23 +22,23 @@ import android.widget.ImageButton;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import org.androidannotations.annotations.Click;
-import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.ViewById;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import javax.inject.Inject;
 
 import br.com.alexpfx.api.postal.Sro;
 import br.com.alexpfx.api.postal.SroFactory;
 import br.com.alexpfx.api.postal.SroInvalidoException;
 import br.com.alexpfx.api.postal.TipoSro;
 import br.com.alexpfx.api.postal.dao.SroRetornoInfo;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import postaltracker.app.alexandrealessi.com.br.postal.R;
+import postaltracker.app.alexandrealessi.com.br.postal.common.BaseFragment;
 import postaltracker.app.alexandrealessi.com.br.postal.presenter.DetalheSroPresenter;
-import postaltracker.app.alexandrealessi.com.br.postal.presenter.DetalheSroPresenterImpl;
 
 import static postaltracker.app.alexandrealessi.com.br.postal.view.ListDetalheAdapter.ViewModel;
 
@@ -46,27 +46,30 @@ import static postaltracker.app.alexandrealessi.com.br.postal.view.ListDetalheAd
 /**
  * A simple {@link Fragment} subclass.
  */
-@EFragment
-public class ListaDetalhesFragment extends Fragment implements SroDetalheView {
+public class ListaDetalhesFragment extends BaseFragment implements SroDetalheView {
 
     private static final String tag = ListaDetalhesFragment.class.getSimpleName();
-    private DetalheSroPresenter detalhePresenter;
+
+    @Inject
+    DetalheSroPresenter detalhePresenter;
+
     private ListDetalheAdapter detalheListAdapter;
+
     private StatusToast toaster;
 
-    @ViewById
+    @InjectView(R.id.edtCode)
     EditText edtCode;
 
-    @ViewById
+    @InjectView(R.id.edtTipoServico)
     AutoCompleteTextView edtTipoServico;
 
-    @ViewById
+    @InjectView(R.id.edtPais)
     AutoCompleteTextView edtPais;
 
-    @ViewById
+    @InjectView(R.id.btnScanQrCode)
     ImageButton btnScanQrCode;
 
-    @ViewById(R.id.listDetalhe)
+    @InjectView(R.id.listDetalhe)
     RecyclerView recyclerView;
 
     private IntentIntegrator scanIntegrator;
@@ -76,19 +79,22 @@ public class ListaDetalhesFragment extends Fragment implements SroDetalheView {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         context = getActivity().getApplicationContext();
-        detalhePresenter = new DetalheSroPresenterImpl(this);
         toaster = StatusToast.make(context);
         View view = inflater.inflate(R.layout.fragment_lista_detalhes, container, false);
+        ButterKnife.inject(this, view);
         configurarRecycleViews(view);
         configurarEditTexts(view);
         configurarQRCodeScanner();
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        detalhePresenter.init(this);
+    }
 
-    @Click(R.id.btnScanQrCode)
     public void onBtnScanClick() {
         scanIntegrator.setPrompt("Aponte a camera para o QRCode do objeto de rastreamento");
 
@@ -98,8 +104,7 @@ public class ListaDetalhesFragment extends Fragment implements SroDetalheView {
 
 
     private void configurarQRCodeScanner() {
-        scanIntegrator = IntentIntegrator.forSupportFragment(this);
-
+        scanIntegrator = IntentIntegrator.forFragment(this);
     }
 
     @Override

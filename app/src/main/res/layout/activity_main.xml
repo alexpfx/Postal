@@ -20,7 +20,6 @@
         android:fadeScrollbars="true"
         >
 
-
         <fragment
             android:id="@+id/current_content"
             android:name="postaltracker.app.alexandrealessi.com.br.postal.view.ListaPacotesFragment"
@@ -29,7 +28,7 @@
             />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/list_overflow_menu"
+            android:id="@+id/rvOverflowMenu"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
