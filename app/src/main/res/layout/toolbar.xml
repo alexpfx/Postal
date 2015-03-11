@@ -14,7 +14,7 @@
             android:id="@+id/session_title_textview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="whatever"
+            android:text=""
             android:layout_weight="1"
             android:gravity="center|left"
             />

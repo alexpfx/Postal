@@ -1,6 +1,5 @@
 package postaltracker.app.alexandrealessi.com.br.postal.common;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 

@@ -22,6 +22,7 @@ import android.widget.ImageButton;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -98,7 +99,7 @@ public class ListaDetalhesFragment extends BaseFragment implements SroDetalheVie
     public void onBtnScanClick() {
         scanIntegrator.setPrompt("Aponte a camera para o QRCode do objeto de rastreamento");
 
-        Map<String, ?> moreExtras = scanIntegrator.getMoreExtras();
+        scanIntegrator.getMoreExtras();
         scanIntegrator.initiateScan();
     }
 
@@ -133,7 +134,7 @@ public class ListaDetalhesFragment extends BaseFragment implements SroDetalheVie
     }
 
     private ArrayAdapter<String> criarStringArrayAdapter(List<String> arrayList) {
-        return new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_dropdown_item_1line, criarArrayTipoServico());
+        return new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_dropdown_item_1line, criarArrayTipoServico());
     }
 
     private void atribuirListAdapter(AutoCompleteTextView editText, ArrayAdapter<String> arrayAdapter) {
@@ -174,7 +175,7 @@ public class ListaDetalhesFragment extends BaseFragment implements SroDetalheVie
 
 
     private List<String> criarArrayTipoServico() {
-        List<String> tipos = new ArrayList<String>();
+        List<String> tipos = new ArrayList<>();
         for (TipoSro tipo : TipoSro.values()) {
             tipos.add(tipo.getCodigo());
         }
@@ -183,7 +184,7 @@ public class ListaDetalhesFragment extends BaseFragment implements SroDetalheVie
 
     //TODO: pegar lista possivel de paises.
     private List<String> criarArrayCodigoPais() {
-        List<String> tipos = new ArrayList<String>();
+        List<String> tipos = new ArrayList<>();
         tipos.add("BR");
         tipos.add("CN");
         tipos.add("US");
@@ -209,7 +210,7 @@ public class ListaDetalhesFragment extends BaseFragment implements SroDetalheVie
     public void mostrarDetalhesRecebidos(Sro sro, List<SroRetornoInfo> listaInfos) {
         ArrayList<ViewModel> lista = new ArrayList<>();
         for (SroRetornoInfo rinfo : listaInfos) {
-            String info = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(rinfo.getData()).concat(" ").concat(rinfo.getLocal());
+            String info = SimpleDateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(rinfo.getData()).concat(" ").concat(rinfo.getLocal());
             String status = rinfo.getAcao();
             String detalhe = rinfo.getDetalhes();
             ViewModel.create(info, status, detalhe).addTo(lista);

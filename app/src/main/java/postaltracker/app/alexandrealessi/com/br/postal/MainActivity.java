@@ -43,7 +43,7 @@ public class MainActivity extends BaseActivity implements OnOverflowMenuItemClic
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.inject(this); //??
+        ButterKnife.inject(this);
         setupToolbar();
         setupOverflowMenu();
         setupDrawerLayout();

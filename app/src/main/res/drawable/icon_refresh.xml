@@ -2,9 +2,9 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <item android:drawable="@drawable/when_pressed" android:state_pressed="true"></item>
+    <item android:drawable="@drawable/when_pressed" android:state_pressed="true"/>
 
-    <item android:drawable="@drawable/bitmap_refresh"></item>
+    <item android:drawable="@drawable/bitmap_refresh"/>
 
 
 </selector>

@@ -11,3 +11,4 @@ Ver no mapa, Ver informações, Apagar.
 - externalizar strings
 - alterar pacote app;
 - revisar codigo do lista pacotes fragment
+- removar templates de botoes

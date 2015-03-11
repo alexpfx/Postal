@@ -1,12 +1,5 @@
 package postaltracker.app.alexandrealessi.com.br.postal.model.domain;
 
-import com.google.common.base.MoreObjects;
-import com.google.common.collect.ImmutableCollection;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
-
-import org.apache.commons.lang3.ObjectUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 

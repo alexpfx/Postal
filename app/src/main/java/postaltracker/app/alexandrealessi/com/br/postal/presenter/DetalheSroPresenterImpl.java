@@ -21,14 +21,15 @@ public class DetalheSroPresenterImpl implements DetalheSroPresenter, ResultadoAv
     private SroDetalheView sroDetalheView;
 
 
-    @Override
-    public void init(SroDetalheView view) {
-        this.sroDetalheView = view;
-    }
-
     @Inject
     public DetalheSroPresenterImpl() {
         this.sroInteractor = new SroInteractorImpl();
+    }
+
+
+    @Override
+    public void init(SroDetalheView view) {
+        this.sroDetalheView = view;
     }
 
 

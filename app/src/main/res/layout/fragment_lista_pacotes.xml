@@ -29,7 +29,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="filtrar"
+            android:hint="@string/filter"
             android:layout_weight="1"
             android:background="@null"
             android:padding="8dp"

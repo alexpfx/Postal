@@ -12,7 +12,7 @@ import postaltracker.app.alexandrealessi.com.br.postal.R;
 public class StatusToast {
     private static final int DEFAULT_DURATION = Toast.LENGTH_SHORT;
     private final Context context;
-    private int GRAVITY = Gravity.TOP | Gravity.RIGHT;
+    private int GRAVITY = Gravity.TOP | Gravity.END;
     private int X = 0;
     private int Y = 0;
 
