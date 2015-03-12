@@ -3,12 +3,14 @@ package postaltracker.app.alexandrealessi.com.br.postal;
 import android.app.Application;
 import android.content.Context;
 
+import com.orm.SugarApp;
+
 import dagger.ObjectGraph;
 
 /**
  * Created by alexandre on 10/03/15.
  */
-public class App extends Application{
+public class App extends SugarApp{
     private ObjectGraph objectGraph;
 
     public static App get(Context context){

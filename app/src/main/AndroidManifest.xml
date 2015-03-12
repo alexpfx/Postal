@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="postaltracker.app.alexandrealessi.com.br.postal" >
+    package="postaltracker.app.alexandrealessi.com.br.postal"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
 
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -9,7 +11,15 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon"
+
+
+        >
+        <meta-data android:name="DATABASE" android:value="srodb.db" />
+        <meta-data android:name="VERSION" android:value="1" />
+        <meta-data android:name="QUERY_LOG" android:value="true" />
+        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="postaltracker.app.alexandrealessi.com.br.postal.model.domain" />
 
         <activity
             android:name=".MainActivity"

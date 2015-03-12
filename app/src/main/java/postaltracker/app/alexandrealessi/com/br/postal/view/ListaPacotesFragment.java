@@ -2,12 +2,14 @@ package postaltracker.app.alexandrealessi.com.br.postal.view;
 
 
 import android.app.Fragment;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,8 +18,10 @@ import java.util.Random;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 import postaltracker.app.alexandrealessi.com.br.postal.R;
 import postaltracker.app.alexandrealessi.com.br.postal.model.domain.ItemAcao;
+import postaltracker.app.alexandrealessi.com.br.postal.model.domain.Local;
 import postaltracker.app.alexandrealessi.com.br.postal.model.domain.Pacote;
 
 /**
@@ -27,6 +31,9 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
 
     @InjectView(R.id.listPacotes)
     RecyclerView recyclerView;
+
+    @InjectView(R.id.tvFiltro)
+    TextView tvFiltro;
 
     private ListPacotesAdapter adapter;
 
@@ -77,6 +84,16 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
         }
     }
 
-}//81
+    @OnClick(R.id.btnLimparFiltro)
+    public void btnLimparFiltrosClick (){
+        tvFiltro.setText("");
+        Local l = new Local();
+        l.setDescricao("fonopolis: "+Math.random());
+        l.save();
+
+    }
+
+}
+
 
 

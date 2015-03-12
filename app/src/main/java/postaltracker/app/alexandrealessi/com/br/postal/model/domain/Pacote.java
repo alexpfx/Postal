@@ -1,13 +1,16 @@
 package postaltracker.app.alexandrealessi.com.br.postal.model.domain;
 
+import com.orm.SugarRecord;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by alexandre on 09/03/15.
  */
-public class Pacote {
+public class Pacote extends SugarRecord<Pacote>{
     private String sro;
+
     private List<ItemAcao> itemsAcao = new ArrayList<>();
     public List<String> tags;
 

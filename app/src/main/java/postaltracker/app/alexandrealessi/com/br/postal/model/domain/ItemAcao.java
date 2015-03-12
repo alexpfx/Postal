@@ -1,11 +1,13 @@
 package postaltracker.app.alexandrealessi.com.br.postal.model.domain;
 
+import com.orm.SugarRecord;
+
 import java.util.Date;
 
 /**
  * Created by alexandre on 09/03/15.
  */
-public class ItemAcao {
+public class ItemAcao extends SugarRecord<ItemAcao>{
     private Date data;
     private Local local;
     private Acao acao;
