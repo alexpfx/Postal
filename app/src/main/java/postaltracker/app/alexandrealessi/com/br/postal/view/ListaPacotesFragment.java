@@ -2,7 +2,6 @@ package postaltracker.app.alexandrealessi.com.br.postal.view;
 
 
 import android.app.Fragment;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,13 +15,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import javax.inject.Inject;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import postaltracker.app.alexandrealessi.com.br.postal.R;
 import postaltracker.app.alexandrealessi.com.br.postal.model.domain.ItemAcao;
-import postaltracker.app.alexandrealessi.com.br.postal.model.domain.Local;
 import postaltracker.app.alexandrealessi.com.br.postal.model.domain.Pacote;
+import postaltracker.app.alexandrealessi.com.br.postal.presenter.ListaPacotesPresenter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,6 +37,9 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
     TextView tvFiltro;
 
     private ListPacotesAdapter adapter;
+
+    @Inject
+    ListaPacotesPresenter presenter;
 
 
     @Override
@@ -74,7 +78,7 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
 
 
     @Override
-    public void mostrarListaPacotes(List<Pacote> pacotes) {
+    public void mostrarListaPacotes(Pacote[] pacotes) {
         adapter.getItems().clear();
         for (Pacote pacote : pacotes) {
             ItemAcao itemAcao = pacote.obterItemAcaoRecente();
@@ -86,11 +90,7 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
 
     @OnClick(R.id.btnLimparFiltro)
     public void btnLimparFiltrosClick (){
-        tvFiltro.setText("");
-        Local l = new Local();
-        l.setDescricao("fonopolis: "+Math.random());
-        l.save();
-
+        presenter.requestListaPacotes();
     }
 
 }

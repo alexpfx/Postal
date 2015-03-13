@@ -37,6 +37,7 @@ import br.com.alexpfx.api.postal.dao.SroRetornoInfo;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import postaltracker.app.alexandrealessi.com.br.postal.R;
+import postaltracker.app.alexandrealessi.com.br.postal.common.AbstractPresenter;
 import postaltracker.app.alexandrealessi.com.br.postal.common.BaseFragment;
 import postaltracker.app.alexandrealessi.com.br.postal.presenter.DetalheSroPresenter;
 
@@ -92,7 +93,7 @@ public class ListaDetalhesFragment extends BaseFragment implements SroDetalheVie
     @Override
     public void onResume() {
         super.onResume();
-        detalhePresenter.init(this);
+        ((AbstractPresenter)detalhePresenter).init(this);
     }
 
     public void onBtnScanClick() {

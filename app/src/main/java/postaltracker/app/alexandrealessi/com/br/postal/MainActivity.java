@@ -22,7 +22,6 @@ import postaltracker.app.alexandrealessi.com.br.postal.view.OverflowMenuViewAdap
 import static postaltracker.app.alexandrealessi.com.br.postal.view.OverflowMenuViewAdapter.OnOverflowMenuItemClickListener;
 import static postaltracker.app.alexandrealessi.com.br.postal.view.OverflowMenuViewAdapter.ViewModel;
 
-
 public class MainActivity extends BaseActivity implements OnOverflowMenuItemClickListener {
 
     @InjectView(R.id.toolbar)

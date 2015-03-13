@@ -12,5 +12,6 @@ public interface ListaPacotesView {
      * Mostra lista de pacotes depois de recuperados do banco ou de obtidos do servidor.
      * @param pacotes
      */
-    public void mostrarListaPacotes (List<Pacote> pacotes);
+    public void mostrarListaPacotes (Pacote [] pacotes);
+
 }

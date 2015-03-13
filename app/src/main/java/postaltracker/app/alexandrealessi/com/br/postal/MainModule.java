@@ -6,6 +6,8 @@ import dagger.Module;
 import dagger.Provides;
 import postaltracker.app.alexandrealessi.com.br.postal.presenter.DetalheSroPresenter;
 import postaltracker.app.alexandrealessi.com.br.postal.presenter.DetalheSroPresenterImpl;
+import postaltracker.app.alexandrealessi.com.br.postal.presenter.ListaPacotesPresenter;
+import postaltracker.app.alexandrealessi.com.br.postal.presenter.ListaPacotesPresenterImpl;
 import postaltracker.app.alexandrealessi.com.br.postal.view.ListaDetalhesFragment;
 import postaltracker.app.alexandrealessi.com.br.postal.view.ListaPacotesFragment;
 
@@ -30,5 +32,11 @@ public class MainModule {
     @Singleton
     public DetalheSroPresenter providerDetalheSroPresenter (){
         return new DetalheSroPresenterImpl();
+    }
+
+    @Provides
+    @Singleton
+    public ListaPacotesPresenter providerListaPacotesPresenter (){
+        return new ListaPacotesPresenterImpl();
     }
 }
