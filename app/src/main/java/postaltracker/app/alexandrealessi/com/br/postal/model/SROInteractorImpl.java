@@ -19,6 +19,7 @@ import br.com.alexpfx.api.postal.dao.SroRetornoInfo;
 public class SroInteractorImpl implements SroInteractor {
     private SroRepository sroRepository;
 
+
     public SroInteractorImpl() {
         this.sroRepository = new AgenciaIdeiaRepository();
     }

@@ -1,7 +1,6 @@
 package postaltracker.app.alexandrealessi.com.br.postal.model;
 
-import java.util.Iterator;
-import java.util.List;
+import android.util.Log;
 
 import postaltracker.app.alexandrealessi.com.br.postal.model.domain.Pacote;
 
@@ -10,13 +9,23 @@ import postaltracker.app.alexandrealessi.com.br.postal.model.domain.Pacote;
  */
 public interface PacotesInteractor {
 
-    public void requestListaPacotes (PacotesInteractorCallback callback);
+
+    public void requestListaPacotes(PacotesInteractorCallback callback);
+
+
+
+
+    public static PacotesInteractor NULL = new PacotesInteractor() {
+        @Override
+        public void requestListaPacotes(PacotesInteractorCallback callback) {
+            Log.d(this.getClass().getSimpleName(),": não instanciado");
+        }
+    };
 
     public static interface PacotesInteractorCallback {
-        public void receive (Iterator<Pacote> listaPacotes);
-        public void error ();
+        public void receive(Pacote[] listaPacotes);
 
-
+        public void error();
     }
 
 

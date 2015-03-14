@@ -8,6 +8,9 @@ import com.orm.SugarRecord;
 public class Local extends SugarRecord<Local>{
     private String descricao;
 
+    public Local() {
+    }
+
     public String getDescricao() {
         return descricao;
     }

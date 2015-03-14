@@ -12,18 +12,17 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Random;
-
-import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import postaltracker.app.alexandrealessi.com.br.postal.R;
+import postaltracker.app.alexandrealessi.com.br.postal.common.AbstractPresenter;
+import postaltracker.app.alexandrealessi.com.br.postal.model.PacotesInteractorImpl;
 import postaltracker.app.alexandrealessi.com.br.postal.model.domain.ItemAcao;
 import postaltracker.app.alexandrealessi.com.br.postal.model.domain.Pacote;
 import postaltracker.app.alexandrealessi.com.br.postal.presenter.ListaPacotesPresenter;
+import postaltracker.app.alexandrealessi.com.br.postal.presenter.ListaPacotesPresenterImpl;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,16 +30,14 @@ import postaltracker.app.alexandrealessi.com.br.postal.presenter.ListaPacotesPre
 public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
 
     @InjectView(R.id.listPacotes)
-    RecyclerView recyclerView;
+    RecyclerView rcvListaPacotes;
 
     @InjectView(R.id.tvFiltro)
     TextView tvFiltro;
 
     private ListPacotesAdapter adapter;
 
-    @Inject
-    ListaPacotesPresenter presenter;
-
+    private ListaPacotesPresenter listaPacotesPresenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,32 +45,21 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
 
         View view = inflater.inflate(R.layout.fragment_lista_pacotes, container, false);
         ButterKnife.inject(this, view);
+        configurarPresenter();
+        rcvListaPacotes.setHasFixedSize(false);
 
-        recyclerView.setHasFixedSize(false);
 
         LinearLayoutManager lm = new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(lm);
-        adapter = new ListPacotesAdapter(createFakeItems());
-        recyclerView.setAdapter(adapter);
-
+        rcvListaPacotes.setLayoutManager(lm);
+        adapter = new ListPacotesAdapter(new ArrayList<ListPacotesAdapter.Item>());
+        rcvListaPacotes.setAdapter(adapter);
         return view;
     }
 
-    private Random rand = new Random();
-
-    private List<ListPacotesAdapter.Item> createFakeItems() {
-        return new ArrayList<ListPacotesAdapter.Item>() {
-            {
-                add(new ListPacotesAdapter.Item("Entrega não efetuada por motivos operacionais", new Date(rand.nextLong()), "DM 543496494 BR", new ArrayList<String>() {
-                    {
-                        add("Siciliano");
-                        add("Livro");
-                        add("Presente");
-                    }
-                }));
-
-            }
-        };
+    private void configurarPresenter() {
+        listaPacotesPresenter = new ListaPacotesPresenterImpl();
+        listaPacotesPresenter.setPacotesInteractor(new PacotesInteractorImpl());
+        ((AbstractPresenter)listaPacotesPresenter).init(this);
     }
 
 
@@ -86,11 +72,12 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
             Date dataAcao = itemAcao.getData();
             adapter.getItems().add(new ListPacotesAdapter.Item(acao, dataAcao, pacote.getSro(), pacote.getTags()));
         }
+        adapter.notifyDataSetChanged();
     }
 
     @OnClick(R.id.btnLimparFiltro)
     public void btnLimparFiltrosClick (){
-        presenter.requestListaPacotes();
+        listaPacotesPresenter.requestListaPacotes();
     }
 
 }

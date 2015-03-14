@@ -8,6 +8,9 @@ import com.orm.SugarRecord;
 public class Acao extends SugarRecord<Acao>{
     private String descricao;
 
+    public Acao() {
+    }
+
     public String getDescricao() {
         return descricao;
     }

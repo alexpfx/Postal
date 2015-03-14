@@ -11,6 +11,10 @@ import java.util.List;
 public class Pacote extends SugarRecord<Pacote>{
     private String sro;
 
+
+    public Pacote() {
+    }
+
     private List<ItemAcao> itemsAcao = new ArrayList<>();
     public List<String> tags;
 
@@ -43,5 +47,8 @@ public class Pacote extends SugarRecord<Pacote>{
         return itemsAcao.get(0);
     }
 
-
+    @Override
+    public String toString() {
+        return sro;
+    }
 }

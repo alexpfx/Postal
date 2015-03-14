@@ -13,6 +13,9 @@ public class ItemAcao extends SugarRecord<ItemAcao>{
     private Acao acao;
     private String detalhe;
 
+    public ItemAcao() {
+    }
+
     public Date getData() {
         return data;
     }

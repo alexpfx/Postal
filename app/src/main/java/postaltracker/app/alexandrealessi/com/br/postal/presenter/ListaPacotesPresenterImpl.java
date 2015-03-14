@@ -1,30 +1,25 @@
 package postaltracker.app.alexandrealessi.com.br.postal.presenter;
 
-import android.view.View;
-
-import com.google.common.collect.Iterators;
-
-import java.util.Iterator;
-
-import javax.inject.Inject;
-
 import postaltracker.app.alexandrealessi.com.br.postal.common.AbstractPresenter;
 import postaltracker.app.alexandrealessi.com.br.postal.model.PacotesInteractor;
-import postaltracker.app.alexandrealessi.com.br.postal.model.PacotesInteractorImpl;
 import postaltracker.app.alexandrealessi.com.br.postal.model.domain.Pacote;
 import postaltracker.app.alexandrealessi.com.br.postal.view.ListaPacotesView;
 
 /**
  * Created by alexandre on 12/03/15.
  */
-public class ListaPacotesPresenterImpl extends AbstractPresenter <ListaPacotesView> implements ListaPacotesPresenter, PacotesInteractor.PacotesInteractorCallback {
+public class ListaPacotesPresenterImpl extends AbstractPresenter<ListaPacotesView> implements ListaPacotesPresenter, PacotesInteractor.PacotesInteractorCallback {
 
-    PacotesInteractor pacotesInteractor;
+    {
+        super.init(ListaPacotesView.NULL);
+    }
+
+    private PacotesInteractor pacotesInteractor = PacotesInteractor.NULL;
 
 
-    @Inject
-    public ListaPacotesPresenterImpl() {
-        pacotesInteractor = new PacotesInteractorImpl();
+
+    public void setPacotesInteractor(PacotesInteractor pacotesInteractor) {
+        this.pacotesInteractor = pacotesInteractor;
     }
 
     @Override
@@ -40,15 +35,14 @@ public class ListaPacotesPresenterImpl extends AbstractPresenter <ListaPacotesVi
     //callback
 
     @Override
-    public void receive(Iterator<Pacote> listaPacotes) {
-        getView().mostrarListaPacotes(Iterators.toArray(listaPacotes,Pacote.class));
+    public void receive(Pacote[] listaPacotes) {
+        getView().mostrarListaPacotes (listaPacotes);
     }
 
     @Override
     public void error() {
         //ignorar
     }
-
 
 
 }

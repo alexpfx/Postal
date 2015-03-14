@@ -2,6 +2,7 @@ package postaltracker.app.alexandrealessi.com.br.postal.presenter;
 
 import java.util.List;
 
+import postaltracker.app.alexandrealessi.com.br.postal.model.PacotesInteractor;
 import postaltracker.app.alexandrealessi.com.br.postal.model.domain.Pacote;
 
 /**
@@ -16,7 +17,7 @@ public interface ListaPacotesPresenter  {
 
     public void saveListaPacotes(Pacote [] pacotes);
 
-
+    public void setPacotesInteractor (PacotesInteractor interactor);
 
 
 }
