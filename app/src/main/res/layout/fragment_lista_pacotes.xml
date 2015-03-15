@@ -48,14 +48,14 @@
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/listPacotes"
+        android:id="@+id/rcvPacotes"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:scrollbars="vertical"
-        android:fadeScrollbars="true">
+        android:fadeScrollbars="true"/>
 
 
-    </android.support.v7.widget.RecyclerView>
+
 
 </LinearLayout>

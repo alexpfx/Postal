@@ -20,7 +20,7 @@
         android:divider="@drawable/line_divider"
         >
         <TextView
-            android:id="@+id/txtDataAcao"
+            android:id="@+id/tvDataAcao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""
@@ -30,7 +30,7 @@
             />
 
         <TextView
-            android:id="@+id/txtLocal"
+            android:id="@+id/tvLocal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""
@@ -41,7 +41,7 @@
             />
 
         <TextView
-            android:id="@+id/txtAcao"
+            android:id="@+id/tvAcao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""
@@ -66,7 +66,7 @@
         >
 
         <TextView
-            android:id="@+id/txtSro"
+            android:id="@+id/tvSro"
             style="@style/Base.TextAppearance.AppCompat.Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
             />
 
         <TextView
-            android:id="@+id/txtTags"
+            android:id="@+id/tvTags"
             style="@style/Base.TextAppearance.AppCompat.Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -100,7 +100,6 @@
             android:background="@null"
             android:scaleType="fitCenter"
             android:src="@drawable/icon_expand"
-
             />
 
     </FrameLayout>

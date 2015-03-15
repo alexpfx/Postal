@@ -2,53 +2,52 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    android:gravity="center_vertical" android:background="#ffe"
-    >
+    android:background="#ffe"
+    android:gravity="center_vertical">
 
     <TextView
-        android:id="@+id/txtInfo"
+        android:id="@+id/tvInfo"
         android:layout_width="84dp"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_marginLeft="16dp"
         android:gravity="center"
         android:text=""
         android:textSize="10dp"
-        android:layout_marginLeft="16dp"
 
         />
 
     <LinearLayout
-        android:id="@+id/layStatus"
+        android:id="@+id/lStatus"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/txtInfo"
-        android:layout_toRightOf="@+id/txtInfo"
-        android:orientation="vertical"
         android:layout_marginLeft="8dp"
-        >
+        android:layout_toEndOf="@+id/tvInfo"
+        android:layout_toRightOf="@+id/tvInfo"
+        android:orientation="vertical">
+
         <TextView
-            android:id="@+id/txtDetalhe"
+            android:id="@+id/tvDetalhe"
             android:layout_width="match_parent"
             android:layout_height="22dp"
             android:gravity="left|top"
             android:text=""
-            android:textSize="12dp"
-            />
+            android:textSize="12dp" />
+
         <TextView
-            android:id="@+id/txtStatus"
+            android:id="@+id/tvStatus"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="left|top"
             android:text=""
             android:textSize="12dp"
-            android:textStyle="bold"
-            android:layout_weight="1"
-            />
+            android:textStyle="bold" />
 
     </LinearLayout>
 </RelativeLayout>

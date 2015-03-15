@@ -81,13 +81,13 @@ public class ListPacotesAdapter extends RecyclerView.Adapter<ListPacotesAdapter.
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        @InjectView(R.id.txtSro)
+        @InjectView(R.id.tvSro)
         TextView txtSro;
-        @InjectView(R.id.txtDataAcao)
+        @InjectView(R.id.tvDataAcao)
         TextView txtDataAcao;
-        @InjectView(R.id.txtAcao)
+        @InjectView(R.id.tvAcao)
         TextView txtAcao;
-        @InjectView(R.id.txtTags)
+        @InjectView(R.id.tvTags)
         TextView txtTags;
 
         @InjectView(R.id.btnExpand)

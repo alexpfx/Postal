@@ -106,13 +106,13 @@ public class ListDetalheAdapter extends RecyclerView.Adapter<ListDetalheAdapter.
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        @InjectView(R.id.txtInfo)
+        @InjectView(R.id.tvInfo)
         TextView txtInfo;
 
-        @InjectView(R.id.txtDetalhe)
+        @InjectView(R.id.tvDetalhe)
         TextView txtDetalhe;
 
-        @InjectView(R.id.txtStatus)
+        @InjectView(R.id.tvStatus)
         TextView txtStatus;
 
         public ViewHolder(View view) {

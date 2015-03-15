@@ -29,7 +29,7 @@ import postaltracker.app.alexandrealessi.com.br.postal.presenter.ListaPacotesPre
  */
 public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
 
-    @InjectView(R.id.listPacotes)
+    @InjectView(R.id.rcvPacotes)
     RecyclerView rcvListaPacotes;
 
     @InjectView(R.id.tvFiltro)
@@ -59,7 +59,7 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
     private void configurarPresenter() {
         listaPacotesPresenter = new ListaPacotesPresenterImpl();
         listaPacotesPresenter.setPacotesInteractor(new PacotesInteractorImpl());
-        ((AbstractPresenter)listaPacotesPresenter).init(this);
+        ((AbstractPresenter) listaPacotesPresenter).init(this);
     }
 
 
@@ -76,7 +76,7 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
     }
 
     @OnClick(R.id.btnLimparFiltro)
-    public void btnLimparFiltrosClick (){
+    public void btnLimparFiltrosClick() {
         listaPacotesPresenter.requestListaPacotes();
     }
 
