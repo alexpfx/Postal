@@ -15,7 +15,7 @@ public class PacotesInteractorImpl implements PacotesInteractor {
 
 
     @Override
-    public void requestListaPacotes(PacotesInteractorCallback callback) {
+    public void requestListaPacotes(RequestListaPacotesCallback callback) {
 
         try {
             Iterator<Pacote> all = Pacote.findAll(Pacote.class);
@@ -28,4 +28,10 @@ public class PacotesInteractorImpl implements PacotesInteractor {
 
 
     }
+
+    @Override
+    public void save(Pacote p, SaveCallback callback) {
+        p.save();
+    }
+
 }

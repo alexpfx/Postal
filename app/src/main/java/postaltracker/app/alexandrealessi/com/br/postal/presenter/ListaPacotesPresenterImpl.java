@@ -8,7 +8,8 @@ import postaltracker.app.alexandrealessi.com.br.postal.view.ListaPacotesView;
 /**
  * Created by alexandre on 12/03/15.
  */
-public class ListaPacotesPresenterImpl extends AbstractPresenter<ListaPacotesView> implements ListaPacotesPresenter, PacotesInteractor.PacotesInteractorCallback {
+public class ListaPacotesPresenterImpl
+        extends AbstractPresenter<ListaPacotesView> implements ListaPacotesPresenter, PacotesInteractor.RequestListaPacotesCallback {
 
     {
         super.init(ListaPacotesView.NULL);

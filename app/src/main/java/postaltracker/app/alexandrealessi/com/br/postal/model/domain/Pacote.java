@@ -11,14 +11,14 @@ import java.util.List;
  * Created by alexandre on 09/03/15.
  */
 public class Pacote extends SugarRecord<Pacote>{
-    private String sro;
-
+    String sro;
+    List<ItemAcao> itemsAcao = new ArrayList<>();
+    List<String> tags = new ArrayList<>();
 
     public Pacote() {
     }
 
-    private List<ItemAcao> itemsAcao = new ArrayList<>();
-    public List<String> tags;
+
 
     public String getSro() {
         return sro;

@@ -23,7 +23,7 @@
         <!--android:name="postaltracker.app.alexandrealessi.com.br.postal.view.ListaPacotesFragment"-->
         <fragment
             android:id="@+id/current_content"
-            android:name="postaltracker.app.alexandrealessi.com.br.postal.view.ListaPacotesFragment"
+            android:name="postaltracker.app.alexandrealessi.com.br.postal.view.ListaDetalhesFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />

@@ -40,6 +40,7 @@ import postaltracker.app.alexandrealessi.com.br.postal.R;
 import postaltracker.app.alexandrealessi.com.br.postal.common.AbstractPresenter;
 import postaltracker.app.alexandrealessi.com.br.postal.common.BaseFragment;
 import postaltracker.app.alexandrealessi.com.br.postal.presenter.DetalheSroPresenter;
+import postaltracker.app.alexandrealessi.com.br.postal.presenter.DetalheSroPresenterImpl;
 
 import static postaltracker.app.alexandrealessi.com.br.postal.view.ListDetalheAdapter.ViewModel;
 
@@ -51,7 +52,6 @@ public class ListaDetalhesFragment extends BaseFragment implements SroDetalheVie
 
     private static final String tag = ListaDetalhesFragment.class.getSimpleName();
 
-    @Inject
     DetalheSroPresenter detalhePresenter;
 
     private ListDetalheAdapter detalheListAdapter;
@@ -84,6 +84,9 @@ public class ListaDetalhesFragment extends BaseFragment implements SroDetalheVie
         toaster = StatusToast.make(context);
         View view = inflater.inflate(R.layout.fragment_lista_detalhes, container, false);
         ButterKnife.inject(this, view);
+        detalhePresenter = new DetalheSroPresenterImpl();
+        ((AbstractPresenter)detalhePresenter).init(this);
+
         configurarRecycleViews(view);
         configurarEditTexts(view);
         configurarQRCodeScanner();
@@ -203,6 +206,7 @@ public class ListaDetalhesFragment extends BaseFragment implements SroDetalheVie
 
     @Override
     public void mostrarQueEhValido() {
+
         toaster.info("Sro Válido, buscando informações...");
     }
 

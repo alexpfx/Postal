@@ -21,7 +21,7 @@ public interface ListaPacotesView {
     public static ListaPacotesView NULL = new ListaPacotesView() {
         @Override
         public void mostrarListaPacotes(Pacote[] pacotes) {
-            Log.d(this.getClass().getSimpleName(), "não chamou método init");
+            Log.d(this.getClass().getSimpleName(), "não chamasse o método init");
         }
     };
 

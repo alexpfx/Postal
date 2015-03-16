@@ -21,6 +21,7 @@ import postaltracker.app.alexandrealessi.com.br.postal.common.AbstractPresenter;
 import postaltracker.app.alexandrealessi.com.br.postal.model.PacotesInteractorImpl;
 import postaltracker.app.alexandrealessi.com.br.postal.model.domain.ItemAcao;
 import postaltracker.app.alexandrealessi.com.br.postal.model.domain.Pacote;
+import postaltracker.app.alexandrealessi.com.br.postal.presenter.DetalheSroPresenter;
 import postaltracker.app.alexandrealessi.com.br.postal.presenter.ListaPacotesPresenter;
 import postaltracker.app.alexandrealessi.com.br.postal.presenter.ListaPacotesPresenterImpl;
 
@@ -34,6 +35,7 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
 
     @InjectView(R.id.tvFiltro)
     TextView tvFiltro;
+
 
 
     private ListPacotesAdapter adapter;
