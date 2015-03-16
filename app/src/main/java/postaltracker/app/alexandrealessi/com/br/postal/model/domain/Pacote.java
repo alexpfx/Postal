@@ -2,6 +2,8 @@ package postaltracker.app.alexandrealessi.com.br.postal.model.domain;
 
 import com.orm.SugarRecord;
 
+import org.apache.commons.lang3.ObjectUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +46,10 @@ public class Pacote extends SugarRecord<Pacote>{
     }
 
     public ItemAcao obterItemAcaoRecente (){
-        return itemsAcao.get(0);
+        if (itemsAcao.size() > 0){
+            return itemsAcao.get(0);
+        }
+        return ItemAcao.NULL;
     }
 
     @Override

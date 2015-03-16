@@ -35,6 +35,7 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
     @InjectView(R.id.tvFiltro)
     TextView tvFiltro;
 
+
     private ListPacotesAdapter adapter;
 
     private ListaPacotesPresenter listaPacotesPresenter;
@@ -77,6 +78,11 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
 
     @OnClick(R.id.btnLimparFiltro)
     public void btnLimparFiltrosClick() {
+        tvFiltro.setText("");
+    }
+
+    @OnClick(R.id.btnRefresh)
+    public void btnRefreshClick (){
         listaPacotesPresenter.requestListaPacotes();
     }
 

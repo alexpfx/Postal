@@ -8,6 +8,9 @@ import java.util.Date;
  * Created by alexandre on 09/03/15.
  */
 public class ItemAcao extends SugarRecord<ItemAcao>{
+
+    public static ItemAcao NULL = new ItemAcao(){};
+
     private Date data;
     private Local local;
     private Acao acao;
@@ -15,6 +18,7 @@ public class ItemAcao extends SugarRecord<ItemAcao>{
 
     public ItemAcao() {
     }
+
 
     public Date getData() {
         return data;

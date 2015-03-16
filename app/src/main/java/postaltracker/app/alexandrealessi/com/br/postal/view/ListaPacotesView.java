@@ -12,9 +12,11 @@ import postaltracker.app.alexandrealessi.com.br.postal.model.domain.Pacote;
 public interface ListaPacotesView {
     /**
      * Mostra listaPacotesPresenter de pacotes depois de recuperados do banco ou de obtidos do servidor.
+     *
      * @param pacotes
      */
-    public void mostrarListaPacotes (Pacote [] pacotes);
+    public void mostrarListaPacotes(Pacote[] pacotes);
+
 
     public static ListaPacotesView NULL = new ListaPacotesView() {
         @Override
