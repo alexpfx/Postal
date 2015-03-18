@@ -51,14 +51,6 @@ public class MainActivity extends BaseActivity implements OnOverflowMenuItemClic
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
         setupToolbar();
-        Pacote p = new Pacote();
-        p.setSro("dm 1234546788 br");
-        p.save();
-        Iterator<Pacote> all = Pacote.findAll(Pacote.class);
-        while (all.hasNext()){
-            System.out.println(all.next());
-        }
-
         setupOverflowMenu();
         setupDrawerLayout();
     }
