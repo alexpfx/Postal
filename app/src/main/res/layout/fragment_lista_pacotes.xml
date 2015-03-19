@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_gravity="center"
+        android:layout_gravity="center|left"
         >
 
         <LinearLayout
@@ -52,6 +52,17 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/icon_cancel" />
         </LinearLayout>
+        <com.gc.materialdesign.views.ButtonFloat
+            android:id="@+id/buttonFloat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginTop="60dp"
+            android:layout_marginRight="24dp"
+            android:background="#1E88E5"
+            materialdesign:animate="true"
+            materialdesign:iconDrawable="@drawable/ic_action_new"
+            />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rcvPacotes"
@@ -59,19 +70,11 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:fadeScrollbars="true"
+
             android:scrollbars="vertical" />
 
     </LinearLayout>
 
-    <com.gc.materialdesign.views.ButtonFloat
-        android:id="@+id/buttonFloat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right|bottom"
-        android:layout_marginRight="24dp"
-        android:background="#1E88E5"
-        materialdesign:animate="true"
-        materialdesign:iconDrawable="@drawable/ic_action_new"
-        />
+
 
 </FrameLayout>
