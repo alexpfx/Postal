@@ -16,6 +16,8 @@
         android:dividerPadding="10dp"
         >
 
+
+
         <ImageButton
             android:id="@+id/btnRefresh"
             android:layout_width="match_parent"
@@ -26,6 +28,8 @@
             android:src="@drawable/icon_refresh"
             android:layout_weight="4"
             />
+
+
         <EditText
             android:id="@+id/tvFiltro"
             android:layout_width="match_parent"
@@ -54,8 +58,6 @@
         android:layout_gravity="start"
         android:scrollbars="vertical"
         android:fadeScrollbars="true"/>
-
-
 
 
 </LinearLayout>
