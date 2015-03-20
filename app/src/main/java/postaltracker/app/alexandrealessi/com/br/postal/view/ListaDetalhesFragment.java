@@ -2,11 +2,11 @@ package postaltracker.app.alexandrealessi.com.br.postal.view;
 
 
 import android.annotation.TargetApi;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -27,8 +27,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import br.com.alexpfx.api.postal.Sro;
 import br.com.alexpfx.api.postal.SroFactory;
 import br.com.alexpfx.api.postal.SroInvalidoException;
@@ -38,7 +36,6 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import postaltracker.app.alexandrealessi.com.br.postal.R;
 import postaltracker.app.alexandrealessi.com.br.postal.common.AbstractPresenter;
-import postaltracker.app.alexandrealessi.com.br.postal.common.BaseFragment;
 import postaltracker.app.alexandrealessi.com.br.postal.presenter.DetalheSroPresenter;
 import postaltracker.app.alexandrealessi.com.br.postal.presenter.DetalheSroPresenterImpl;
 
@@ -48,7 +45,7 @@ import static postaltracker.app.alexandrealessi.com.br.postal.view.ListDetalheAd
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ListaDetalhesFragment extends BaseFragment implements SroDetalheView {
+public class ListaDetalhesFragment extends Fragment implements SroDetalheView {
 
     private static final String tag = ListaDetalhesFragment.class.getSimpleName();
 

@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_gravity="top"
+    xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
     >
 
     <include
@@ -26,7 +27,10 @@
             android:name="postaltracker.app.alexandrealessi.com.br.postal.view.ListaPacotesFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            />
+            >
+
+        </fragment>
+
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvOverflowMenu"
@@ -36,6 +40,8 @@
             android:scrollbars="vertical" />
 
 
+
     </android.support.v4.widget.DrawerLayout>
+
 
 </LinearLayout>

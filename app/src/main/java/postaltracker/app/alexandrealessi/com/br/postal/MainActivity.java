@@ -3,6 +3,7 @@ package postaltracker.app.alexandrealessi.com.br.postal;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,18 +13,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import postaltracker.app.alexandrealessi.com.br.postal.common.BaseActivity;
 import postaltracker.app.alexandrealessi.com.br.postal.view.OverflowMenuViewAdapter;
 
-import static postaltracker.app.alexandrealessi.com.br.postal.view.OverflowMenuViewAdapter.OnOverflowMenuItemClickListener;
 import static postaltracker.app.alexandrealessi.com.br.postal.view.OverflowMenuViewAdapter.ViewModel;
 
-public class MainActivity extends BaseActivity implements OnOverflowMenuItemClickListener {
+public class MainActivity extends ActionBarActivity implements OverflowMenuViewAdapter.OnOverflowMenuItemClickListener{
 
     private static final String tag = MainActivity.class.getSimpleName();
 
@@ -53,10 +51,10 @@ public class MainActivity extends BaseActivity implements OnOverflowMenuItemClic
         setupDrawerLayout();
     }
 
-    @Override
-    protected List<Object> getModules() {
-        return Arrays.<Object>asList(new MainModule(this));
-    }
+//    @Override
+//    protected List<Object> getModules() {
+//        return Arrays.<Object>asList(new MainModule(this));
+//    }
 
     private void setupDrawerLayout() {
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.abrir, R.string.fechar);

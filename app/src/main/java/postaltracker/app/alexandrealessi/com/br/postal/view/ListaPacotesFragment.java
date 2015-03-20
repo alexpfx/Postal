@@ -21,7 +21,6 @@ import postaltracker.app.alexandrealessi.com.br.postal.common.AbstractPresenter;
 import postaltracker.app.alexandrealessi.com.br.postal.model.PacotesInteractorImpl;
 import postaltracker.app.alexandrealessi.com.br.postal.model.domain.ItemAcao;
 import postaltracker.app.alexandrealessi.com.br.postal.model.domain.Pacote;
-import postaltracker.app.alexandrealessi.com.br.postal.presenter.DetalheSroPresenter;
 import postaltracker.app.alexandrealessi.com.br.postal.presenter.ListaPacotesPresenter;
 import postaltracker.app.alexandrealessi.com.br.postal.presenter.ListaPacotesPresenterImpl;
 
@@ -54,7 +53,13 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
 
         LinearLayoutManager lm = new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false);
         rcvListaPacotes.setLayoutManager(lm);
-        adapter = new ListPacotesAdapter(new ArrayList<ListPacotesAdapter.Item>());
+
+        adapter = new ListPacotesAdapter(new ArrayList<ListPacotesAdapter.Item>(){
+            {
+                add (new ListPacotesAdapter.Item("bla", new Date (), "DM 123456789 BR", new ArrayList<String>()));
+                add (new ListPacotesAdapter.Item("bla", new Date (), "DM 123456789 BR", new ArrayList<String>()));
+            }
+        });
         rcvListaPacotes.setAdapter(adapter);
         return view;
     }
