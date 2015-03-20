@@ -7,6 +7,7 @@
     tools:context="postaltracker.app.alexandrealessi.com.br.postal.view.ListaPacotesFragment">
 
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
@@ -48,37 +49,26 @@
     </LinearLayout>
 
 
-
-    <com.gc.materialdesign.views.LayoutRipple
-        android:id="@+id/itemButtons"
-        android:layout_width="fill_parent"
-        android:layout_height="64dp"
-        android:background="#FFF"
-        android:clickable="true">
-        <com.gc.materialdesign.views.ButtonFloat
-            android:id="@+id/buttonFloat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|bottom"
-            android:layout_marginRight="24dp"
-            android:background="#1E88E5"
-            materialdesign:animate="true"
-            materialdesign:iconDrawable="@drawable/ic_action_new" />
-
-
-    </com.gc.materialdesign.views.LayoutRipple>
-
+    <com.gc.materialdesign.views.ButtonFloat
+        android:id="@+id/buttonFloat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:layout_marginRight="24dp"
+        android:background="#1E88E5"
+        materialdesign:animate="true"
+        materialdesign:iconDrawable="@drawable/ic_action_new" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rcvPacotes"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fadeScrollbars="true"
-            android:scrollbars="vertical" />
+        <!--<android.support.v7.widget.RecyclerView-->
+            <!--android:id="@+id/rcvPacotes"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:fadeScrollbars="true"-->
+            <!--android:scrollbars="vertical" />-->
     </FrameLayout>
 
 

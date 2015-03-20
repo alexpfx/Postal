@@ -1,12 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.gc.materialdesign.views.LayoutRipple
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/itemButtons"
+    android:layout_width="fill_parent"
+    android:layout_height="64dp"
+    android:background="#FFF"
+    android:clickable="true">
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:layout_margin="4dp"
-
-    android:divider="@drawable/line_divider"
     android:baselineAligned="false">
+
 
     <LinearLayout
         android:layout_width="120dp"
@@ -17,7 +24,6 @@
         android:gravity="center"
         android:showDividers="middle"
         android:dividerPadding="10dp"
-        android:divider="@drawable/line_divider"
         >
         <TextView
             android:id="@+id/tvDataAcao"
@@ -51,7 +57,7 @@
             />
 
 
-   </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -61,7 +67,6 @@
         android:padding="2dp"
         android:orientation="vertical"
         android:showDividers="middle"
-        android:divider="@drawable/line_divider"
         android:dividerPadding="10dp"
         >
 
@@ -102,4 +107,9 @@
             android:src="@drawable/icon_expand"
             />
     </FrameLayout>
+
+
+
 </LinearLayout>
+
+</com.gc.materialdesign.views.LayoutRipple>

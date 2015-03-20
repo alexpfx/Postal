@@ -56,8 +56,19 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
 
         adapter = new ListPacotesAdapter(new ArrayList<ListPacotesAdapter.Item>(){
             {
-                add (new ListPacotesAdapter.Item("bla", new Date (), "DM 123456789 BR", new ArrayList<String>()));
-                add (new ListPacotesAdapter.Item("bla", new Date (), "DM 123456789 BR", new ArrayList<String>()));
+                add (new ListPacotesAdapter.Item("saiu para entrega", new Date (), "DM 123456789 BR", new ArrayList<String>(){
+                    {
+                        add("livros");
+                        add("submarino");
+                    }
+                }));
+                add (new ListPacotesAdapter.Item("entregue", new Date (), "DM 123456789 BR", new ArrayList<String>(){
+                    {
+                        add("tenis");
+                        add("by tennis");
+
+                    }
+                }));
             }
         });
         rcvListaPacotes.setAdapter(adapter);

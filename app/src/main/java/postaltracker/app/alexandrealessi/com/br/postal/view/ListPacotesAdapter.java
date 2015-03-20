@@ -42,7 +42,7 @@ public class ListPacotesAdapter extends RecyclerView.Adapter<ListPacotesAdapter.
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
-        View v = LayoutInflater.from(context).inflate(R.layout.item_list_pacote, parent, false);
+        View v = LayoutInflater.from(context).inflate(R.layout.item_list_pacote_n, parent, false);
         return new ViewHolder(v);
     }
 
