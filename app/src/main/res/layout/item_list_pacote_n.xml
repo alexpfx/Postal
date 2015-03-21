@@ -1,115 +1,100 @@
-<com.gc.materialdesign.views.LayoutRipple
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
+<com.gc.materialdesign.views.LayoutRipple xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/itemButtons"
     android:layout_width="fill_parent"
-    android:layout_height="64dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp"
     android:background="#FFF"
     android:clickable="true">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_margin="4dp"
-    android:baselineAligned="false">
-
-
-    <LinearLayout
-        android:layout_width="120dp"
-        android:layout_height="match_parent"
-        android:background="@drawable/border_all"
-        android:padding="2dp"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:showDividers="middle"
-        android:dividerPadding="10dp"
-        >
-        <TextView
-            android:id="@+id/tvDataAcao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:gravity="center"
-            style="@style/TextAppearance.AppCompat.Caption.Small"
-            android:layout_weight="1"
-            />
-
-        <TextView
-            android:id="@+id/tvLocal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:gravity="center"
-            style="@style/TextAppearance.AppCompat.Caption.Small"
-            android:layout_weight="1"
-
-            />
-
-        <TextView
-            android:id="@+id/tvAcao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:gravity="center"
-            style="@style/TextAppearance.AppCompat.Caption.Small"
-            android:layout_weight="1"
-            />
-
-
-    </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.35"
-        android:background="@drawable/border_all_but_left"
-        android:padding="2dp"
-        android:orientation="vertical"
-        android:showDividers="middle"
-        android:dividerPadding="10dp"
-        >
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvSro"
-            style="@style/Base.TextAppearance.AppCompat.Title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left|top"
-            android:text=""
-            />
+        <LinearLayout
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="2dp"
+            >
 
-        <TextView
-            android:id="@+id/tvTags"
-            style="@style/Base.TextAppearance.AppCompat.Caption"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left|bottom"
-            android:text="" />
+            <TextView
+                android:id="@+id/tvDataAcao"
+                style="@style/TextAppearance.AppCompat.Caption.Small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tvLocal"
+                style="@style/TextAppearance.AppCompat.Caption.Small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text=""
+
+                />
+
+            <TextView
+                android:id="@+id/tvAcao"
+                style="@style/TextAppearance.AppCompat.Caption.Small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="" />
 
 
-    </LinearLayout>
+        </LinearLayout>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.65"
-        android:background="@drawable/border_all_but_left"
-        android:padding="2dp"
-        >
-        <ImageButton
-            android:id="@+id/btnExpand"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            android:src="@drawable/icon_expand"
-            />
-    </FrameLayout>
+            android:layout_weight="0.35"
+            android:orientation="vertical"
+            android:padding="2dp"
+
+            >
+
+            <TextView
+                android:id="@+id/tvSro"
+                style="@style/Base.TextAppearance.AppCompat.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|top"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tvTags"
+                style="@style/Base.TextAppearance.AppCompat.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|bottom"
+                android:text="" />
 
 
+        </LinearLayout>
 
-</LinearLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.65"
+            android:padding="2dp">
+
+            <ImageButton
+                android:id="@+id/btnExpand"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_expand" />
+        </FrameLayout>
+    </LinearLayout>
 
 </com.gc.materialdesign.views.LayoutRipple>

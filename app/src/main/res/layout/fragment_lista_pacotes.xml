@@ -6,15 +6,11 @@
     android:orientation="vertical"
     tools:context="postaltracker.app.alexandrealessi.com.br.postal.view.ListaPacotesFragment">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:divider="@drawable/line_divider"
-        android:dividerPadding="10dp"
         android:orientation="horizontal"
-        android:showDividers="middle">
-
+        >
 
         <ImageButton
             android:id="@+id/btnRefresh"
@@ -25,7 +21,6 @@
             android:background="@null"
             android:scaleType="fitCenter"
             android:src="@drawable/icon_refresh" />
-
 
         <EditText
             android:id="@+id/tvFiltro"
@@ -48,38 +43,42 @@
     </LinearLayout>
 
 
-
-    <com.gc.materialdesign.views.LayoutRipple
-        android:id="@+id/itemButtons"
-        android:layout_width="fill_parent"
-        android:layout_height="64dp"
-        android:background="#FFF"
-        android:clickable="true">
-        <com.gc.materialdesign.views.ButtonFloat
-            android:id="@+id/buttonFloat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|bottom"
-            android:layout_marginRight="24dp"
-            android:background="#1E88E5"
-            materialdesign:animate="true"
-            materialdesign:iconDrawable="@drawable/ic_action_new" />
-
-
-    </com.gc.materialdesign.views.LayoutRipple>
-
-
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+
+        >
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rcvPacotes"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fadeScrollbars="true"
-            android:scrollbars="vertical" />
-    </FrameLayout>
+            android:scrollbars="vertical"
+            android:layout_centerInParent="true"
+            />
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="24dp"
+
+            >
+            <com.gc.materialdesign.views.ButtonFloat
+                xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/buttonFloat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center"
+                android:background="#1E88E5"
+                materialdesign:animate="true"
+                materialdesign:iconDrawable="@drawable/ic_action_new"
+                />
+        </FrameLayout>
+
+
+    </RelativeLayout>
 
 </LinearLayout>

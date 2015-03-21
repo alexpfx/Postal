@@ -49,9 +49,11 @@ public class ListPacotesAdapter extends RecyclerView.Adapter<ListPacotesAdapter.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Item item = items.get(position);
-        holder.txtSro.setText(item.sro);
-        holder.txtDataAcao.setText(dateFormat.format(item.dataAcao).concat(": "));
-        holder.txtAcao.setText(item.acao);
+        holder.tvSro.setText(item.sro);
+        holder.tvDataAcao.setText(dateFormat.format(item.dataAcao).concat(": "));
+        holder.tvAcao.setText(item.acao);
+        holder.tvLocal.setText(item.local);
+
         StringBuilder sb = new StringBuilder();
         List<String> tags = item.tags;
         if (tags != null) {
@@ -70,25 +72,30 @@ public class ListPacotesAdapter extends RecyclerView.Adapter<ListPacotesAdapter.
     static final class Item {
         private final Date dataAcao;
         private final List<String> tags;
-        private String acao, sro;
+        private String acao, sro, local;
 
-        public Item(String acao, Date dataAcao, String sro, List<String> tags) {
+        public Item(String acao, Date dataAcao, String sro, String local, List<String> tags) {
             this.acao = acao;
             this.sro = sro;
             this.dataAcao = dataAcao;
             this.tags = tags;
+            this.local = local;
+
         }
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         @InjectView(R.id.tvSro)
-        TextView txtSro;
+        TextView tvSro;
         @InjectView(R.id.tvDataAcao)
-        TextView txtDataAcao;
+        TextView tvDataAcao;
         @InjectView(R.id.tvAcao)
-        TextView txtAcao;
+        TextView tvAcao;
         @InjectView(R.id.tvTags)
         TextView txtTags;
+
+        @InjectView(R.id.tvLocal)
+        TextView tvLocal;
 
         @InjectView(R.id.btnExpand)
         ImageButton btnExpand;

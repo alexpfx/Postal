@@ -43,7 +43,7 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle saveDdInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_lista_pacotes, container, false);
         ButterKnife.inject(this, view);
@@ -56,19 +56,38 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
 
         adapter = new ListPacotesAdapter(new ArrayList<ListPacotesAdapter.Item>(){
             {
-                add (new ListPacotesAdapter.Item("saiu para entrega", new Date (), "DM 123456789 BR", new ArrayList<String>(){
+                add (new ListPacotesAdapter.Item("saiu para entrega", new Date (), "DM 123456789 BR", "Palhoca",new ArrayList<String>(){
                     {
                         add("livros");
                         add("submarino");
                     }
                 }));
-                add (new ListPacotesAdapter.Item("entregue", new Date (), "DM 123456789 BR", new ArrayList<String>(){
+                add (new ListPacotesAdapter.Item("entregue", new Date (), "DM 123456789 BR", "Palhoca", new ArrayList<String>(){
                     {
                         add("tenis");
                         add("by tennis");
-
                     }
                 }));
+                add (new ListPacotesAdapter.Item("aguardando", new Date (), "DM 484945454 BR", "Sao Miguel do Oeste", new ArrayList<String>(){
+                    {
+                        add("submarino");
+                        add("celular");
+                    }
+                }));
+                add (new ListPacotesAdapter.Item("aguardando", new Date (), "DM 484945454 BR", "Sao Miguel do Oeste", new ArrayList<String>(){
+                    {
+                        add("submarino");
+                        add("celular");
+                    }
+                }));
+
+                add (new ListPacotesAdapter.Item("aguardando", new Date (), "DM 484945454 BR", "Sao Miguel do Oeste", new ArrayList<String>(){
+                    {
+                        add("submarino");
+                        add("celular");
+                    }
+                }));
+
             }
         });
         rcvListaPacotes.setAdapter(adapter);
@@ -89,7 +108,7 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
             ItemAcao itemAcao = pacote.obterItemAcaoRecente();
             String acao = itemAcao.getAcao().getDescricao();
             Date dataAcao = itemAcao.getData();
-            adapter.getItems().add(new ListPacotesAdapter.Item(acao, dataAcao, pacote.getSro(), pacote.getTags()));
+            adapter.getItems().add(new ListPacotesAdapter.Item(acao, dataAcao, pacote.getSro(), itemAcao.getLocal().getDescricao(), pacote.getTags()));
         }
         adapter.notifyDataSetChanged();
     }
