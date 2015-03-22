@@ -2,6 +2,8 @@ package postaltracker.app.alexandrealessi.com.br.postal.view;
 
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.gc.materialdesign.views.ButtonFloat;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,7 +38,6 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
 
     @InjectView(R.id.tvFiltro)
     TextView tvFiltro;
-
 
 
     private ListPacotesAdapter adapter;
@@ -121,6 +124,15 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
     @OnClick(R.id.btnRefresh)
     public void btnRefreshClick (){
         listaPacotesPresenter.requestListaPacotes();
+    }
+
+    @OnClick(R.id.btnOpenCadastroPacotes)
+    public void btnOpenCadastroPacotesClick () {
+        FragmentManager fragmentManager = getActivity().getFragmentManager();
+        FragmentTransaction transaction= fragmentManager.beginTransaction();
+        transaction.replace(R.id.current_content, new CadastroPacotesFragment());
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
 }

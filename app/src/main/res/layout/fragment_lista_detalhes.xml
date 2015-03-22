@@ -6,6 +6,7 @@
     android:paddingRight="8dp"
     tools:context="postaltracker.app.alexandrealessi.com.br.postal.view.ListaDetalhesFragment"
     android:background="@color/md_white_1000"
+
     >
 
     <ImageButton

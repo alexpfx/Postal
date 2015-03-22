@@ -17,6 +17,7 @@
     <string name="dt_atualizacao">Status Recente:</string>
     <string name="SS">SS</string>
     <string name="exemploNumeroSro">123456789</string>
+    <string name="exemploListaSros">ex: DM123456789BRSS123456789CN</string>
     <string name="exCodigoPais">BR</string>
     <string name="paste">paste</string>
     <string name="filter">filtrar</string>
