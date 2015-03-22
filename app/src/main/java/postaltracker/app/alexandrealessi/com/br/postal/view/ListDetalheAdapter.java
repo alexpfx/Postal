@@ -50,7 +50,7 @@ public class ListDetalheAdapter extends RecyclerView.Adapter<ListDetalheAdapter.
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "" + modelItemList.get(vh.getPosition()), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "" + modelItemList.get(vh.getLayoutPosition()), Toast.LENGTH_SHORT).show();
             }
         });
 

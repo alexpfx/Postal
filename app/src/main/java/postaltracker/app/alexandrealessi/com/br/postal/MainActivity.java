@@ -1,5 +1,7 @@
 package postaltracker.app.alexandrealessi.com.br.postal;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -17,6 +19,7 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import postaltracker.app.alexandrealessi.com.br.postal.view.CadastroPacotesFragment;
 import postaltracker.app.alexandrealessi.com.br.postal.view.OverflowMenuViewAdapter;
 
 import static postaltracker.app.alexandrealessi.com.br.postal.view.OverflowMenuViewAdapter.ViewModel;
@@ -49,6 +52,7 @@ public class MainActivity extends ActionBarActivity implements OverflowMenuViewA
         setupToolbar();
         setupOverflowMenu();
         setupDrawerLayout();
+
     }
 
 //    @Override

@@ -34,7 +34,7 @@ public class OverflowMenuViewAdapter extends RecyclerView.Adapter<OverflowMenuVi
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickListener.onOverflowMenuItemClick(modelItemList.get(vh.getPosition()));
+                clickListener.onOverflowMenuItemClick(modelItemList.get(vh.getLayoutPosition()));
             }
         });
         return vh;

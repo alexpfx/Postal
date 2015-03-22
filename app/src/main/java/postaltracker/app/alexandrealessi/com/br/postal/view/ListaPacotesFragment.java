@@ -128,11 +128,6 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
 
     @OnClick(R.id.btnOpenCadastroPacotes)
     public void btnOpenCadastroPacotesClick () {
-        FragmentManager fragmentManager = getActivity().getFragmentManager();
-        FragmentTransaction transaction= fragmentManager.beginTransaction();
-        transaction.replace(R.id.current_content, new CadastroPacotesFragment());
-        transaction.addToBackStack(null);
-        transaction.commit();
     }
 
 }
