@@ -14,12 +14,10 @@
             android:id="@+id/session_title_textview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text=""
+            android:text="TEST"
             android:layout_weight="1"
             android:gravity="center|left"
             />
-
-
 
 
     </LinearLayout>

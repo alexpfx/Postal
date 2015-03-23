@@ -1,5 +1,6 @@
-package postaltracker.app.alexandrealessi.com.br.postal.view;
+package postaltracker.app.alexandrealessi.com.br.postal.view.overflowmenu;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,7 +11,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import postaltracker.app.alexandrealessi.com.br.postal.BusProvider;
 import postaltracker.app.alexandrealessi.com.br.postal.R;
+import postaltracker.app.alexandrealessi.com.br.postal.view.overflowmenu.event.OverflowMenuItemClickEvent;
 
 /**
  * Created by alexandre on 21/02/15.
@@ -19,22 +22,20 @@ public class OverflowMenuViewAdapter extends RecyclerView.Adapter<OverflowMenuVi
 
     private Context context;
     private List<ViewModel> modelItemList;
-    private final OnOverflowMenuItemClickListener clickListener;
 
-    public OverflowMenuViewAdapter(Context context, List<ViewModel> modelItemList, OnOverflowMenuItemClickListener clickListener) {
-        this.clickListener = clickListener;
+    public OverflowMenuViewAdapter(Context context, List<ViewModel> modelItemList) {
         this.modelItemList = modelItemList;
         this.context = context;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int i) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, final int i) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_overflow_menu, parent, false);
         final ViewHolder vh = new ViewHolder(v);
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickListener.onOverflowMenuItemClick(modelItemList.get(vh.getLayoutPosition()));
+                BusProvider.getInstance().post(new OverflowMenuItemClickEvent(modelItemList.get(i)));
             }
         });
         return vh;
@@ -53,18 +54,16 @@ public class OverflowMenuViewAdapter extends RecyclerView.Adapter<OverflowMenuVi
     }
 
 
-    public static interface OnOverflowMenuItemClickListener {
-        void onOverflowMenuItemClick(ViewModel viewModel);
-    }
-
     public static class ViewModel {
         private int srcIcon;
         private String label;
+        private Class <? extends Fragment> fragmentClass;
 
-        public static ViewModel create(int srcIcon, String label) {
+       public static ViewModel create(int srcIcon, String label, Class<? extends Fragment> fragmentClass) {
             ViewModel v = new ViewModel();
             v.srcIcon = srcIcon;
             v.label = label;
+            v.fragmentClass = fragmentClass;
             return v;
         }
 
@@ -72,12 +71,23 @@ public class OverflowMenuViewAdapter extends RecyclerView.Adapter<OverflowMenuVi
             list.add(this);
             return this;
         }
+
+        public int getSrcIcon() {
+            return srcIcon;
+        }
+
+        public String getLabel() {
+            return label;
+        }
+
+        public Class<? extends Fragment> getFragmentClass() {
+            return fragmentClass;
+        }
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView imgIcon;
         private TextView txtLabel;
-
 
         public ViewHolder(View itemView) {
             super(itemView);
