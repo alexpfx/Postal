@@ -74,7 +74,6 @@ public class OverflowMenuViewAdapter extends RecyclerView.Adapter<OverflowMenuVi
         }
     }
 
-
     static class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView imgIcon;
         private TextView txtLabel;

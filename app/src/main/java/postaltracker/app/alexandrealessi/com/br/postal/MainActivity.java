@@ -1,7 +1,5 @@
 package postaltracker.app.alexandrealessi.com.br.postal;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -19,7 +17,6 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import postaltracker.app.alexandrealessi.com.br.postal.view.CadastroPacotesFragment;
 import postaltracker.app.alexandrealessi.com.br.postal.view.OverflowMenuViewAdapter;
 
 import static postaltracker.app.alexandrealessi.com.br.postal.view.OverflowMenuViewAdapter.ViewModel;
@@ -37,7 +34,7 @@ public class MainActivity extends ActionBarActivity implements OverflowMenuViewA
     @InjectView(R.id.dwrOverflowMenu)
     DrawerLayout drawerLayout;
 
-    private RecyclerView.Adapter overflowMenuAdapt;
+    private RecyclerView.Adapter overflowMenuAdapter;
 
     private ActionBarDrawerToggle drawerToggle;
 
@@ -75,8 +72,8 @@ public class MainActivity extends ActionBarActivity implements OverflowMenuViewA
         overflowMenu.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         overflowMenu.setLayoutManager(layoutManager);
-        overflowMenuAdapt = new OverflowMenuViewAdapter(getApplicationContext(), createOverflowMenuListModel(), this);
-        overflowMenu.setAdapter(overflowMenuAdapt);
+        overflowMenuAdapter = new OverflowMenuViewAdapter(getApplicationContext(), createOverflowMenuListModel(), this);
+        overflowMenu.setAdapter(overflowMenuAdapter);
     }
 
     private List<ViewModel> createOverflowMenuListModel() {
@@ -111,6 +108,7 @@ public class MainActivity extends ActionBarActivity implements OverflowMenuViewA
 
     @Override
     public void onOverflowMenuItemClick(ViewModel viewModel) {
+
 
     }
 
