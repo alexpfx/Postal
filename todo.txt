@@ -1,14 +1,19 @@
-- Lista Pacotes:
+:tela cadastro de pacotes:
+-adicionar labels em cima das edtText (Pacote, Lista de Pacotes)
+-adicionar lista em baixo dos edtText permitindo selecionar os pacotes que se deseja adicionar.
+-adicionar botoes limpar lista, selecionar todos, desselecionar todos.
+-adicionar float button confirmar
+-transformar este fragment em dialog fragment
+-adicionar botão cancelar
+-adicionar botão para ler qrcode talvez na toolbar
+
+
+- substituir icones por ButtonIcon da MaterialDesignLibrary
+
+:Lista Pacotes:
 - Ao dar click long em item da lista deverá aparecer um menu de contexto, com os botões:
 Ver no mapa, Ver informações, Apagar.
-- Adicionar painel com um botão atualizar uma caixa de filtro e um botao clear.
-
-
-
-
-
 - buscar a lista de paises possiveis
 - externalizar strings
 - alterar pacote app;
-- revisar codigo do lista pacotes fragment
 - removar templates de botoes

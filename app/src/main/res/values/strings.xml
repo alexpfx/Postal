@@ -23,4 +23,8 @@
     <string name="exCodigoPais">BR</string>
     <string name="paste">paste</string>
     <string name="filter">filtrar</string>
+    <string name="qrread">ler qr</string>
+    <string name="clear">limpar</string>
+    <string name="accept">aceitar</string>
+    <string name="cancel">cancel</string>
 </resources>
