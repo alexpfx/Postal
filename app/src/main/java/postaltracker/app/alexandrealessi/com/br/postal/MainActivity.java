@@ -21,6 +21,8 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import postaltracker.app.alexandrealessi.com.br.postal.view.CadastroPacotesFragment;
+import postaltracker.app.alexandrealessi.com.br.postal.view.ListaDetalhesFragment;
 import postaltracker.app.alexandrealessi.com.br.postal.view.ListaPacotesFragment;
 import postaltracker.app.alexandrealessi.com.br.postal.view.overflowmenu.OverflowMenuViewAdapter;
 import postaltracker.app.alexandrealessi.com.br.postal.view.overflowmenu.event.OverflowMenuItemClickEvent;
@@ -84,7 +86,9 @@ public class MainActivity extends ActionBarActivity {
 
     private List<OverflowMenuViewAdapter.ViewModel> createOverflowMenuListModel() {
         List<OverflowMenuViewAdapter.ViewModel> lista = new ArrayList<>();
-        OverflowMenuViewAdapter.ViewModel.create(android.R.drawable.ic_menu_call, getString(R.string.menu_item_meus_pacotes), ListaPacotesFragment.class).andAddTo(lista);
+        OverflowMenuViewAdapter.ViewModel.create(android.R.drawable.ic_menu_camera, getString(R.string.menu_item_meus_pacotes), ListaPacotesFragment.class).andAddTo(lista);
+        OverflowMenuViewAdapter.ViewModel.create(android.R.drawable.ic_menu_agenda, getString(R.string.menu_item_detalhes_pacote), ListaDetalhesFragment.class).andAddTo(lista);
+        OverflowMenuViewAdapter.ViewModel.create(android.R.drawable.ic_menu_add, getString(R.string.menu_item_consultar_pacotes), CadastroPacotesFragment.class).andAddTo(lista);
         return lista;
     }
 

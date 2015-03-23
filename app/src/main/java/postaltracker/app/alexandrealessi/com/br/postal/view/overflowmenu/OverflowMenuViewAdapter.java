@@ -29,23 +29,23 @@ public class OverflowMenuViewAdapter extends RecyclerView.Adapter<OverflowMenuVi
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, final int i) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_overflow_menu, parent, false);
         final ViewHolder vh = new ViewHolder(v);
-        v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                BusProvider.getInstance().post(new OverflowMenuItemClickEvent(modelItemList.get(i)));
-            }
-        });
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         ViewModel itemModel = modelItemList.get(position);
         viewHolder.txtLabel.setText(itemModel.label);
         viewHolder.imgIcon.setImageResource(itemModel.srcIcon);
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BusProvider.getInstance().post(new OverflowMenuItemClickEvent(modelItemList.get(position)));
+            }
+        });
     }
 
     @Override
