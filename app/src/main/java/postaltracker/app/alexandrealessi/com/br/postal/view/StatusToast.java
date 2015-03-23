@@ -51,8 +51,5 @@ public class StatusToast {
         toast.show();
         return this;
     }
-//    public void show (){
-//        toast.show();
-//    }
 
 }

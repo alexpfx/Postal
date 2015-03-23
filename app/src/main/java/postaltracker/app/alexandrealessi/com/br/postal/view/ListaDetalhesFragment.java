@@ -257,4 +257,4 @@ public class ListaDetalhesFragment extends Fragment implements SroDetalheView {
     public synchronized String getQroCode() {
         return edtTipoServico.getText().toString() + edtCode.getText().toString() + edtPais.getText().toString();
     }
-} //270
+}
