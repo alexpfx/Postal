@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="postaltracker.app.alexandrealessi.com.br.postal.view.ListaPacotesFragment">
+    tools:context="br.com.alexandrealessi.postal.view.ListaPacotesFragment">
 
 
 

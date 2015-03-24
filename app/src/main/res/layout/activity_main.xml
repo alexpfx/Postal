@@ -19,7 +19,7 @@
         android:fadeScrollbars="true"
         >
 
-        <!--android:name="postaltracker.app.alexandrealessi.com.br.postal.view.ListaPacotesFragment"-->
+        <!--android:name="br.com.alexandrealessi.postal.view.ListaPacotesFragment"-->
 
         <FrameLayout
             android:id="@+id/current_content"

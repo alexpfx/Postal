@@ -22,7 +22,7 @@
         <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="postaltracker.app.alexandrealessi.com.br.postal.model.domain" />
 
         <activity
-            android:name=".MainActivity"
+            android:name="br.com.alexandrealessi.postal.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:configChanges="keyboardHidden|orientation"
