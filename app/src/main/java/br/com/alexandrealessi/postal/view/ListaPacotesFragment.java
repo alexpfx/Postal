@@ -13,10 +13,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Date;
 
+import br.com.alexandrealessi.postal.R;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import postaltracker.app.alexandrealessi.com.br.postal.R;
 import br.com.alexandrealessi.postal.common.AbstractPresenter;
 import br.com.alexandrealessi.postal.model.PacotesInteractorImpl;
 import br.com.alexandrealessi.postal.model.domain.ItemAcao;

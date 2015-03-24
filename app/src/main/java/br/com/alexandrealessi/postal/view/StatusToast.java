@@ -4,7 +4,8 @@ import android.content.Context;
 import android.view.Gravity;
 import android.widget.Toast;
 
-import postaltracker.app.alexandrealessi.com.br.postal.R;
+import br.com.alexandrealessi.postal.R;
+
 
 /**
  * Created by alexandre on 03/03/15.

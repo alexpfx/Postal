@@ -10,9 +10,10 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import br.com.alexandrealessi.postal.R;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import postaltracker.app.alexandrealessi.com.br.postal.R;
+
 
 /**
  * Created by alexandre on 22/02/15.

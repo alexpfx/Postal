@@ -27,6 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.alexandrealessi.postal.R;
 import br.com.alexpfx.api.postal.Sro;
 import br.com.alexpfx.api.postal.SroFactory;
 import br.com.alexpfx.api.postal.SroInvalidoException;
@@ -34,7 +35,6 @@ import br.com.alexpfx.api.postal.TipoSro;
 import br.com.alexpfx.api.postal.dao.SroRetornoInfo;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import postaltracker.app.alexandrealessi.com.br.postal.R;
 import br.com.alexandrealessi.postal.common.AbstractPresenter;
 import br.com.alexandrealessi.postal.presenter.DetalheSroPresenter;
 import br.com.alexandrealessi.postal.presenter.DetalheSroPresenterImpl;
@@ -55,13 +55,13 @@ public class ListaDetalhesFragment extends Fragment implements SroDetalheView {
 
     private StatusToast toaster;
 
-    @InjectView(R.id.edtCode)
+    @InjectView(R.id.edtSroNumber)
     EditText edtCode;
 
-    @InjectView(R.id.edtTipoServico)
+    @InjectView(R.id.edtSroServiceType)
     AutoCompleteTextView edtTipoServico;
 
-    @InjectView(R.id.edtPais)
+    @InjectView(R.id.edtSroCountry)
     AutoCompleteTextView edtPais;
 
     @InjectView(R.id.btnScanQrCode)

@@ -10,8 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import br.com.alexandrealessi.postal.R;
 import butterknife.ButterKnife;
-import postaltracker.app.alexandrealessi.com.br.postal.R;
 
 /**
  * A simple {@link Fragment} subclass.

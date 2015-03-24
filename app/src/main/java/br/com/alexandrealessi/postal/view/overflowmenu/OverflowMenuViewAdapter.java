@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import br.com.alexandrealessi.postal.BusProvider;
-import postaltracker.app.alexandrealessi.com.br.postal.R;
+import br.com.alexandrealessi.postal.R;
 import br.com.alexandrealessi.postal.view.overflowmenu.event.OverflowMenuItemClickEvent;
 
 /**

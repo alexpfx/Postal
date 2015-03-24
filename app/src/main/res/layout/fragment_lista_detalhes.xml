@@ -32,7 +32,7 @@
         >
 
         <AutoCompleteTextView
-            android:id="@+id/edtTipoServico"
+            android:id="@+id/edtSroServiceType"
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:completionThreshold="1"
@@ -48,7 +48,7 @@
             />
 
         <EditText
-            android:id="@+id/edtCode"
+            android:id="@+id/edtSroNumber"
             style="?android:autoCompleteTextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
             />
 
         <AutoCompleteTextView
-            android:id="@+id/edtPais"
+            android:id="@+id/edtSroCountry"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:completionThreshold="1"

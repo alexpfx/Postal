@@ -14,10 +14,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import br.com.alexandrealessi.postal.R;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import postaltracker.app.alexandrealessi.com.br.postal.R;
 
 /**
  * Created by alexandre on 06/03/15.

@@ -19,14 +19,13 @@ import com.squareup.otto.Subscribe;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-import postaltracker.app.alexandrealessi.com.br.postal.R;
 import br.com.alexandrealessi.postal.view.CadastroPacotesFragment;
 import br.com.alexandrealessi.postal.view.ListaDetalhesFragment;
 import br.com.alexandrealessi.postal.view.ListaPacotesFragment;
 import br.com.alexandrealessi.postal.view.overflowmenu.OverflowMenuViewAdapter;
 import br.com.alexandrealessi.postal.view.overflowmenu.event.OverflowMenuItemClickEvent;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 public class MainActivity extends ActionBarActivity {
 
