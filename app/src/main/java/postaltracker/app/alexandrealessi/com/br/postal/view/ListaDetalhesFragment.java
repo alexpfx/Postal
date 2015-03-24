@@ -9,7 +9,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -151,7 +150,7 @@ public class ListaDetalhesFragment extends Fragment implements SroDetalheView {
     public void configurarTextWatcher(EditText... edts) {
 
         for (EditText edt : edts) {
-            edt.addTextChangedListener(new TextWatcherAdapter(this));
+            edt.addTextChangedListener(new SroChangedTextWatcher(this));
         }
 
 

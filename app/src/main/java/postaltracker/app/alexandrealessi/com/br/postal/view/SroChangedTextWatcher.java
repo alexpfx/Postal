@@ -6,11 +6,11 @@ import android.text.TextWatcher;
 /**
  * Created by alex on 25/02/2015.
  */
-public class TextWatcherAdapter implements TextWatcher {
+public class SroChangedTextWatcher implements TextWatcher {
     private SroDetalheView listener;
 
 
-    public TextWatcherAdapter(SroDetalheView listener) {
+    public SroChangedTextWatcher(SroDetalheView listener) {
         this.listener = listener;
     }
 
