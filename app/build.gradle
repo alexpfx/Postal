@@ -13,7 +13,7 @@ android {
 
 
     defaultConfig {
-        applicationId "postaltracker.app.alexandrealessi.com.br.postal"
+        applicationId "br.com.alexandrealessi.postal"
         minSdkVersion 15
         targetSdkVersion 22
         versionCode 1
