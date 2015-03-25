@@ -10,7 +10,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -58,24 +57,36 @@ public class CadastroPacotesFragment extends Fragment {
                 .addTextChangelistener(new SroEdtText.SroEdtTextWatcher() {
                     @Override
                     public void sroChanged(Editable serviceType, Editable number, Editable country, String newSro) {
-                        showHideCancelMenuItem (newSro);
-                        sendOrNotForValidation (newSro);
+                        showHideCancelMenuItem(newSro);
+                        showHideAcceptButton(newSro);
                     }
                 });
     }
 
-    private void sendOrNotForValidation(String newSro) {
-        if (newSro.length() == SRO_LENGTH){
+    /*
+    TODO:
+    Botão accept deve estar escondido por default.
+    Deve ser mostrado quando:
+        - Há um sro válido digitado no primeiro input.
+        - Há pelo menos um sro válido no segundo input.
+    Deve ser/permanecer escondido quando:
+        - Não há SROs válidos em nenhum dos inputs.
+     */
+    private void showHideAcceptButton(String newSro) {
+        List<Sro> listSro;
+        Sro sro;
+        if (newSro.length() == SRO_LENGTH) {
             try {
-                Sro sro = new SroFactory().criar(newSro);
+                sro = new SroFactory().criar(newSro);
             } catch (SroInvalidoException e) {
-                // mostrar que é invalido.
+
             }
-        } else if (newSro.length() > SRO_LENGTH){
+
+        } else if (newSro.length() > SRO_LENGTH) {
             try {
-                List<Sro> listSro = new SroFactory().criarListaDescartarInvalidos(newSro);
+                listSro = new SroFactory().criarListaDescartarInvalidos(newSro);
             } catch (NenhumSroValidoException e) {
-                // mostrar q nenhum eh valido
+
             }
         }
 
