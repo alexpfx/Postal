@@ -12,8 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.util.List;
+
 import br.com.alexandrealessi.postal.R;
 import br.com.alexandrealessi.postal.custom_views.SroEdtText;
+import br.com.alexpfx.api.postal.NenhumSroValidoException;
+import br.com.alexpfx.api.postal.Sro;
+import br.com.alexpfx.api.postal.SroFactory;
+import br.com.alexpfx.api.postal.SroInvalidoException;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -22,6 +28,7 @@ import butterknife.InjectView;
  */
 public class CadastroPacotesFragment extends Fragment {
 
+    private static final int SRO_LENGTH = 13;
     private MenuItem actionPaste;
     private MenuItem actionAccept;
     private MenuItem actionCancel;
@@ -30,6 +37,7 @@ public class CadastroPacotesFragment extends Fragment {
     SroEdtText edtSro;
 
     public CadastroPacotesFragment() {
+
     }
 
 
@@ -39,24 +47,52 @@ public class CadastroPacotesFragment extends Fragment {
         setHasOptionsMenu(true);
         View view = inflater.inflate(R.layout.fragment_cadastro_pacotes, container, false);
         ButterKnife.inject(this, view);
-        edtSro
-                .addTextChangelistener(new SroEdtText.SroEdtTextWatcher() {
-                    @Override
-                    public void sroChanged(Editable whichComponent, String newSro) {
-                        Toast.makeText(getActivity().getApplicationContext(), newSro, Toast.LENGTH_SHORT ).show();
-                    }
-                });
+
+        setupEdtSro();
         return view;
 
     }
 
+    private void setupEdtSro() {
+        edtSro
+                .addTextChangelistener(new SroEdtText.SroEdtTextWatcher() {
+                    @Override
+                    public void sroChanged(Editable serviceType, Editable number, Editable country, String newSro) {
+                        showHideCancelMenuItem (newSro);
+                        sendOrNotForValidation (newSro);
+                    }
+                });
+    }
+
+    private void sendOrNotForValidation(String newSro) {
+        if (newSro.length() == SRO_LENGTH){
+            try {
+                Sro sro = new SroFactory().criar(newSro);
+            } catch (SroInvalidoException e) {
+                // mostrar que é invalido.
+            }
+        } else if (newSro.length() > SRO_LENGTH){
+            try {
+                List<Sro> listSro = new SroFactory().criarListaDescartarInvalidos(newSro);
+            } catch (NenhumSroValidoException e) {
+                // mostrar q nenhum eh valido
+            }
+        }
+
+    }
+
+    private void showHideCancelMenuItem(String newSro) {
+        actionCancel.setVisible(!newSro.isEmpty());
+    }
+
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_cadastro_pacotes, menu);
         actionPaste = menu.findItem(R.id.action_paste);
         actionAccept = menu.findItem(R.id.action_accept);
         actionCancel = menu.findItem(R.id.action_cancel);
-        inflater.inflate(R.menu.menu_cadastro_pacotes, menu);
     }
 
     @Override
@@ -80,6 +116,7 @@ public class CadastroPacotesFragment extends Fragment {
     }
 
     private void addValidSroToList() {
+
 
     }
 
