@@ -101,6 +101,12 @@ public class SroEdtText extends LinearLayout {
         return edtNumber.getText();
     }
 
+    public void clear() {
+        edtServiceType.setText("");
+        edtNumber.setText("");
+        edtCountry.setText("");
+    }
+
     public interface SroEdtTextWatcher {
         public void sroChanged(Editable serviceType, Editable number, Editable country, String newSro);
     }

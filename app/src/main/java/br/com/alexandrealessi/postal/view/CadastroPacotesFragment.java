@@ -126,19 +126,34 @@ public class CadastroPacotesFragment extends Fragment {
         }
     }
 
+    /**
+     * Acionado a partir do botão accept.
+     * Adiciona os Sros válidos contido em qualquer um dos inputs.
+     */
     private void addValidSroToList() {
+
 
 
     }
 
+    /**
+     * Limpa os campos de input. Chamado quando o item de menu 'limpar' é acionado.
+     */
     private void clearEditTexts() {
 
     }
 
+    /**
+     * Colar no input correspondente. Se tamanho do texto no clipoard == 13, na primeira. Se maior na segunda. Caso contrário não colar e mostrar mensagem avisando que
+     * o dado é inválido.
+     */
     private void pasteFromClipboard() {
 
     }
 
+    /**
+     * Procedimento para abrir Intent que le um Qr Code.
+     */
     private void openQrCodeReader() {
     }
 }
