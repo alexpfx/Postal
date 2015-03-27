@@ -22,7 +22,7 @@
         android:icon="@drawable/ic_action_cancel"
         android:orderInCategory="4"
         android:title="@string/cancel"
-        android:visible="false"
+        android:visible="true"
         app:showAsAction="always"></item>
 
     <item

@@ -63,8 +63,8 @@ public class CadastroPacotesFragment extends Fragment {
                 .addTextChangelistener(new SroEdtText.SroEdtTextWatcher() {
                     @Override
                     public void sroChanged(Editable serviceType, Editable number, Editable country, String newSro) {
-                        showHideCancelMenuItem(newSro);
-                        //showHideAcceptButton(newSro);
+//                        showHideCancelMenuItem(newSro);
+                        showHideAcceptButton(newSro);
                     }
                 });
         edtSroList.addTextChangedListener(new TextWatcherAdapter(){
@@ -84,8 +84,6 @@ public class CadastroPacotesFragment extends Fragment {
     Deve ser/permanecer escondido quando:
         - Não há SROs válidos em nenhum dos inputs.
      */
-    //TODO: Comentado pois este método se torna complexo tratando a alteração dos dois Inputs. Colocar botão individual ou deixar o botão sempre visivel.
-    /*
     private void showHideAcceptButton(String newSro) {
         List<Sro> listSro;
         Sro sro;
@@ -104,11 +102,13 @@ public class CadastroPacotesFragment extends Fragment {
             }
         }
     }
-    */
 
+    /*
+    //TODO: Comentado pois este método se torna complexo tratando a alteração dos dois Inputs. Colocar botão individual ou deixar o botão sempre visivel.
     private void showHideCancelMenuItem(String newSro) {
         actionCancel.setVisible(!newSro.isEmpty());
     }
+*/
 
 
     @Override
