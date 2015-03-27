@@ -4,6 +4,7 @@ package br.com.alexandrealessi.postal.view;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,6 +16,7 @@ import android.widget.EditText;
 import java.util.List;
 
 import br.com.alexandrealessi.postal.R;
+import br.com.alexandrealessi.postal.TextWatcherAdapter;
 import br.com.alexandrealessi.postal.custom_views.SroEdtText;
 import br.com.alexpfx.api.postal.NenhumSroValidoException;
 import br.com.alexpfx.api.postal.Sro;
@@ -62,13 +64,19 @@ public class CadastroPacotesFragment extends Fragment {
                     @Override
                     public void sroChanged(Editable serviceType, Editable number, Editable country, String newSro) {
                         showHideCancelMenuItem(newSro);
-                        showHideAcceptButton(newSro);
+                        //showHideAcceptButton(newSro);
                     }
                 });
+        edtSroList.addTextChangedListener(new TextWatcherAdapter(){
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //showHideAcceptButton(edtSro);
+            }
+        });
     }
 
     /*
-    TODO:
+    TODO: Comentado pois este método se torna complexo tratando a alteração dos dois Inputs. Colocar botão individual ou deixar o botão sempre visivel.
     Botão accept deve estar escondido por default.
     Deve ser mostrado quando:
         - Há um sro válido digitado no primeiro input.
@@ -76,6 +84,8 @@ public class CadastroPacotesFragment extends Fragment {
     Deve ser/permanecer escondido quando:
         - Não há SROs válidos em nenhum dos inputs.
      */
+    //TODO: Comentado pois este método se torna complexo tratando a alteração dos dois Inputs. Colocar botão individual ou deixar o botão sempre visivel.
+    /*
     private void showHideAcceptButton(String newSro) {
         List<Sro> listSro;
         Sro sro;
@@ -93,8 +103,8 @@ public class CadastroPacotesFragment extends Fragment {
 
             }
         }
-
     }
+    */
 
     private void showHideCancelMenuItem(String newSro) {
         actionCancel.setVisible(!newSro.isEmpty());
@@ -135,7 +145,6 @@ public class CadastroPacotesFragment extends Fragment {
      * Adiciona os Sros válidos contido em qualquer um dos inputs.
      */
     private void addValidSroToList() {
-
 
 
     }
