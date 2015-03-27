@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import java.util.List;
 
@@ -34,6 +35,9 @@ public class CadastroPacotesFragment extends Fragment {
 
     @InjectView(R.id.edtSro)
     SroEdtText edtSro;
+
+    @InjectView(R.id.edtSroList)
+    EditText edtSroList;
 
     public CadastroPacotesFragment() {
 
@@ -137,10 +141,11 @@ public class CadastroPacotesFragment extends Fragment {
     }
 
     /**
-     * Limpa os campos de input. Chamado quando o item de menu 'limpar' é acionado.
+     * Limpa os campos de input. Chamado quando o item de menu 'cancelar' é acionado.
      */
     private void clearEditTexts() {
-
+        edtSro.clear();
+        edtSroList.setText("");
     }
 
     /**

@@ -25,7 +25,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/edtCodeList"
+            android:id="@+id/edtSroList"
             style="?android:autoCompleteTextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
