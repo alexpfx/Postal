@@ -23,7 +23,7 @@
         android:orderInCategory="4"
         android:title="@string/cancel"
         android:visible="true"
-        app:showAsAction="always"></item>
+        app:showAsAction="always"/>
 
     <item
         android:id="@+id/action_accept"
@@ -31,6 +31,6 @@
         android:orderInCategory="5"
         android:title="@string/accept"
         android:visible="false"
-        app:showAsAction="always"></item>
+        app:showAsAction="always"/>
 
 </menu>

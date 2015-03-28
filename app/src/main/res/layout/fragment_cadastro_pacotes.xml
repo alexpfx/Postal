@@ -39,5 +39,13 @@
             android:textSize="12sp" />
     </LinearLayout>
 
+    <RecyclerView
+        android:id="@+id/rcvSelecaoPacotesParaAdicionar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </RecyclerView>
+
+
 
 </RelativeLayout>
