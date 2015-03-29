@@ -11,10 +11,8 @@
         android:id="@+id/edtSro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"/>
 
-
-    </br.com.alexandrealessi.postal.custom_views.SroEdtText>
 
 
     <LinearLayout
