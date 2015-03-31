@@ -3,8 +3,9 @@ package br.com.alexandrealessi.postal.view;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.alexandrealessi.postal.R;
@@ -38,8 +40,7 @@ public class CadastroPacotesFragment extends Fragment {
     @InjectView(R.id.edtSro)
     SroEdtText edtSro;
 
-    @InjectView(R.id.edtSroList)
-    EditText edtSroList;
+    private ListDetalheAdapter sroAddSelectionListAdapter;
 
     public CadastroPacotesFragment() {
 
@@ -67,12 +68,7 @@ public class CadastroPacotesFragment extends Fragment {
                         showHideAcceptButton(newSro);
                     }
                 });
-        edtSroList.addTextChangedListener(new TextWatcherAdapter(){
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //showHideAcceptButton(edtSro);
-            }
-        });
+
     }
 
     /*
@@ -154,7 +150,6 @@ public class CadastroPacotesFragment extends Fragment {
      */
     private void clearEditTexts() {
         edtSro.clear();
-        edtSroList.setText("");
     }
 
     /**

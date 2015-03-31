@@ -84,7 +84,7 @@ public class ListaDetalhesFragment extends Fragment implements SroDetalheView {
         detalhePresenter = new DetalheSroPresenterImpl();
         ((AbstractPresenter)detalhePresenter).init(this);
 
-        configurarRecycleViews(view);
+        setupRecyclerView(view);
         configurarEditTexts(view);
         configurarQRCodeScanner();
         return view;
@@ -157,7 +157,7 @@ public class ListaDetalhesFragment extends Fragment implements SroDetalheView {
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    private void configurarRecycleViews(View v) {
+    private void setupRecyclerView(View v) {
         recyclerView.setHasFixedSize(false);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, true);
         recyclerView.setLayoutManager(manager);

@@ -7,12 +7,14 @@
     android:paddingRight="8dp"
     tools:context="br.com.alexandrealessi.postal.view.ListaDetalhesFragment">
 
+
+
     <br.com.alexandrealessi.postal.custom_views.SroEdtText
         android:id="@+id/edtSro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"/>
-
+        android:orientation="horizontal"
+        />
 
 
     <LinearLayout
@@ -22,28 +24,19 @@
         android:layout_below="@id/edtSro"
         android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/edtSroList"
-            style="?android:autoCompleteTextViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:hint="@string/exemploListaSros"
-            android:inputType="number"
-            android:maxLength="650"
-            android:selectAllOnFocus="true"
-            android:singleLine="false"
-            android:textSize="12sp" />
+        <!--<EditText-->
+            <!--android:id="@+id/edtSroList"-->
+            <!--style="?android:autoCompleteTextViewStyle"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:gravity="center"-->
+            <!--android:hint="@string/exemploListaSros"-->
+            <!--android:inputType="number"-->
+            <!--android:maxLength="650"-->
+            <!--android:selectAllOnFocus="true"-->
+            <!--android:singleLine="false"-->
+            <!--android:textSize="12sp" />-->
     </LinearLayout>
-
-    <RecyclerView
-        android:id="@+id/rcvSelecaoPacotesParaAdicionar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </RecyclerView>
-
-
 
 </RelativeLayout>

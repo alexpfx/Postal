@@ -1,56 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
-        android:id="@+id/custoSroEdtText"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        >
 
-        <AutoCompleteTextView
-            android:id="@+id/edtSroServiceType"
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:completionThreshold="1"
-            android:dropDownWidth="80dp"
-            android:gravity="center"
-            android:hint=""
-            android:inputType="textAutoComplete|textCapCharacters"
-            android:maxLength="2"
-            android:selectAllOnFocus="true"
-            android:text=""
-            android:textColor="#012"
-            android:textSize="20dp" />
-
-        <EditText
-            android:id="@+id/edtSroNumber"
-            style="?android:autoCompleteTextViewStyle"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:hint=""
-            android:inputType="number"
-            android:maxLength="9"
-            android:selectAllOnFocus="true"
-            android:textSize="20dp"
-
+            android:text="SRO: "
+            android:layout_gravity="top|left"
+            android:textSize="14dp"
+            android:textStyle="bold"
             />
 
-        <AutoCompleteTextView
-            android:id="@+id/edtSroCountry"
-            android:layout_width="60dp"
+        <LinearLayout
+            android:id="@+id/custoSroEdtText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:completionThreshold="1"
-            android:dropDownWidth="80dp"
-            android:gravity="center"
-            android:inputType="textAutoComplete|textCapCharacters"
-            android:maxLength="2"
-            android:selectAllOnFocus="true"
-            android:text=""
-            android:textColor="#012"
-            android:textSize="20dp" />
+            android:orientation="horizontal"
+            android:layout_gravity="bottom|left"
+            android:layout_marginTop="20dp"
+            >
 
-    </LinearLayout>
+            <AutoCompleteTextView
+                android:id="@+id/edtSroServiceType"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:completionThreshold="1"
+                android:dropDownWidth="80dp"
+                android:gravity="center"
+                android:hint=""
+                android:inputType="textAutoComplete|textCapCharacters"
+                android:maxLength="2"
+                android:selectAllOnFocus="true"
+                android:text=""
+                android:textColor="#012"
+                android:textSize="20dp" />
 
+            <EditText
+                android:id="@+id/edtSroNumber"
+                style="?android:autoCompleteTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint=""
+                android:inputType="number"
+                android:maxLength="9"
+                android:selectAllOnFocus="true"
+                android:textSize="20dp"
+
+                />
+
+            <AutoCompleteTextView
+                android:id="@+id/edtSroCountry"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:completionThreshold="1"
+                android:dropDownWidth="80dp"
+                android:gravity="center"
+                android:inputType="textAutoComplete|textCapCharacters"
+                android:maxLength="2"
+                android:selectAllOnFocus="true"
+                android:text=""
+                android:textColor="#012"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+    </FrameLayout>
 </merge>

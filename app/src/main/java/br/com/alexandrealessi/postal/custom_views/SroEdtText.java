@@ -38,6 +38,19 @@ public class SroEdtText extends LinearLayout {
 
     }
 
+    private void init(Context context) {
+        final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.custom_sro_edttext, this);
+        edtNumber = (EditText) view.findViewById(R.id.edtSroNumber);
+        edtNumber.addTextChangedListener(textWatcher);
+        edtServiceType = (AutoCompleteTextView) view.findViewById(R.id.edtSroServiceType);
+        edtServiceType.addTextChangedListener(textWatcher);
+        edtCountry = (AutoCompleteTextView) view.findViewById(R.id.edtSroCountry);
+        edtCountry.addTextChangedListener(textWatcher);
+
+    }
+
+
     private TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -56,17 +69,6 @@ public class SroEdtText extends LinearLayout {
         }
     };
 
-    private void init(Context context) {
-        final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.custom_sro_edttext, this);
-        edtNumber = (EditText) view.findViewById(R.id.edtSroNumber);
-        edtNumber.addTextChangedListener(textWatcher);
-        edtServiceType = (AutoCompleteTextView) view.findViewById(R.id.edtSroServiceType);
-        edtServiceType.addTextChangedListener(textWatcher);
-        edtCountry = (AutoCompleteTextView) view.findViewById(R.id.edtSroCountry);
-        edtCountry.addTextChangedListener(textWatcher);
-
-    }
 
     public SroEdtText(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -111,10 +113,11 @@ public class SroEdtText extends LinearLayout {
         public void sroChanged(Editable serviceType, Editable number, Editable country, String newSro);
     }
 
-    public void addTextChangelistener (SroEdtTextWatcher textWatcher){
+    public void addTextChangelistener(SroEdtTextWatcher textWatcher) {
         textChangeListeners.add(textWatcher);
     }
-    public void removeTextChangeListener (SroEdtTextWatcher textWatcher){
+
+    public void removeTextChangeListener(SroEdtTextWatcher textWatcher) {
         textChangeListeners.remove(textWatcher);
     }
 

@@ -2,6 +2,8 @@ package br.com.alexandrealessi.postal.view;
 
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -48,39 +50,37 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
         ButterKnife.inject(this, view);
         configurarPresenter();
         rcvListaPacotes.setHasFixedSize(false);
-
-
         LinearLayoutManager lm = new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false);
         rcvListaPacotes.setLayoutManager(lm);
 
-        adapter = new ListPacotesAdapter(new ArrayList<ListPacotesAdapter.Item>(){
+        adapter = new ListPacotesAdapter(new ArrayList<ListPacotesAdapter.Item>() {
             {
-                add (new ListPacotesAdapter.Item("saiu para entrega", new Date (), "DM 123456789 BR", "Palhoca",new ArrayList<String>(){
+                add(new ListPacotesAdapter.Item("saiu para entrega", new Date(), "DM 123456789 BR", "Palhoca", new ArrayList<String>() {
                     {
                         add("livros");
                         add("submarino");
                     }
                 }));
-                add (new ListPacotesAdapter.Item("entregue", new Date (), "DM 123456789 BR", "Palhoca", new ArrayList<String>(){
+                add(new ListPacotesAdapter.Item("entregue", new Date(), "DM 123456789 BR", "Palhoca", new ArrayList<String>() {
                     {
                         add("tenis");
                         add("by tennis");
                     }
                 }));
-                add (new ListPacotesAdapter.Item("aguardando", new Date (), "DM 484945454 BR", "Sao Miguel do Oeste", new ArrayList<String>(){
+                add(new ListPacotesAdapter.Item("aguardando", new Date(), "DM 484945454 BR", "Sao Miguel do Oeste", new ArrayList<String>() {
                     {
                         add("submarino");
                         add("celular");
                     }
                 }));
-                add (new ListPacotesAdapter.Item("aguardando", new Date (), "DM 484945454 BR", "Sao Miguel do Oeste", new ArrayList<String>(){
+                add(new ListPacotesAdapter.Item("aguardando", new Date(), "DM 484945454 BR", "Sao Miguel do Oeste", new ArrayList<String>() {
                     {
                         add("submarino");
                         add("celular");
                     }
                 }));
 
-                add (new ListPacotesAdapter.Item("aguardando", new Date (), "DM 484945454 BR", "Sao Miguel do Oeste", new ArrayList<String>(){
+                add(new ListPacotesAdapter.Item("aguardando", new Date(), "DM 484945454 BR", "Sao Miguel do Oeste", new ArrayList<String>() {
                     {
                         add("submarino");
                         add("celular");
@@ -118,12 +118,15 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
     }
 
     @OnClick(R.id.btnRefresh)
-    public void btnRefreshClick (){
+    public void btnRefreshClick() {
         listaPacotesPresenter.requestListaPacotes();
     }
 
     @OnClick(R.id.btnOpenCadastroPacotes)
-    public void btnOpenCadastroPacotesClick () {
+    public void btnOpenCadastroPacotesClick() {
+        FragmentManager fragmentManager = getFragmentManager();
+        AddNewSroDialogFragment newFragment = new AddNewSroDialogFragment();
+        newFragment.show(fragmentManager, "dialog");
     }
 
 }
