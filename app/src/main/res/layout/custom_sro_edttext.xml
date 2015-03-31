@@ -20,8 +20,6 @@
                 android:layout_height="wrap_content"
                 materialdesign:iconDrawable="@drawable/ic_action_camera"
                 android:layout_gravity="left"
-
-
                 />
 
             <com.gc.materialdesign.views.ButtonIcon

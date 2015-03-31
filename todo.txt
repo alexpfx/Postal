@@ -1,11 +1,11 @@
-:tela cadastro de pacotes:
--adicionar labels em cima das edtText (Pacote, Lista de Pacotes)
--adicionar lista em baixo dos edtText permitindo selecionar os pacotes que se deseja adicionar.
--adicionar botoes limpar lista, selecionar todos, desselecionar todos.
--adicionar float button confirmar
--transformar este fragment em dialog fragment
--adicionar botão cancelar
--adicionar botão para ler qrcode talvez na toolbar
+:custom component: SroEdtText
+-adicionar botão para limpar inputs
+-adicionar em res/values/attrs.xml atributos personalizados para este componente:
+-- multiplosSros: renderiza uma inputtext que permite adicionar uma lista de sros em vez de apenas um
+
+ok-adicionar botão cancelar
+ok-adicionar botão para ler qrcode talvez na toolbar
+ok-transformar este fragment em dialog fragment
 
 
 - substituir icones por ButtonIcon da MaterialDesignLibrary
