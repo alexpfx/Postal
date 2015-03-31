@@ -24,6 +24,8 @@ import br.com.alexandrealessi.postal.R;
 public class SroEdtText extends LinearLayout {
 
 
+
+
     private final List<SroEdtTextWatcher> textChangeListeners = new ArrayList<>();
 
     private EditText edtNumber;
