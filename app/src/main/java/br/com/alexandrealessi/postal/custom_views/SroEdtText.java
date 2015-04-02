@@ -62,13 +62,12 @@ public class SroEdtText extends LinearLayout {
         edtCountry.addTextChangedListener(textWatcher);
         setupQRCodeScanner();
         ButterKnife.inject(this, view);
-
-
     }
 
     private void setupQRCodeScanner() {
         scanIntegrator = new IntentIntegrator((Activity) getContext());
     }
+
     private TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -140,7 +139,7 @@ public class SroEdtText extends LinearLayout {
     }
 
     @OnClick(R.id.btnOpenQrCodeReader)
-    public void onBtnOpenQrCodeReader (){
+    public void onBtnOpenQrCodeReader() {
         Log.d(tag, "abrir barcode scanner click");
         scanIntegrator.setPrompt("Aponte a camera para o QRCode do objeto de rastreamento");
         scanIntegrator.getMoreExtras();
