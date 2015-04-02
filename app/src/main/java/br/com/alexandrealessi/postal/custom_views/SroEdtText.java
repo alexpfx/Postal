@@ -7,6 +7,7 @@ import android.os.Build;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.alexandrealessi.postal.R;
+import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import com.gc.materialdesign.views.ButtonIcon;
@@ -28,9 +30,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
  */
 public class SroEdtText extends LinearLayout {
 
-
-
-
+    public static final String tag = SroEdtText.class.getName();
     private final List<SroEdtTextWatcher> textChangeListeners = new ArrayList<>();
 
     private EditText edtNumber;
@@ -39,7 +39,8 @@ public class SroEdtText extends LinearLayout {
 
     private AutoCompleteTextView edtCountry;
 
-    private ButtonIcon btnOpenQrCodeReader;
+    @InjectView(R.id.btnOpenQrCodeReader)
+    ButtonIcon btnOpenQrCodeReader;
 
     private IntentIntegrator scanIntegrator;
 
@@ -50,6 +51,7 @@ public class SroEdtText extends LinearLayout {
     }
 
     private void init(Context context) {
+
         final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.custom_sro_edttext, this);
         edtNumber = (EditText) view.findViewById(R.id.edtSroNumber);
@@ -58,11 +60,13 @@ public class SroEdtText extends LinearLayout {
         edtServiceType.addTextChangedListener(textWatcher);
         edtCountry = (AutoCompleteTextView) view.findViewById(R.id.edtSroCountry);
         edtCountry.addTextChangedListener(textWatcher);
+        setupQRCodeScanner();
+        ButterKnife.inject(this, view);
 
 
     }
 
-    private void configurarQRCodeScanner() {
+    private void setupQRCodeScanner() {
         scanIntegrator = new IntentIntegrator((Activity) getContext());
     }
     private TextWatcher textWatcher = new TextWatcher() {
@@ -135,8 +139,9 @@ public class SroEdtText extends LinearLayout {
         textChangeListeners.remove(textWatcher);
     }
 
-    @OnClick
+    @OnClick(R.id.btnOpenQrCodeReader)
     public void onBtnOpenQrCodeReader (){
+        Log.d(tag, "abrir barcode scanner click");
         scanIntegrator.setPrompt("Aponte a camera para o QRCode do objeto de rastreamento");
         scanIntegrator.getMoreExtras();
         scanIntegrator.initiateScan();
