@@ -164,5 +164,6 @@ public class CadastroPacotesFragment extends Fragment {
      * Procedimento para abrir Intent que le um Qr Code.
      */
     private void openQrCodeReader() {
+
     }
 }

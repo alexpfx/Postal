@@ -1,6 +1,7 @@
 package br.com.alexandrealessi.postal.custom_views;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.text.Editable;
@@ -16,6 +17,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.alexandrealessi.postal.R;
+import butterknife.InjectView;
+import butterknife.OnClick;
+import com.gc.materialdesign.views.ButtonIcon;
+import com.google.zxing.integration.android.IntentIntegrator;
 
 
 /**
@@ -34,6 +39,10 @@ public class SroEdtText extends LinearLayout {
 
     private AutoCompleteTextView edtCountry;
 
+    private ButtonIcon btnOpenQrCodeReader;
+
+    private IntentIntegrator scanIntegrator;
+
     public SroEdtText(Context context) {
         super(context);
         init(context);
@@ -50,9 +59,12 @@ public class SroEdtText extends LinearLayout {
         edtCountry = (AutoCompleteTextView) view.findViewById(R.id.edtSroCountry);
         edtCountry.addTextChangedListener(textWatcher);
 
+
     }
 
-
+    private void configurarQRCodeScanner() {
+        scanIntegrator = new IntentIntegrator((Activity) getContext());
+    }
     private TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -121,6 +133,13 @@ public class SroEdtText extends LinearLayout {
 
     public void removeTextChangeListener(SroEdtTextWatcher textWatcher) {
         textChangeListeners.remove(textWatcher);
+    }
+
+    @OnClick
+    public void onBtnOpenQrCodeReader (){
+        scanIntegrator.setPrompt("Aponte a camera para o QRCode do objeto de rastreamento");
+        scanIntegrator.getMoreExtras();
+        scanIntegrator.initiateScan();
     }
 
 

@@ -15,7 +15,7 @@
             android:layout_alignParentTop="true"
             >
             <com.gc.materialdesign.views.ButtonIcon
-                android:id="@+id/qrcodeButton"
+                android:id="@+id/btnOpenQrCodeReader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 materialdesign:iconDrawable="@drawable/ic_action_camera"
