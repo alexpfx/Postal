@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:materialdesign="http://schemas.android.com/apk/res-auto">
+       xmlns:materialdesign="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,6 +14,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             >
+
             <com.gc.materialdesign.views.ButtonIcon
                 android:id="@+id/btnOpenQrCodeReader"
                 android:layout_width="wrap_content"
@@ -29,20 +30,30 @@
                 materialdesign:iconDrawable="@drawable/ic_action_paste"
                 android:layout_gravity="right"
                 />
+
+            <com.gc.materialdesign.views.ButtonIcon
+                android:id="@+id/clearInputsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                materialdesign:iconDrawable="@drawable/ic_action_cancel"
+                android:layout_gravity="right"
+                />
+
         </LinearLayout>
 
         <LinearLayout
-            android:layout_below="@+id/icons"
             android:id="@+id/custoSroEdtText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="bottom|left"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/icons"
+            >
 
             <AutoCompleteTextView
                 android:id="@+id/edtSroServiceType"
-                android:layout_width="60dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:completionThreshold="1"
                 android:dropDownWidth="80dp"
@@ -53,26 +64,26 @@
                 android:selectAllOnFocus="true"
                 android:text=""
                 android:textColor="#012"
-                android:textSize="20dp" />
+                android:ems="2"
+                android:textSize="20dp"/>
 
             <EditText
                 android:id="@+id/edtSroNumber"
                 style="?android:autoCompleteTextViewStyle"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:hint=""
                 android:inputType="number"
-                android:maxLength="9"
+                android:maxLength="8"
                 android:selectAllOnFocus="true"
                 android:textSize="20dp"
-
+                android:ems="9"
                 />
 
             <AutoCompleteTextView
                 android:id="@+id/edtSroCountry"
-                android:layout_width="60dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:completionThreshold="1"
                 android:dropDownWidth="80dp"
@@ -81,9 +92,12 @@
                 android:maxLength="2"
                 android:selectAllOnFocus="true"
                 android:text=""
+                android:ems="2"
                 android:textColor="#012"
-                android:textSize="20dp" />
+                android:textSize="20dp"/>
 
         </LinearLayout>
+
+
     </RelativeLayout>
 </merge>

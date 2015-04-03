@@ -1,7 +1,7 @@
 :custom component: SroEdtText
 -adicionar botão para limpar inputs
--adicionar em res/values/attrs.xml atributos personalizados para este componente:
--- multiplosSros: renderiza uma inputtext que permite adicionar uma lista de sros em vez de apenas um
+x/melhor criar outro componente - -adicionar em res/values/attrs.xml atributos personalizados para este componente:
+                                    multiplosSros: renderiza uma inputtext que permite adicionar uma lista de sros em vez de apenas um
 
 ok-adicionar botão cancelar
 ok-adicionar botão para ler qrcode talvez na toolbar
