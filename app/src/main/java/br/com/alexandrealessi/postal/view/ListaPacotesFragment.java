@@ -3,7 +3,6 @@ package br.com.alexandrealessi.postal.view;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -34,7 +33,7 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
     @InjectView(R.id.rcvPacotes)
     RecyclerView rcvListaPacotes;
 
-    @InjectView(R.id.tvFiltro)
+    @InjectView(R.id.edtFilter)
     TextView tvFiltro;
 
 

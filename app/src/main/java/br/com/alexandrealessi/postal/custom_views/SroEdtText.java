@@ -140,8 +140,7 @@ public class SroEdtText extends LinearLayout {
 
     @OnClick(R.id.btnOpenQrCodeReader)
     public void onBtnOpenQrCodeReader() {
-        Log.d(tag, "abrir barcode scanner click");
-        scanIntegrator.setPrompt("Aponte a camera para o QRCode do objeto de rastreamento");
+        scanIntegrator.setPrompt("Ler QRCode");
         scanIntegrator.getMoreExtras();
         scanIntegrator.initiateScan();
     }

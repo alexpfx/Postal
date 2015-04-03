@@ -23,7 +23,7 @@
             android:src="@drawable/icon_refresh" />
 
         <EditText
-            android:id="@+id/tvFiltro"
+            android:id="@+id/edtFilter"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
