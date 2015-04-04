@@ -2,6 +2,8 @@ package br.com.alexandrealessi.postal.custom_views;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Build;
 import android.text.Editable;
@@ -18,6 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.alexandrealessi.postal.R;
+import br.com.alexpfx.api.postal.Sro;
+import br.com.alexpfx.api.postal.SroFactory;
+import br.com.alexpfx.api.postal.SroInvalidoException;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -47,11 +52,9 @@ public class SroEdtText extends LinearLayout {
     public SroEdtText(Context context) {
         super(context);
         init(context);
-
     }
 
     private void init(Context context) {
-
         final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.custom_sro_edttext, this);
         edtNumber = (EditText) view.findViewById(R.id.edtSroNumber);
@@ -113,7 +116,6 @@ public class SroEdtText extends LinearLayout {
 
     public Editable getCountry() {
         return edtCountry.getText();
-
     }
 
     public Editable getNumber() {
@@ -144,6 +146,37 @@ public class SroEdtText extends LinearLayout {
         scanIntegrator.getMoreExtras();
         scanIntegrator.initiateScan();
     }
+
+    @OnClick(R.id.btnPaste)
+    public void onBtnPasteClick(){
+        //TODO: habilitar botao paste somente quando houver conteudo valido na area de transferencia para nao precisar fazer todas estas validacoes.
+        ClipboardManager clipBoardManager = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData primaryClip = clipBoardManager.getPrimaryClip();
+        if (primaryClip == null){
+            Log.d(tag, "nada na area de trasnferencia");
+            return ;
+        }
+        ClipData.Item itemAt = primaryClip.getItemAt(0);
+        if (itemAt == null){
+            Log.d(tag, "sem itens na area de transferencia");
+            return;
+        }
+        CharSequence text = itemAt.getText();
+        if (text == null){
+            Log.d(tag, "não contém texto");
+            return;
+        }
+
+        try {
+            Sro sro = new SroFactory().criar(String.valueOf(text));
+            edtServiceType.setText(sro.getCodigoServico().toString());
+            edtNumber.setText(sro.getNumero().toString());
+            edtCountry.setText(sro.getPaisOrigem().toString());
+        } catch (SroInvalidoException e) {
+            Log.d("tag", "texto na area de trasnferencia nao eh um sero valido");
+        }
+    }
+
 
 
 }

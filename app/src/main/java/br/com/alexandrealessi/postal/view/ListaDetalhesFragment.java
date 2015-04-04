@@ -163,7 +163,7 @@ public class ListaDetalhesFragment extends Fragment implements SroDetalheView {
         recyclerView.setLayoutManager(manager);
         detalheListAdapter = new ListDetalheAdapter(this.getActivity().getApplicationContext(), new ArrayList<ViewModel>());
         recyclerView.setAdapter(detalheListAdapter);
-        //recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), s));
+        //recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), onBtnPasteClick));
 
     }
 
