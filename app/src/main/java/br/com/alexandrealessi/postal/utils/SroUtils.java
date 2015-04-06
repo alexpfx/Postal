@@ -31,11 +31,11 @@ public class SroUtils {
         return false;
     }
 
-    public static SroDTO getSroDTOFromCodeString (String sroCodeString) throws IllegalArgumentException{
-       SroFactoryInterface factory = new SroFactory();
+    public static SroDTO getSroDTOFromCodeString(String sroCodeString) throws IllegalArgumentException {
+        SroFactoryInterface factory = new SroFactory();
         try {
             Sro criado = factory.criar(sroCodeString);
-            if (!criado.isValid()){
+            if (!criado.isValid()) {
                 throw getIllegalArgumentExceptionInvalidSro(sroCodeString);
             }
             String codeNumber = String.valueOf(criado.getNumero()) + String.valueOf(criado.getDigitoVerificador());
@@ -46,17 +46,15 @@ public class SroUtils {
     }
 
     private static IllegalArgumentException getIllegalArgumentExceptionInvalidSro(String sroCodeString) {
-        return new IllegalArgumentException("Sro invalido: "+sroCodeString);
+        return new IllegalArgumentException("Sro invalido: " + sroCodeString);
     }
-
 
 
     //TODO: eliminar dependencia de SroRetornoInfo
-    public static List<SroRetornoInfo> consultarSro (String sro){
+    public static List<SroRetornoInfo> consultarSro(String sro) {
         SroRepository repository = new AgenciaIdeiaRepository();
         return repository.consultarSro(sro);
     }
-
 
 
 }

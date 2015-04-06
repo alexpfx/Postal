@@ -96,12 +96,12 @@ public class MainActivity extends ActionBarActivity {
 
 
     @Subscribe
-    public void onOverflowMenuItemClick(OverflowMenuItemClickEvent event)  {
+    public void onOverflowMenuItemClick(OverflowMenuItemClickEvent event) {
         OverflowMenuViewAdapter.ViewModel viewModel = event.getViewModel();
         sessionTitle.setText(viewModel.getLabel());
         Class<? extends Fragment> fragmentClass = viewModel.getFragmentClass();
         try {
-            getFragmentManager().beginTransaction().replace(R.id.current_content,fragmentClass.newInstance()).commit();
+            getFragmentManager().beginTransaction().replace(R.id.current_content, fragmentClass.newInstance()).commit();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -127,13 +127,13 @@ public class MainActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
         BusProvider.getInstance().register(this);
-        Log.d(tag,"onResume");
+        Log.d(tag, "onResume");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         BusProvider.getInstance().unregister(this);
-        Log.d(tag,"onPause");
+        Log.d(tag, "onPause");
     }
 }

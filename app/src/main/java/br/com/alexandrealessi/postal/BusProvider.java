@@ -1,7 +1,6 @@
 package br.com.alexandrealessi.postal;
 
 import com.squareup.otto.Bus;
-import com.squareup.otto.ThreadEnforcer;
 
 /**
  * Created by alexandre on 23/03/15.

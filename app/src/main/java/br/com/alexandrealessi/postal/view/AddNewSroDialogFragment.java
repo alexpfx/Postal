@@ -52,7 +52,7 @@ public class AddNewSroDialogFragment extends DialogFragment {
                 BusProvider.getInstance().post(sro);
             } catch (IllegalArgumentException e) {
                 Log.d(tag, e.getMessage());
-                Toast.makeText(getActivity().getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
     };
