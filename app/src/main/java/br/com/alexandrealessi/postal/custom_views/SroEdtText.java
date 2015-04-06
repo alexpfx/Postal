@@ -82,7 +82,7 @@ public class SroEdtText extends LinearLayout {
         @Override
         public void afterTextChanged(Editable s) {
             for (SroEdtTextWatcher tw : textChangeListeners) {
-                tw.sroChanged(getServiceType(), getNumber(), getCountry(), getSro());
+                tw.sroChanged(getServiceType(), getNumber(), getCountry(), getSroCode());
             }
         }
     };
@@ -104,7 +104,7 @@ public class SroEdtText extends LinearLayout {
         init(context);
     }
 
-    public String getSro() {
+    public String getSroCode() {
         return getServiceType().toString() + getNumber().toString() + getCountry().toString();
     }
 
