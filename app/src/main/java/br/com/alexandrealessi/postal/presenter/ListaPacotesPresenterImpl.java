@@ -11,13 +11,7 @@ import br.com.alexandrealessi.postal.view.ListaPacotesView;
 public class ListaPacotesPresenterImpl
         extends AbstractPresenter<ListaPacotesView> implements ListaPacotesPresenter, PacotesInteractor.RequestListaPacotesCallback, PacotesInteractor.SaveCallback {
 
-    {
-        super.init(ListaPacotesView.NULL);
-    }
-
     private PacotesInteractor pacotesInteractor = PacotesInteractor.NULL;
-
-
 
     public void setPacotesInteractor(PacotesInteractor pacotesInteractor) {
         this.pacotesInteractor = pacotesInteractor;
@@ -38,8 +32,6 @@ public class ListaPacotesPresenterImpl
 
     }
 
-
-
     //callback
 
     @Override
@@ -55,6 +47,12 @@ public class ListaPacotesPresenterImpl
 
     @Override
     public void onSavePacoteError() {
+        getView().showPacoteSaveError();
+    }
+
+    @Override
+    public void onSavePacoteSuccess() {
+        getView().showPacoteSaveOk();
 
     }
 }

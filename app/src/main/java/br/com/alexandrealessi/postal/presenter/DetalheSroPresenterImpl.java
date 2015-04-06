@@ -65,4 +65,9 @@ public class DetalheSroPresenterImpl extends AbstractPresenter<SroDetalheView> i
     public void onSavePacoteError() {
 
     }
+
+    @Override
+    public void onSavePacoteSuccess() {
+
+    }
 }

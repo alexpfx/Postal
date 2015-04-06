@@ -39,7 +39,6 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
     @InjectView(R.id.edtFilter)
     TextView tvFiltro;
 
-
     private ListPacotesAdapter adapter;
 
     private ListaPacotesPresenter listaPacotesPresenter;
@@ -48,8 +47,6 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle saveDdInstanceState) {
-
-
         View view = inflater.inflate(R.layout.fragment_lista_pacotes, container, false);
         ButterKnife.inject(this, view);
         configurarPresenter();
@@ -117,6 +114,16 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
         adapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void showPacoteSaveOk() {
+        Log.d(tag, "pacote salvo");
+    }
+
+    @Override
+    public void showPacoteSaveError() {
+        Log.d(tag, "erro ao salvar pacote");
+    }
+
     @OnClick(R.id.btnLimparFiltro)
     public void btnLimparFiltrosClick() {
         tvFiltro.setText("");
@@ -137,7 +144,9 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
 
     @Subscribe
     public void addNewSroFromDialog (SroDTO sro){
-        Log.d(tag, "addNewSroFromDialog: "+sro);
+        Pacote p = new Pacote();
+        p.setSro(sro.toString());
+        listaPacotesPresenter.savePacote(p);
     }
 
     @Override

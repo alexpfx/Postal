@@ -33,6 +33,7 @@ public interface PacotesInteractor {
 
     public static interface SaveCallback {
         public void onSavePacoteError();
+        public void onSavePacoteSuccess ();
     }
 
 }

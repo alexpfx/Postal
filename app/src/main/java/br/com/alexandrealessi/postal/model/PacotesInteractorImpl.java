@@ -29,7 +29,12 @@ public class PacotesInteractorImpl implements PacotesInteractor {
 
     @Override
     public void save(Pacote p, SaveCallback callback) {
-        p.save();
+        try {
+            p.save();
+        } catch (Exception e) {
+            callback.onSavePacoteError();
+        }
+        callback.onSavePacoteSuccess();
     }
 
 }

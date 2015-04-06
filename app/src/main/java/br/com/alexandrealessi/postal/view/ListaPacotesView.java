@@ -1,7 +1,5 @@
 package br.com.alexandrealessi.postal.view;
 
-import android.util.Log;
-
 import br.com.alexandrealessi.postal.model.domain.Pacote;
 
 /**
@@ -15,12 +13,8 @@ public interface ListaPacotesView {
      */
     public void mostrarListaPacotes(Pacote[] pacotes);
 
+    public void showPacoteSaveOk ();
 
-    public static ListaPacotesView NULL = new ListaPacotesView() {
-        @Override
-        public void mostrarListaPacotes(Pacote[] pacotes) {
-            Log.d(this.getClass().getSimpleName(), "não chamasse o método init");
-        }
-    };
+    public void showPacoteSaveError ();
 
 }

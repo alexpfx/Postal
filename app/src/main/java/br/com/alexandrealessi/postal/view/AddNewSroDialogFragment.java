@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Toast;
 import br.com.alexandrealessi.postal.BusProvider;
 import br.com.alexandrealessi.postal.R;
 import br.com.alexandrealessi.postal.custom_views.SroEdtText;
@@ -52,7 +51,6 @@ public class AddNewSroDialogFragment extends DialogFragment {
                 BusProvider.getInstance().post(sro);
             } catch (IllegalArgumentException e) {
                 Log.d(tag, e.getMessage());
-                Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
     };
