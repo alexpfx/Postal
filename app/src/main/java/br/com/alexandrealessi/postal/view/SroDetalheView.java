@@ -1,9 +1,9 @@
 package br.com.alexandrealessi.postal.view;
 
-import java.util.List;
-
-import br.com.alexpfx.api.postal.Sro;
+import br.com.alexandrealessi.postal.utils.SroDTO;
 import br.com.alexpfx.api.postal.dao.SroRetornoInfo;
+
+import java.util.List;
 
 
 /**
@@ -14,11 +14,11 @@ public interface SroDetalheView {
 
     public void mostrarQueEhValido();
 
-    public void mostrarDetalhesRecebidos(Sro sro, List<SroRetornoInfo> retornoInfo);
+    public void mostrarDetalhesRecebidos(SroDTO sro, List<SroRetornoInfo> retornoInfo);
 
-    public void mostrarDetalhesNaoEncontrados(Sro sro);
+    public void mostrarDetalhesNaoEncontrados(SroDTO sro);
 
-    public void mostrarSroScaneado(Sro sro);
+    public void mostrarSroScaneado(SroDTO sro);
 
     public void onQrCodeChange();
 

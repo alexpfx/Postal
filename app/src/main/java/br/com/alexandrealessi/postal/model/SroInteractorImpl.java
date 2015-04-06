@@ -1,16 +1,15 @@
 package br.com.alexandrealessi.postal.model;
 
 import android.os.AsyncTask;
-
-import java.util.List;
-
-import br.com.alexpfx.api.postal.Sro;
-import br.com.alexpfx.api.postal.SroFactory;
+import br.com.alexandrealessi.postal.utils.SroDTO;
+import br.com.alexandrealessi.postal.utils.SroUtils;
 import br.com.alexpfx.api.postal.SroInvalidoException;
 import br.com.alexpfx.api.postal.dao.AgenciaIdeiaRepository;
 import br.com.alexpfx.api.postal.dao.InfraException;
 import br.com.alexpfx.api.postal.dao.SroRepository;
 import br.com.alexpfx.api.postal.dao.SroRetornoInfo;
+
+import java.util.List;
 
 
 /**
@@ -27,25 +26,20 @@ public class SroInteractorImpl implements SroInteractor {
     @Override
     public void avaliarSro(String sroString, ResultadoAvaliacaoSroCallback resultadoCallback) {
         try {
-            Sro objetoSro = new SroFactory().criar(sroString);
-            if (objetoSro.isValid()) {
-                resultadoCallback.onCodigoSroValido(objetoSro);
-            } else {
-                resultadoCallback.onCodigoSroInvalido(sroString);
-            }
+            SroDTO sroDTO = SroUtils.getSroDTOFromCodeString(sroString);
+            resultadoCallback.onCodigoSroValido(sroDTO);
         } catch (SroInvalidoException e) {
             resultadoCallback.onCodigoSroInvalido(sroString);
         }
-
     }
 
     @Override
-    public void consultarCorreiosSro(final Sro sro, final ConsultarCorreiosSroCallback callback) {
-        new AsyncTask<Sro, Void, List<SroRetornoInfo>>() {
+    public void consultarCorreiosSro(final SroDTO sro, final ConsultarCorreiosSroCallback callback) {
+        new AsyncTask<SroDTO, Void, List<SroRetornoInfo>>() {
             @Override
-            protected List<SroRetornoInfo> doInBackground(Sro... params) {
+            protected List<SroRetornoInfo> doInBackground(SroDTO... params) {
                 try {
-                    List<SroRetornoInfo> sroRetornoInfos = sroRepository.consultarSro(params[0]);
+                    List<SroRetornoInfo> sroRetornoInfos = SroUtils.consultarSro(params[0].toString());
                     return sroRetornoInfos;
                 } catch (InfraException e) {
                     return null;

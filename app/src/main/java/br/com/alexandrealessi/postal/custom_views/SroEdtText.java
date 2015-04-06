@@ -15,19 +15,17 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import br.com.alexandrealessi.postal.R;
-import br.com.alexpfx.api.postal.Sro;
-import br.com.alexpfx.api.postal.SroFactory;
-import br.com.alexpfx.api.postal.SroInvalidoException;
+import br.com.alexandrealessi.postal.utils.SroDTO;
+import br.com.alexandrealessi.postal.utils.SroUtils;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import com.gc.materialdesign.views.ButtonIcon;
 import com.google.zxing.integration.android.IntentIntegrator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -38,7 +36,7 @@ public class SroEdtText extends LinearLayout {
     public static final String tag = SroEdtText.class.getName();
     private final List<SroEdtTextWatcher> textChangeListeners = new ArrayList<>();
 
-    private EditText edtNumber;
+    private EditText edtCodeNumber;
 
     private AutoCompleteTextView edtServiceType;
 
@@ -57,8 +55,8 @@ public class SroEdtText extends LinearLayout {
     private void init(Context context) {
         final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.custom_sro_edttext, this);
-        edtNumber = (EditText) view.findViewById(R.id.edtSroNumber);
-        edtNumber.addTextChangedListener(textWatcher);
+        edtCodeNumber = (EditText) view.findViewById(R.id.edtSroNumber);
+        edtCodeNumber.addTextChangedListener(textWatcher);
         edtServiceType = (AutoCompleteTextView) view.findViewById(R.id.edtSroServiceType);
         edtServiceType.addTextChangedListener(textWatcher);
         edtCountry = (AutoCompleteTextView) view.findViewById(R.id.edtSroCountry);
@@ -119,12 +117,12 @@ public class SroEdtText extends LinearLayout {
     }
 
     public Editable getNumber() {
-        return edtNumber.getText();
+        return edtCodeNumber.getText();
     }
 
     public void clear() {
         edtServiceType.setText("");
-        edtNumber.setText("");
+        edtCodeNumber.setText("");
         edtCountry.setText("");
     }
 
@@ -168,15 +166,13 @@ public class SroEdtText extends LinearLayout {
         }
 
         try {
-            Sro sro = new SroFactory().criar(String.valueOf(text));
-            edtServiceType.setText(sro.getCodigoServico().toString());
-            edtNumber.setText(sro.getNumero().toString());
-            edtCountry.setText(sro.getPaisOrigem().toString());
-        } catch (SroInvalidoException e) {
-            Log.d("tag", "texto na area de trasnferencia nao eh um sero valido");
+            SroDTO sroDTO = SroUtils.getSroDTOFromCodeString(String.valueOf(text));
+            edtServiceType.setText(sroDTO.getServiceType());
+            edtCodeNumber.setText(sroDTO.getCodeNumber());
+            edtCountry.setText(sroDTO.getCountry());
+        } catch (IllegalArgumentException e) {
+            Log.d(tag, e.getMessage());
         }
     }
-
-
 
 }

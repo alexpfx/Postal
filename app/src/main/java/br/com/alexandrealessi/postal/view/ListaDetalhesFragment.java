@@ -18,7 +18,17 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
-
+import br.com.alexandrealessi.postal.R;
+import br.com.alexandrealessi.postal.common.AbstractPresenter;
+import br.com.alexandrealessi.postal.presenter.DetalheSroPresenter;
+import br.com.alexandrealessi.postal.presenter.DetalheSroPresenterImpl;
+import br.com.alexandrealessi.postal.utils.SroDTO;
+import br.com.alexandrealessi.postal.utils.SroUtils;
+import br.com.alexpfx.api.postal.SroInvalidoException;
+import br.com.alexpfx.api.postal.TipoSro;
+import br.com.alexpfx.api.postal.dao.SroRetornoInfo;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -26,18 +36,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-
-import br.com.alexandrealessi.postal.R;
-import br.com.alexpfx.api.postal.Sro;
-import br.com.alexpfx.api.postal.SroFactory;
-import br.com.alexpfx.api.postal.SroInvalidoException;
-import br.com.alexpfx.api.postal.TipoSro;
-import br.com.alexpfx.api.postal.dao.SroRetornoInfo;
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-import br.com.alexandrealessi.postal.common.AbstractPresenter;
-import br.com.alexandrealessi.postal.presenter.DetalheSroPresenter;
-import br.com.alexandrealessi.postal.presenter.DetalheSroPresenterImpl;
 
 import static br.com.alexandrealessi.postal.view.ListDetalheAdapter.ViewModel;
 
@@ -82,7 +80,7 @@ public class ListaDetalhesFragment extends Fragment implements SroDetalheView {
         View view = inflater.inflate(R.layout.fragment_lista_detalhes, container, false);
         ButterKnife.inject(this, view);
         detalhePresenter = new DetalheSroPresenterImpl();
-        ((AbstractPresenter)detalhePresenter).init(this);
+        ((AbstractPresenter) detalhePresenter).init(this);
 
         setupRecyclerView(view);
         configurarEditTexts(view);
@@ -93,7 +91,7 @@ public class ListaDetalhesFragment extends Fragment implements SroDetalheView {
     @Override
     public void onResume() {
         super.onResume();
-        ((AbstractPresenter)detalhePresenter).init(this);
+        ((AbstractPresenter) detalhePresenter).init(this);
     }
 
     public void onBtnScanClick() {
@@ -115,15 +113,11 @@ public class ListaDetalhesFragment extends Fragment implements SroDetalheView {
         if (scanResult != null) {
             String contents = scanResult.getContents();
             if (contents != null) {
-                Sro sro;
+                SroDTO sro;
                 try {
                     Log.d(tag, contents);
-                    sro = new SroFactory().criar(contents);
-                    if (sro.isValid()) {
-                        mostrarSroScaneado(sro);
-                    } else {
-                        mostrarQueEhInvalido();
-                    }
+                    sro = SroUtils.getSroDTOFromCodeString(contents);
+                    mostrarSroScaneado(sro);
                 } catch (SroInvalidoException e) {
                     mostrarQueEhInvalido();
                 }
@@ -208,7 +202,7 @@ public class ListaDetalhesFragment extends Fragment implements SroDetalheView {
     }
 
     @Override
-    public void mostrarDetalhesRecebidos(Sro sro, List<SroRetornoInfo> listaInfos) {
+    public void mostrarDetalhesRecebidos(SroDTO sro, List<SroRetornoInfo> listaInfos) {
         ArrayList<ViewModel> lista = new ArrayList<>();
         for (SroRetornoInfo rinfo : listaInfos) {
             String info = SimpleDateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(rinfo.getData()).concat(" ").concat(rinfo.getLocal());
@@ -228,16 +222,16 @@ public class ListaDetalhesFragment extends Fragment implements SroDetalheView {
     }
 
     @Override
-    public void mostrarDetalhesNaoEncontrados(Sro sro) {
+    public void mostrarDetalhesNaoEncontrados(SroDTO sro) {
         toaster.info("não foram encontradas informações para o pacote " + sro);
         esconderTeclado();
     }
 
     @Override
-    public void mostrarSroScaneado(Sro sro) {
-        this.edtTipoServico.setText(sro.getCodigoServico().getCodigo());
-        this.edtPais.setText(sro.getPaisOrigem());
-        this.edtCode.setText(sro.getNumero().toString() + sro.getDigitoVerificador().toString());
+    public void mostrarSroScaneado(SroDTO sro) {
+        this.edtTipoServico.setText(sro.getServiceType());
+        this.edtPais.setText(sro.getCountry());
+        this.edtCode.setText(sro.getCodeNumber());
     }
 
     @Override

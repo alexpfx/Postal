@@ -12,19 +12,16 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.TextView;
-
-import com.squareup.otto.Subscribe;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import br.com.alexandrealessi.postal.view.CadastroPacotesFragment;
 import br.com.alexandrealessi.postal.view.ListaDetalhesFragment;
 import br.com.alexandrealessi.postal.view.ListaPacotesFragment;
 import br.com.alexandrealessi.postal.view.overflowmenu.OverflowMenuViewAdapter;
 import br.com.alexandrealessi.postal.view.overflowmenu.event.OverflowMenuItemClickEvent;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import com.squareup.otto.Subscribe;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -87,7 +84,6 @@ public class MainActivity extends ActionBarActivity {
         List<OverflowMenuViewAdapter.ViewModel> lista = new ArrayList<>();
         OverflowMenuViewAdapter.ViewModel.create(android.R.drawable.ic_menu_camera, getString(R.string.menu_item_meus_pacotes), ListaPacotesFragment.class).andAddTo(lista);
         OverflowMenuViewAdapter.ViewModel.create(android.R.drawable.ic_menu_agenda, getString(R.string.menu_item_detalhes_pacote), ListaDetalhesFragment.class).andAddTo(lista);
-        OverflowMenuViewAdapter.ViewModel.create(android.R.drawable.ic_menu_add, getString(R.string.menu_item_consultar_pacotes), CadastroPacotesFragment.class).andAddTo(lista);
         return lista;
     }
 
