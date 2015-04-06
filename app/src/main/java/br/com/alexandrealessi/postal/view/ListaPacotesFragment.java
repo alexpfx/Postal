@@ -44,6 +44,7 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle saveDdInstanceState) {
 
+
         View view = inflater.inflate(R.layout.fragment_lista_pacotes, container, false);
         ButterKnife.inject(this, view);
         configurarPresenter();
@@ -95,6 +96,7 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
         listaPacotesPresenter = new ListaPacotesPresenterImpl();
         listaPacotesPresenter.setPacotesInteractor(new PacotesInteractorImpl());
         ((AbstractPresenter) listaPacotesPresenter).init(this);
+
     }
 
 

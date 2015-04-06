@@ -1,12 +1,10 @@
 package br.com.alexandrealessi.postal.model;
 
 import android.util.Log;
-
+import br.com.alexandrealessi.postal.model.domain.Pacote;
 import com.google.common.collect.Iterators;
 
 import java.util.Iterator;
-
-import br.com.alexandrealessi.postal.model.domain.Pacote;
 
 /**
  * Created by alexandre on 12/03/15.
@@ -23,7 +21,7 @@ public class PacotesInteractorImpl implements PacotesInteractor {
             Log.d(getClass().getSimpleName(), "size: "+listaPacotes.length);
             callback.receive(listaPacotes);
         } catch (Exception e) {
-            callback.error();
+            callback.onRequestListaPacotesError();
         }
 
 

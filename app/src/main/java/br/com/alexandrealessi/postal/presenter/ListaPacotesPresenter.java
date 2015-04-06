@@ -17,5 +17,7 @@ public interface ListaPacotesPresenter  {
 
     public void setPacotesInteractor (PacotesInteractor interactor);
 
+    public void savePacote (Pacote pacote);
+
 
 }

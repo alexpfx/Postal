@@ -9,7 +9,7 @@ import br.com.alexandrealessi.postal.view.ListaPacotesView;
  * Created by alexandre on 12/03/15.
  */
 public class ListaPacotesPresenterImpl
-        extends AbstractPresenter<ListaPacotesView> implements ListaPacotesPresenter, PacotesInteractor.RequestListaPacotesCallback {
+        extends AbstractPresenter<ListaPacotesView> implements ListaPacotesPresenter, PacotesInteractor.RequestListaPacotesCallback, PacotesInteractor.SaveCallback {
 
     {
         super.init(ListaPacotesView.NULL);
@@ -24,6 +24,11 @@ public class ListaPacotesPresenterImpl
     }
 
     @Override
+    public void savePacote(Pacote pacote) {
+        pacotesInteractor.save(pacote,this);
+    }
+
+    @Override
     public void requestListaPacotes() {
         pacotesInteractor.requestListaPacotes(this);
     }
@@ -33,6 +38,8 @@ public class ListaPacotesPresenterImpl
 
     }
 
+
+
     //callback
 
     @Override
@@ -41,9 +48,13 @@ public class ListaPacotesPresenterImpl
     }
 
     @Override
-    public void error() {
-        //ignorar
+    public void onRequestListaPacotesError() {
+
     }
 
 
+    @Override
+    public void onSavePacoteError() {
+
+    }
 }

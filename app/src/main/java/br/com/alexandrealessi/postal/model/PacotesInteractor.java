@@ -1,7 +1,6 @@
 package br.com.alexandrealessi.postal.model;
 
 import android.util.Log;
-
 import br.com.alexandrealessi.postal.model.domain.Pacote;
 
 /**
@@ -29,12 +28,11 @@ public interface PacotesInteractor {
 
     public static interface RequestListaPacotesCallback {
         public void receive(Pacote[] listaPacotes);
-        public void error();
+        public void onRequestListaPacotesError();
     }
 
     public static interface SaveCallback {
         public void onSavePacoteError();
     }
-
 
 }
