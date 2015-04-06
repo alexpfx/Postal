@@ -146,21 +146,21 @@ public class SroEdtText extends LinearLayout {
     }
 
     @OnClick(R.id.btnPaste)
-    public void onBtnPasteClick(){
+    public void onBtnPasteClick() {
         //TODO: habilitar botao paste somente quando houver conteudo valido na area de transferencia para nao precisar fazer todas estas validacoes.
         ClipboardManager clipBoardManager = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData primaryClip = clipBoardManager.getPrimaryClip();
-        if (primaryClip == null){
+        if (primaryClip == null) {
             Log.d(tag, "nada na area de trasnferencia");
-            return ;
+            return;
         }
         ClipData.Item itemAt = primaryClip.getItemAt(0);
-        if (itemAt == null){
+        if (itemAt == null) {
             Log.d(tag, "sem itens na area de transferencia");
             return;
         }
         CharSequence text = itemAt.getText();
-        if (text == null){
+        if (text == null) {
             Log.d(tag, "não contém texto");
             return;
         }

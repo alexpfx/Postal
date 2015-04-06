@@ -26,7 +26,7 @@ public class AddNewSroDialogFragment extends DialogFragment {
     SroEdtText sroEdtText;
 
     public static interface NewSroListener {
-        void onNewSroAdd (SroDTO sro);
+        void onNewSroAdd(SroDTO sro);
     }
 
     @Override
@@ -41,10 +41,11 @@ public class AddNewSroDialogFragment extends DialogFragment {
 
         return builder.create();
     }
+
     public DialogInterface.OnClickListener acceptClick = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-            if (listener != null){
+            if (listener != null) {
                 String sroCode = sroEdtText.getSroCode();
                 try {
                     SroDTO sro = SroUtils.getSroDTOFromCodeString(sroCode);

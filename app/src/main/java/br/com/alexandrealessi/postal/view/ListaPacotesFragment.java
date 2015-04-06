@@ -10,20 +10,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.Date;
-
 import br.com.alexandrealessi.postal.R;
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-import butterknife.OnClick;
 import br.com.alexandrealessi.postal.common.AbstractPresenter;
 import br.com.alexandrealessi.postal.model.PacotesInteractorImpl;
 import br.com.alexandrealessi.postal.model.domain.ItemAcao;
 import br.com.alexandrealessi.postal.model.domain.Pacote;
 import br.com.alexandrealessi.postal.presenter.ListaPacotesPresenter;
 import br.com.alexandrealessi.postal.presenter.ListaPacotesPresenterImpl;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
