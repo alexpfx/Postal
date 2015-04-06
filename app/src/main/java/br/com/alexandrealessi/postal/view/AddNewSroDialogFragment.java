@@ -1,16 +1,17 @@
 package br.com.alexandrealessi.postal.view;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import br.com.alexandrealessi.postal.R;
 import br.com.alexandrealessi.postal.custom_views.SroEdtText;
-import br.com.alexpfx.api.postal.Sro;
+import br.com.alexandrealessi.postal.utils.SroDTO;
+import br.com.alexandrealessi.postal.utils.SroUtils;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -25,12 +26,7 @@ public class AddNewSroDialogFragment extends DialogFragment {
     SroEdtText sroEdtText;
 
     public static interface NewSroListener {
-        void onNewSroAdd (Sro sro);
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+        void onNewSroAdd (SroDTO sro);
     }
 
     @Override
@@ -49,10 +45,14 @@ public class AddNewSroDialogFragment extends DialogFragment {
         @Override
         public void onClick(DialogInterface dialog, int which) {
             if (listener != null){
-
-
+                String sroCode = sroEdtText.getSroCode();
+                try {
+                    SroDTO sro = SroUtils.getSroDTOFromCodeString(sroCode);
+                    listener.onNewSroAdd(sro);
+                } catch (IllegalArgumentException e) {
+                    Log.d(tag, e.getMessage());
+                }
             }
-
         }
     };
 
