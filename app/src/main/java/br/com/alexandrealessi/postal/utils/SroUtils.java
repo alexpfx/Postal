@@ -38,7 +38,8 @@ public class SroUtils {
             if (!criado.isValid()){
                 throw getIllegalArgumentExceptionInvalidSro(sroCodeString);
             }
-            return SroDTO.create(criado.getCodigoServico().getCodigo(), String.valueOf(criado.getNumero()), criado.getPaisOrigem());
+            String codeNumber = String.valueOf(criado.getNumero()) + String.valueOf(criado.getDigitoVerificador());
+            return SroDTO.create(criado.getCodigoServico().getCodigo(), codeNumber, criado.getPaisOrigem());
         } catch (SroInvalidoException e) {
             throw getIllegalArgumentExceptionInvalidSro(sroCodeString);
         }
