@@ -6,10 +6,12 @@ import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import br.com.alexandrealessi.postal.BusProvider;
 import br.com.alexandrealessi.postal.R;
 import br.com.alexandrealessi.postal.common.AbstractPresenter;
 import br.com.alexandrealessi.postal.model.PacotesInteractorImpl;
@@ -17,9 +19,11 @@ import br.com.alexandrealessi.postal.model.domain.ItemAcao;
 import br.com.alexandrealessi.postal.model.domain.Pacote;
 import br.com.alexandrealessi.postal.presenter.ListaPacotesPresenter;
 import br.com.alexandrealessi.postal.presenter.ListaPacotesPresenterImpl;
+import br.com.alexandrealessi.postal.utils.SroDTO;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,6 +43,7 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
     private ListPacotesAdapter adapter;
 
     private ListaPacotesPresenter listaPacotesPresenter;
+    private String tag = ListaPacotesFragment.class.getName();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -129,7 +134,24 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
         newFragment.show(fragmentManager, "dialog");
     }
 
+
+    @Subscribe
+    public void addNewSroFromDialog (SroDTO sro){
+        Log.d(tag, "addNewSroFromDialog: "+sro);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        BusProvider.getInstance().register(this);
+        Log.d(tag, "onResume");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(tag, "onPause");
+        BusProvider.getInstance().unregister(this);
+    }
 }
-
-
 
