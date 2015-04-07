@@ -1,13 +1,11 @@
 package br.com.alexandrealessi.postal.model.domain;
 
-import com.orm.SugarRecord;
-
 import java.util.Date;
 
 /**
  * Created by alexandre on 09/03/15.
  */
-public class ItemAcao extends SugarRecord<ItemAcao>{
+public class ItemAcao {
 
     public static ItemAcao NULL = new ItemAcao(){};
 

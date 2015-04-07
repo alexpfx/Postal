@@ -1,11 +1,9 @@
 package br.com.alexandrealessi.postal.model.domain;
 
-import com.orm.SugarRecord;
-
 /**
  * Created by alexandre on 09/03/15.
  */
-public class Local extends SugarRecord<Local>{
+public class Local {
     private String descricao;
 
     public Local() {

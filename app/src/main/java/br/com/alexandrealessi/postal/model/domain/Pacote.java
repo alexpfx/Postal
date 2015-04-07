@@ -1,14 +1,12 @@
 package br.com.alexandrealessi.postal.model.domain;
 
-import com.orm.SugarRecord;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by alexandre on 09/03/15.
  */
-public class Pacote extends SugarRecord<Pacote>{
+public class Pacote {
     String sro;
     List<ItemAcao> itemsAcao = new ArrayList<>();
     List<String> tags = new ArrayList<>();
