@@ -15,7 +15,7 @@ import br.com.alexandrealessi.postal.BusProvider;
 import br.com.alexandrealessi.postal.R;
 import br.com.alexandrealessi.postal.common.AbstractPresenter;
 import br.com.alexandrealessi.postal.model.PacotesInteractorImpl;
-import br.com.alexandrealessi.postal.model.domain.ItemAcao;
+import br.com.alexandrealessi.postal.model.domain.Evento;
 import br.com.alexandrealessi.postal.model.domain.Pacote;
 import br.com.alexandrealessi.postal.presenter.ListaPacotesPresenter;
 import br.com.alexandrealessi.postal.presenter.ListaPacotesPresenterImpl;
@@ -42,7 +42,10 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
     private ListPacotesAdapter adapter;
 
     private ListaPacotesPresenter listaPacotesPresenter;
-    private String tag = ListaPacotesFragment.class.getName();
+
+    private static final String tag = ListaPacotesFragment.class.getName();
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -106,10 +109,10 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
     public void mostrarListaPacotes(Pacote[] pacotes) {
         adapter.getItems().clear();
         for (Pacote pacote : pacotes) {
-            ItemAcao itemAcao = pacote.obterItemAcaoRecente();
-            String acao = itemAcao.getAcao().getDescricao();
-            Date dataAcao = itemAcao.getData();
-            adapter.getItems().add(new ListPacotesAdapter.Item(acao, dataAcao, pacote.getSro(), itemAcao.getLocal().getDescricao(), pacote.getTags()));
+            Evento evento = pacote.obterItemAcaoRecente();
+            String acao = evento.getAcao().getDescricao();
+            Date dataAcao = evento.getData();
+            adapter.getItems().add(new ListPacotesAdapter.Item(acao, dataAcao, pacote.getSro(), evento.getLocal().getDescricao(), pacote.getTags()));
         }
         adapter.notifyDataSetChanged();
     }

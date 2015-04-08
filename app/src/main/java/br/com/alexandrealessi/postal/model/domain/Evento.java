@@ -5,16 +5,17 @@ import java.util.Date;
 /**
  * Created by alexandre on 09/03/15.
  */
-public class ItemAcao {
+public class Evento {
 
-    public static ItemAcao NULL = new ItemAcao(){};
+    public static Evento NULL = new Evento() {
+    };
 
     private Date data;
     private Local local;
     private Acao acao;
     private String detalhe;
 
-    public ItemAcao() {
+    public Evento() {
     }
 
 
