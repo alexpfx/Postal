@@ -8,13 +8,8 @@ import java.util.List;
  */
 public class Pacote {
     String sro;
-    List<Evento> itemsAcao = new ArrayList<>();
+    List<Evento> eventos = new ArrayList<>();
     List<String> tags = new ArrayList<>();
-
-    public Pacote() {
-    }
-
-
 
     public String getSro() {
         return sro;
@@ -24,12 +19,12 @@ public class Pacote {
         this.sro = sro;
     }
 
-    public List<Evento> getItemsAcao() {
-        return itemsAcao;
+    public List<Evento> getEventos() {
+        return eventos;
     }
 
-    public void setItemsAcao(List<Evento> itemsAcao) {
-        this.itemsAcao = itemsAcao;
+    public void setEventos(List<Evento> eventos) {
+        this.eventos = eventos;
     }
 
 
@@ -42,8 +37,8 @@ public class Pacote {
     }
 
     public Evento obterItemAcaoRecente() {
-        if (itemsAcao.size() > 0){
-            return itemsAcao.get(0);
+        if (eventos.size() > 0) {
+            return eventos.get(0);
         }
         return Evento.NULL;
     }
