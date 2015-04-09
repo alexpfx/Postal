@@ -14,11 +14,13 @@ import java.io.InputStreamReader;
  * Created by alexandre on 07/04/15.
  */
 public class SroOpenHelper extends SQLiteOpenHelper {
+    private static final String tag = SroOpenHelper.class.getName();
+
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "SRODATABASE.DB";
 
+
     private Context context;
-    private String tag = SroOpenHelper.class.getName();
 
     public SroOpenHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

@@ -11,6 +11,13 @@ public class Pacote {
     List<Evento> eventos = new ArrayList<>();
     List<String> tags = new ArrayList<>();
 
+
+    public static Pacote create(String sro) {
+        Pacote p = new Pacote();
+        p.setSro(sro);
+        return p;
+    }
+
     public String getSro() {
         return sro;
     }
