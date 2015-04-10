@@ -6,6 +6,13 @@ package br.com.alexandrealessi.postal.model.domain;
 public abstract class BaseDomain {
     private Long id;
 
+    protected BaseDomain(Long id) {
+        this.id = id;
+    }
+
+    protected BaseDomain() {
+    }
+
     protected void setId(Long id) {
         this.id = id;
     }

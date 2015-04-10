@@ -5,19 +5,41 @@ import java.util.Date;
 /**
  * Created by alexandre on 09/03/15.
  */
-public class Evento {
-
-    public static Evento NULL = new Evento() {
-    };
+public class Evento extends BaseDomain {
 
     private Date data;
     private Local local;
     private Acao acao;
     private String detalhe;
 
-    public Evento() {
+
+    private Evento(Date data, Local local, Acao acao, String detalhe) {
+        this.data = data;
+        this.local = local;
+        this.acao = acao;
+        this.detalhe = detalhe;
     }
 
+    private Evento(Long id, Date data, Local local, Acao acao, String detalhe) {
+        super(id);
+        this.data = data;
+        this.local = local;
+        this.acao = acao;
+        this.detalhe = detalhe;
+    }
+
+
+    public static final Evento create(Long id, Date data, Local local, Acao acao, String detalhe) {
+        return new Evento(id, data, local, acao, detalhe);
+    }
+
+    public static final Evento create(Date data, Local local, Acao acao, String detalhe) {
+        return new Evento(data, local, acao, detalhe);
+    }
+
+    public static final Evento create(Long id, Evento evento) {
+        return new Evento(id, evento.getData(), evento.getLocal(), evento.getAcao(), evento.getDetalhe());
+    }
 
     public Date getData() {
         return data;
