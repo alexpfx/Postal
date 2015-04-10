@@ -16,15 +16,15 @@ public abstract class BaseDao {
         this.openHelper = openHelper;
     }
 
-    public SQLiteDatabase getDatabase() {
+    protected SQLiteDatabase getDatabase() {
         return database;
     }
 
-    public void open() {
+    protected void open() {
         database = openHelper.getWritableDatabase();
     }
 
-    public void close() {
+    protected void close() {
         openHelper.close();
     }
 
