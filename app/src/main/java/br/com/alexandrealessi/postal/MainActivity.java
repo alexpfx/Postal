@@ -2,7 +2,6 @@ package br.com.alexandrealessi.postal;
 
 import android.app.Fragment;
 import android.content.res.Configuration;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -14,6 +13,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.widget.TextView;
 import br.com.alexandrealessi.postal.model.database.SroOpenHelper;
+import br.com.alexandrealessi.postal.model.database.dao.PacoteDaoImpl;
+import br.com.alexandrealessi.postal.model.domain.Pacote;
 import br.com.alexandrealessi.postal.view.ListaDetalhesFragment;
 import br.com.alexandrealessi.postal.view.ListaPacotesFragment;
 import br.com.alexandrealessi.postal.view.overflowmenu.OverflowMenuViewAdapter;
@@ -67,10 +68,16 @@ public class MainActivity extends ActionBarActivity {
 
     private void initDatabase() {
         openHelper = new SroOpenHelper(getApplicationContext());
-        SQLiteDatabase database = openHelper.getWritableDatabase();
+        PacoteDaoImpl pacoteDao = new PacoteDaoImpl(getApplicationContext());
+        Pacote p = Pacote.create("teste");
+        pacoteDao.insert(p);
+        List<Pacote> pacotes = pacoteDao.getAll();
+
+        for (Pacote px : pacotes) {
+            Log.d(tag, px.getSro());
+        }
         Log.d(tag, openHelper.getDatabaseName());
-        Log.d(tag, database.getPath());
-        database.close();
+
     }
 
 
