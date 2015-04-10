@@ -49,6 +49,7 @@ public class PacoteDaoImpl extends BaseDao implements PacoteDao {
     private Pacote cursorToPacote(Cursor cursor) {
         int codigo = cursor.getInt(0);
         String sro = cursor.getString(1);
+
         return Pacote.create(sro);
     }
 }
