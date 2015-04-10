@@ -13,11 +13,12 @@ CREATE TABLE Local (
 
 
 CREATE TABLE Eventos (
-    codigo  INTEGER NOT NULL
-                    PRIMARY KEY AUTOINCREMENT,
-    data    DATE,
-    detalhe TEXT,
-    acao    TEXT
+    codigo   INTEGER NOT NULL
+                     PRIMARY KEY AUTOINCREMENT,
+    data     DATE,
+    detalhe  TEXT,
+    acao     TEXT,
+    idLocal  INTEGER REFERENCES Local (codigo),
+    idPacote INTEGER REFERENCES Pacotes (codigo)
 );
-
 
