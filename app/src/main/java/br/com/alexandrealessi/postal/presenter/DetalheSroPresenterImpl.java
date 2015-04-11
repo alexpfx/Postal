@@ -36,9 +36,7 @@ public class DetalheSroPresenterImpl extends AbstractPresenter<SroDetalheView> i
     public void onCodigoSroValido(SroDTO sro) {
         getView().mostrarQueEhValido();
         // provisorio ate ter a dialog de cadastro de sro
-        Pacote p = new Pacote();
-        p.setSro(sro.toString());
-
+        Pacote p = Pacote.create(sro.toString());
         pacotesInteractor.save(p, this);
         sroInteractor.consultarCorreiosSro(sro, this);
 

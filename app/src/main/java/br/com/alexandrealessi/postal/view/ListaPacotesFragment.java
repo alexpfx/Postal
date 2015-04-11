@@ -108,12 +108,14 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
     @Override
     public void mostrarListaPacotes(Pacote[] pacotes) {
         adapter.getItems().clear();
+        /*
         for (Pacote pacote : pacotes) {
             Evento evento = pacote.obterItemAcaoRecente();
             String acao = evento.getAcao().getDescricao();
             Date dataAcao = evento.getData();
             adapter.getItems().add(new ListPacotesAdapter.Item(acao, dataAcao, pacote.getSro(), evento.getLocal().getDescricao(), pacote.getTags()));
         }
+        */
         adapter.notifyDataSetChanged();
     }
 
@@ -147,8 +149,8 @@ public class ListaPacotesFragment extends Fragment implements ListaPacotesView {
 
     @Subscribe
     public void addNewSroFromDialog (SroDTO sro){
-        Pacote p = new Pacote();
-        p.setSro(sro.toString());
+        Pacote p = Pacote.create(sro.toString());
+
         listaPacotesPresenter.savePacote(p);
     }
 
