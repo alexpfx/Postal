@@ -18,7 +18,7 @@ CREATE TABLE Eventos (
     data     DATE,
     detalhe  TEXT,
     acao     TEXT,
-    idLocal  INTEGER REFERENCES Local (codigo),
+    idLocal  INTEGER REFERENCES Locais (codigo),
     idPacote INTEGER REFERENCES Pacotes (codigo)
 );
 

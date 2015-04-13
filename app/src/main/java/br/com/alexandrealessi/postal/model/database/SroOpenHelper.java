@@ -16,8 +16,8 @@ import java.io.InputStreamReader;
 public class SroOpenHelper extends SQLiteOpenHelper {
     private static final String tag = SroOpenHelper.class.getName();
 
-    private static final int DATABASE_VERSION = 3;
-    private static final String DATABASE_NAME = "SRODATABASE.DB";
+    private static final int DATABASE_VERSION = 2;
+    private static final String DATABASE_NAME = "thedatabase";
 
 
     private Context context;

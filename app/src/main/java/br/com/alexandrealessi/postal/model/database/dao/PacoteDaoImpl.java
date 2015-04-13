@@ -30,6 +30,7 @@ public class PacoteDaoImpl implements PacoteDao {
     @Override
     public Pacote insert(Pacote pacote) {
         final SQLiteDatabase database = dbAdapter.getDatabase();
+
         database.beginTransaction();
         try {
             final long idPacote = insertPacote(pacote, database);
