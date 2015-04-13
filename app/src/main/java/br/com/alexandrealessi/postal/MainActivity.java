@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.TextView;
+import br.com.alexandrealessi.postal.model.database.DatabaseAdapter;
 import br.com.alexandrealessi.postal.model.database.SroOpenHelper;
 import br.com.alexandrealessi.postal.model.database.dao.PacoteDaoImpl;
 import br.com.alexandrealessi.postal.model.domain.Pacote;
@@ -68,7 +69,7 @@ public class MainActivity extends ActionBarActivity {
 
     private void initDatabase() {
         openHelper = new SroOpenHelper(getApplicationContext());
-        PacoteDaoImpl pacoteDao = new PacoteDaoImpl(getApplicationContext());
+        PacoteDaoImpl pacoteDao = new PacoteDaoImpl(new DatabaseAdapter(getApplicationContext()));
         Pacote p = Pacote.create("teste");
         pacoteDao.insert(p);
         List<Pacote> pacotes = pacoteDao.getAll();

@@ -7,4 +7,5 @@ import br.com.alexandrealessi.postal.model.domain.Local;
  */
 public interface LocalDao {
     Local insert(Local local);
+    Local insertIfNotExists (Local local);
 }

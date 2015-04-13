@@ -18,7 +18,6 @@ import java.util.List;
 public class SroInteractorImpl implements SroInteractor {
     private SroRepository sroRepository;
 
-
     public SroInteractorImpl() {
         this.sroRepository = new AgenciaIdeiaRepository();
     }

@@ -26,6 +26,11 @@ public class Pacote extends BaseDomain {
         return p;
     }
 
+    public static Pacote create(Long idPacote, String sro) {
+        return new Pacote(idPacote, sro);
+    }
+
+
     public String getSro() {
         return sro;
     }

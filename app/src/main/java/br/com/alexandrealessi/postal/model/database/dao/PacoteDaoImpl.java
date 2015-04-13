@@ -3,7 +3,9 @@ package br.com.alexandrealessi.postal.model.database.dao;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import br.com.alexandrealessi.postal.model.database.SroOpenHelper;
+import android.database.sqlite.SQLiteDatabase;
+import br.com.alexandrealessi.postal.model.database.DatabaseAdapter;
+import br.com.alexandrealessi.postal.model.domain.Evento;
 import br.com.alexandrealessi.postal.model.domain.Pacote;
 
 import java.util.ArrayList;
@@ -12,37 +14,52 @@ import java.util.List;
 /**
  * Created by alexandre on 09/04/15.
  */
-public class PacoteDaoImpl extends BaseDao implements PacoteDao {
-
+public class PacoteDaoImpl implements PacoteDao {
+    private DatabaseAdapter dbAdapter;
     public static final String TABLE_PACOTES = "pacotes";
     public static final String COLUMN_SRO = "sro";
 
+    EventoDao eventoDao;
 
-    public PacoteDaoImpl(Context context) {
-        super(new SroOpenHelper(context));
+
+    public PacoteDaoImpl(DatabaseAdapter databaseAdapter) {
+        dbAdapter = databaseAdapter;
+        eventoDao = new EventoDaoImpl(dbAdapter);
     }
 
     @Override
-    public void insert(Pacote pacote) {
-        open();
+    public Pacote insert(Pacote pacote) {
+        final SQLiteDatabase database = dbAdapter.getDatabase();
+        database.beginTransaction();
+        final long idPacote = createPacote(pacote, database);
+        createEventos(idPacote, pacote.getEventos());
+        return Pacote.create(idPacote, pacote.getSro());
+    }
+
+    private void createEventos(long idPacote, List<Evento> eventos) {
+        for (Evento evento: eventos){
+            eventoDao.insert(evento);
+        }
+    }
+
+
+    private long createPacote(Pacote pacote, SQLiteDatabase database) {
         ContentValues values = new ContentValues();
         values.put(COLUMN_SRO, pacote.getSro());
-        getDatabase().insert(TABLE_PACOTES, null, values);
-        close();
+        return database.insert(TABLE_PACOTES, null, values);
     }
+
 
     @Override
     public List<Pacote> getAll() {
-        open();
         List<Pacote> pacotes = new ArrayList<>();
-        Cursor cursor = getDatabase().query(TABLE_PACOTES, new String[]{COLUMN_CODIGO, COLUMN_SRO}, null, null, null, null, null);
+        Cursor cursor = dbAdapter.getDatabase().query(TABLE_PACOTES, new String[]{"codigo", COLUMN_SRO}, null, null, null, null, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             Pacote p = cursorToPacote(cursor);
             pacotes.add(p);
             cursor.moveToNext();
         }
-        close();
         return pacotes;
     }
 

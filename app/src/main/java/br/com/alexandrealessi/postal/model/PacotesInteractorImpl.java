@@ -1,11 +1,21 @@
 package br.com.alexandrealessi.postal.model;
 
+import br.com.alexandrealessi.postal.model.database.DatabaseAdapter;
+import br.com.alexandrealessi.postal.model.database.dao.PacoteDao;
 import br.com.alexandrealessi.postal.model.domain.Pacote;
+import com.squareup.otto.Subscribe;
 
 /**
  * Created by alexandre on 12/03/15.
  */
 public class PacotesInteractorImpl implements PacotesInteractor {
+
+    PacoteDao pacoteDao;
+
+    @Subscribe
+    public void init (PacoteDao dao){
+        pacoteDao = dao;
+    }
 
 
     @Override
@@ -28,9 +38,12 @@ public class PacotesInteractorImpl implements PacotesInteractor {
 
     @Override
     public void save(Pacote p, SaveCallback callback) {
+
         try {
 
-//            p.save();
+            pacoteDao.insert(p);
+
+
         } catch (Exception e) {
             callback.onSavePacoteError();
         }
