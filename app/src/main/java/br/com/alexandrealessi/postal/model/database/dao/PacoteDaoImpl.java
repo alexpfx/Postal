@@ -2,6 +2,7 @@ package br.com.alexandrealessi.postal.model.database.dao;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import br.com.alexandrealessi.postal.model.database.DatabaseAdapter;
 import br.com.alexandrealessi.postal.model.domain.Evento;
@@ -18,8 +19,7 @@ public class PacoteDaoImpl implements PacoteDao {
     public static final String TABLE_PACOTES = "pacotes";
     public static final String COLUMN_SRO = "sro";
 
-    EventoDao eventoDao;
-
+    private EventoDao eventoDao;
 
     public PacoteDaoImpl(DatabaseAdapter databaseAdapter) {
         dbAdapter = databaseAdapter;
@@ -30,15 +30,23 @@ public class PacoteDaoImpl implements PacoteDao {
     public Pacote insert(Pacote pacote) {
         final SQLiteDatabase database = dbAdapter.getDatabase();
         database.beginTransaction();
-        final long idPacote = insertPacote(pacote, database);
-        pacote.setId(idPacote);
-        addEventos(pacote, pacote.getEventos());
+        try {
+            final long idPacote = insertPacote(pacote, database);
+            pacote.setId(idPacote);
+            addEventos(pacote, pacote.getEventos());
+            database.setTransactionSuccessful();
+        } catch (Exception e) {
+
+        } finally {
+            database.endTransaction();
+        }
+
         return pacote;
 
     }
 
     private void addEventos(Pacote pacote, List<Evento> eventos) {
-        for (Evento evento: eventos){
+        for (Evento evento : eventos) {
             eventoDao.insert(evento, pacote);
         }
     }
