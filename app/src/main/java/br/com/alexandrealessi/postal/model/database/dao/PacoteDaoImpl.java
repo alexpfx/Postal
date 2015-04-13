@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import br.com.alexandrealessi.postal.model.database.DatabaseAdapter;
 import br.com.alexandrealessi.postal.model.domain.Evento;
 import br.com.alexandrealessi.postal.model.domain.Pacote;
@@ -36,6 +37,7 @@ public class PacoteDaoImpl implements PacoteDao {
             addEventos(pacote, pacote.getEventos());
             database.setTransactionSuccessful();
         } catch (Exception e) {
+            Log.e(PacoteDaoImpl.class.getName(), e.getMessage());
 
         } finally {
             database.endTransaction();
