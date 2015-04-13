@@ -23,11 +23,6 @@ public class Local extends BaseDomain {
         return new Local(id, descricao);
     }
 
-    public static final Local create(Long id, Local local) {
-        return new Local(id, local.getDescricao());
-    }
-
-
     public String getDescricao() {
         return descricao;
     }

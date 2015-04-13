@@ -1,6 +1,7 @@
 package br.com.alexandrealessi.postal.model.database.dao;
 
 import br.com.alexandrealessi.postal.model.domain.Evento;
+import br.com.alexandrealessi.postal.model.domain.Pacote;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  */
 public interface EventoDao {
 
-    Evento insert(Evento evento);
+    Evento insert(Evento evento, Pacote pacote);
 
     List<Evento> getAll();
 }

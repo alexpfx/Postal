@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import br.com.alexandrealessi.postal.model.database.DatabaseAdapter;
 import br.com.alexandrealessi.postal.model.domain.Evento;
 import br.com.alexandrealessi.postal.model.domain.Local;
+import br.com.alexandrealessi.postal.model.domain.Pacote;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -15,28 +16,23 @@ import java.util.List;
 public class EventoDaoImpl implements EventoDao {
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-ddHH:mm:ss.SSS");
     DatabaseAdapter dbAdapter;
-    LocalDao localDao;
     protected EventoDaoImpl(DatabaseAdapter dbAdapter) {
         this.dbAdapter = dbAdapter;
-        localDao = new LocalDaoImpl(dbAdapter) ;
     }
 
     @Override
-    public Evento insert(Evento evento) {
-
-        final long idEvento = createEvento(evento);
-        return Evento.create(idEvento, evento);
-    }
-
-    private long createEvento(Evento evento) {
-        final Local local = localDao.insertIfNotExists(evento.getLocal());
+    public Evento insert(Evento evento, Pacote pacote) {
         ContentValues values = new ContentValues();
         values.put("data", format.format(evento.getData()));
         values.put("detalhe", evento.getDetalhe());
         values.put("acao", evento.getAcao().getDescricao());
-        values.put("idLocal", local.getId());
-        return dbAdapter.getDatabase().insert("eventos", null, values);
+        values.put("idLocal", evento.getLocal().getId());
+        values.put("idPacote", pacote.getId());
+        long idEvento = dbAdapter.getDatabase().insert("eventos", null, values);
+        evento.setId(idEvento);
+        return evento;
     }
+
 
     @Override
     public List<Evento> getAll() {

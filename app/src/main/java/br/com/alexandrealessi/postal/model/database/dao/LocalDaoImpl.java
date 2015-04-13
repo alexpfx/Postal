@@ -31,7 +31,8 @@ public class LocalDaoImpl implements LocalDao {
         ContentValues values = new ContentValues();
         values.put("nome_local", local.getDescricao());
         long idLocal = dbAdapter.getDatabase().insert("locais", null, values);
-        return Local.create(idLocal, local);
+        local.setId(idLocal);
+        return local;
     }
 
     public Local findByNomeLocal(String nomeLocal) {

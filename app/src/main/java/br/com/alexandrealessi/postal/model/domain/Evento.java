@@ -37,10 +37,6 @@ public class Evento extends BaseDomain {
         return new Evento(data, local, acao, detalhe);
     }
 
-    public static final Evento create(Long id, Evento evento) {
-        return new Evento(id, evento.getData(), evento.getLocal(), evento.getAcao(), evento.getDetalhe());
-    }
-
     public Date getData() {
         return data;
     }

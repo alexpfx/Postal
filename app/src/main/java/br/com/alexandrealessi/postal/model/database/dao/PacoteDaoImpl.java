@@ -1,7 +1,6 @@
 package br.com.alexandrealessi.postal.model.database.dao;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import br.com.alexandrealessi.postal.model.database.DatabaseAdapter;
@@ -31,19 +30,21 @@ public class PacoteDaoImpl implements PacoteDao {
     public Pacote insert(Pacote pacote) {
         final SQLiteDatabase database = dbAdapter.getDatabase();
         database.beginTransaction();
-        final long idPacote = createPacote(pacote, database);
-        createEventos(idPacote, pacote.getEventos());
-        return Pacote.create(idPacote, pacote.getSro());
+        final long idPacote = insertPacote(pacote, database);
+        pacote.setId(idPacote);
+        addEventos(pacote, pacote.getEventos());
+        return pacote;
+
     }
 
-    private void createEventos(long idPacote, List<Evento> eventos) {
+    private void addEventos(Pacote pacote, List<Evento> eventos) {
         for (Evento evento: eventos){
-            eventoDao.insert(evento);
+            eventoDao.insert(evento, pacote);
         }
     }
 
 
-    private long createPacote(Pacote pacote, SQLiteDatabase database) {
+    private long insertPacote(Pacote pacote, SQLiteDatabase database) {
         ContentValues values = new ContentValues();
         values.put(COLUMN_SRO, pacote.getSro());
         return database.insert(TABLE_PACOTES, null, values);
