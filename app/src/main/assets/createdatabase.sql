@@ -5,7 +5,7 @@ CREATE TABLE Pacotes (
 );
 
 
-CREATE TABLE Local (
+CREATE TABLE Locais (
     codigo     INTEGER NOT NULL
                        PRIMARY KEY AUTOINCREMENT,
     nome_local TEXT
