@@ -15,6 +15,9 @@ import android.widget.TextView;
 import br.com.alexandrealessi.postal.model.database.DatabaseAdapter;
 import br.com.alexandrealessi.postal.model.database.SroOpenHelper;
 import br.com.alexandrealessi.postal.model.database.dao.PacoteDaoImpl;
+import br.com.alexandrealessi.postal.model.domain.Acao;
+import br.com.alexandrealessi.postal.model.domain.Evento;
+import br.com.alexandrealessi.postal.model.domain.Local;
 import br.com.alexandrealessi.postal.model.domain.Pacote;
 import br.com.alexandrealessi.postal.view.ListaDetalhesFragment;
 import br.com.alexandrealessi.postal.view.ListaPacotesFragment;
@@ -25,6 +28,7 @@ import butterknife.InjectView;
 import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends ActionBarActivity {
@@ -57,7 +61,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
-        initDatabase();
+        testDatabase();
         setupToolbar();
         setupOverflowMenu();
         setupDrawerLayout();
@@ -67,10 +71,13 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
-    private void initDatabase() {
+    //TODO: check
+    private void testDatabase() {
         openHelper = new SroOpenHelper(getApplicationContext());
         PacoteDaoImpl pacoteDao = new PacoteDaoImpl(new DatabaseAdapter(getApplicationContext()));
-        Pacote p = Pacote.create("teste");
+        Pacote p = Pacote.create("newsro");
+        p.getEventos().add(Evento.create(new Date(), Local.create("São Paulo/SP"), Acao.create("Acao"), "Detalhe"));
+
         pacoteDao.insert(p);
         List<Pacote> pacotes = pacoteDao.getAll();
 
