@@ -36,7 +36,7 @@ public class LocalDaoImpl implements LocalDao {
     }
 
     public Local findByNomeLocal(String nomeLocal) {
-        final Cursor cursor = dbAdapter.getDatabase().query(true, "locais", new String[]{"codigo", "nome-local"}, "nome-local" + " = " + nomeLocal, null, null, null, null, "1");
+        final Cursor cursor = dbAdapter.getDatabase().query(true, "locais", new String[]{"codigo", "nome-local"}, "nome-local" + " = '" + nomeLocal+"'", null, null, null, null, "1");
         if (cursor.moveToFirst()) {
             Local local = cursorToLocal(cursor);
             return local;
