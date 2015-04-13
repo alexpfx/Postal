@@ -16,17 +16,21 @@ import java.util.List;
 public class EventoDaoImpl implements EventoDao {
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-ddHH:mm:ss.SSS");
     DatabaseAdapter dbAdapter;
+    LocalDao localDao;
+
     protected EventoDaoImpl(DatabaseAdapter dbAdapter) {
         this.dbAdapter = dbAdapter;
+        localDao = new LocalDaoImpl(dbAdapter);
     }
 
     @Override
     public Evento insert(Evento evento, Pacote pacote) {
+        Local local = localDao.insertIfNotExists(evento.getLocal());
         ContentValues values = new ContentValues();
         values.put("data", format.format(evento.getData()));
         values.put("detalhe", evento.getDetalhe());
         values.put("acao", evento.getAcao().getDescricao());
-        values.put("idLocal", evento.getLocal().getId());
+        values.put("idLocal", local.getId());
         values.put("idPacote", pacote.getId());
         long idEvento = dbAdapter.getDatabase().insert("eventos", null, values);
         evento.setId(idEvento);
