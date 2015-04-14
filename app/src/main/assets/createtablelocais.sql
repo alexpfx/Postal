@@ -1,0 +1,4 @@
+CREATE TABLE Locais (
+    codigo     INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    nome TEXT
+);

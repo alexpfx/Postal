@@ -16,8 +16,8 @@ import java.io.InputStreamReader;
 public class SroOpenHelper extends SQLiteOpenHelper {
     private static final String tag = SroOpenHelper.class.getName();
 
-    private static final int DATABASE_VERSION = 2;
-    private static final String DATABASE_NAME = "thedatabase";
+    private static final int DATABASE_VERSION = 5;
+    private static final String DATABASE_NAME = "xxxxxx01.db";
 
 
     private Context context;
@@ -29,8 +29,15 @@ public class SroOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String scriptString = getSqlScriptFrom("createdatabase.sql");
-        db.execSQL(scriptString);
+        String[] createTableScripts = new String[]{getSqlScriptFrom("createtablepacotes.sql"), getSqlScriptFrom("createtablelocais.sql"), getSqlScriptFrom("createtableeventos.sql")};
+        for (String script : createTableScripts) {
+            try {
+                db.execSQL(script);
+            } catch (Exception e) {
+                Log.e(tag, e.getMessage());
+                e.printStackTrace();
+            }
+        }
     }
 
     private String getSqlScriptFrom(String filename) {
@@ -40,19 +47,28 @@ public class SroOpenHelper extends SQLiteOpenHelper {
             StringBuilder sb = new StringBuilder();
             String line;
             while ((line = br.readLine()) != null) {
-                sb.append(line);
+                sb.append(line).append(" ");
             }
-            Log.d(tag, sb.toString());
+            sqlFileStream.close();
+            br.close();
             return sb.toString();
         } catch (IOException e) {
             Log.e(tag, "Erro ao acessar sistema de arquivos", e);
+            e.printStackTrace();
         }
         return "";
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(getSqlScriptFrom("droptables.sql"));
+        try {
+            db.execSQL("drop table if exists eventos");
+            db.execSQL("drop table if exists pacotes");
+            db.execSQL("drop table if exists locais");
+        } catch (Exception e) {
+            Log.e(tag, e.getMessage());
+            e.printStackTrace();
+        }
         onCreate(db);
     }
 }

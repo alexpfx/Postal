@@ -2,6 +2,7 @@ package br.com.alexandrealessi.postal;
 
 import android.app.Fragment;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -14,6 +15,8 @@ import android.view.Menu;
 import android.widget.TextView;
 import br.com.alexandrealessi.postal.model.database.DatabaseAdapter;
 import br.com.alexandrealessi.postal.model.database.SroOpenHelper;
+import br.com.alexandrealessi.postal.model.database.dao.LocalDao;
+import br.com.alexandrealessi.postal.model.database.dao.LocalDaoImpl;
 import br.com.alexandrealessi.postal.model.database.dao.PacoteDaoImpl;
 import br.com.alexandrealessi.postal.model.domain.Acao;
 import br.com.alexandrealessi.postal.model.domain.Evento;
@@ -73,7 +76,13 @@ public class MainActivity extends ActionBarActivity {
 
     //TODO: check
     private void testDatabase() {
+
+
         openHelper = new SroOpenHelper(getApplicationContext());
+        LocalDao local = new LocalDaoImpl(new DatabaseAdapter(getApplicationContext()));
+
+        final Local l = local.insertIfNotExists(Local.create("Sao paulo da garoa"));
+
         PacoteDaoImpl pacoteDao = new PacoteDaoImpl(new DatabaseAdapter(getApplicationContext()));
         Pacote p = Pacote.create("newsro");
 

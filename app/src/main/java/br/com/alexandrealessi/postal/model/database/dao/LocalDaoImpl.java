@@ -3,6 +3,7 @@ package br.com.alexandrealessi.postal.model.database.dao;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import br.com.alexandrealessi.postal.model.database.DatabaseAdapter;
 import br.com.alexandrealessi.postal.model.domain.Local;
 
@@ -12,6 +13,7 @@ import br.com.alexandrealessi.postal.model.domain.Local;
 public class LocalDaoImpl implements LocalDao {
 
     private DatabaseAdapter dbAdapter;
+    private String tag = LocalDaoImpl.class.getName();
 
     public LocalDaoImpl(DatabaseAdapter dbAdapter) {
         this.dbAdapter = dbAdapter;
@@ -29,14 +31,21 @@ public class LocalDaoImpl implements LocalDao {
     @Override
     public Local insert(Local local) {
         ContentValues values = new ContentValues();
-        values.put("nome_local", local.getDescricao());
-        long idLocal = dbAdapter.getDatabase().insert("Locais", null, values);
+        values.put("nome", local.getDescricao());
+        long idLocal = dbAdapter.getDatabase().insert("Local", null, values);
         local.setId(idLocal);
         return local;
     }
 
     public Local findByNomeLocal(String nomeLocal) {
-        final Cursor cursor = dbAdapter.getDatabase().query("Locais", new String[]{"codigo", "nome_local"}, null, null, null, null, null, null);
+        Cursor cursor = null;
+        try {
+            cursor = dbAdapter.getDatabase().rawQuery("select * from Locais", null);
+        } catch (Exception e) {
+            Log.e(tag, e.getMessage());
+            e.printStackTrace();
+        }
+//        final Cursor cursor = dbAdapter.getDatabase().query("Local", new String[]{"codigo", "nome"}, null, null, null, null, null, null);
         if (cursor.moveToFirst()) {
             Local local = cursorToLocal(cursor);
             return local;

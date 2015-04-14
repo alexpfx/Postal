@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import br.com.alexandrealessi.postal.model.database.DatabaseAdapter;
 import br.com.alexandrealessi.postal.model.domain.Evento;
+import br.com.alexandrealessi.postal.model.domain.Local;
 import br.com.alexandrealessi.postal.model.domain.Pacote;
 
 import java.util.ArrayList;
@@ -30,6 +31,8 @@ public class PacoteDaoImpl implements PacoteDao {
     @Override
     public Pacote insert(Pacote pacote) {
         final SQLiteDatabase database = dbAdapter.getDatabase();
+        LocalDao ld = new LocalDaoImpl(dbAdapter);
+        ld.insert(Local.create("bla"));
 
         database.beginTransaction();
         try {
