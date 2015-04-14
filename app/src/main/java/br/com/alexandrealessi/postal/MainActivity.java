@@ -79,17 +79,11 @@ public class MainActivity extends ActionBarActivity {
 
 
         openHelper = new SroOpenHelper(getApplicationContext());
-        LocalDao local = new LocalDaoImpl(new DatabaseAdapter(getApplicationContext()));
-
-        final Local l = local.insertIfNotExists(Local.create("Sao paulo da garoa"));
 
         PacoteDaoImpl pacoteDao = new PacoteDaoImpl(new DatabaseAdapter(getApplicationContext()));
         Pacote p = Pacote.create("newsro");
-
         p.getEventos().add(Evento.create(new Date(), Local.create("São Paulo/SP"), Acao.create("Acao"), "Detalhe"));
         final List<Pacote> all = pacoteDao.getAll();
-
-
         pacoteDao.insert(p);
         List<Pacote> pacotes = pacoteDao.getAll();
 

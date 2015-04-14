@@ -25,8 +25,7 @@ public class EventoDaoImpl implements EventoDao {
 
     @Override
     public Evento insert(Evento evento, Pacote pacote) {
-        Local local = localDao.insert(evento.getLocal());
-        local = localDao.insertIfNotExists(evento.getLocal());
+        Local local = localDao.insertIfNotExists(evento.getLocal());
         ContentValues values = new ContentValues();
         values.put("data", format.format(evento.getData()));
         values.put("detalhe", evento.getDetalhe());

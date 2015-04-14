@@ -62,6 +62,7 @@ public class SroOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         try {
+            //db.exeSql executa apenas uma Sql de uma vez.
             db.execSQL("drop table if exists eventos");
             db.execSQL("drop table if exists pacotes");
             db.execSQL("drop table if exists locais");

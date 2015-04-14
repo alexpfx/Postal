@@ -21,18 +21,15 @@ public class LocalDaoImpl implements LocalDao {
 
     @Override
     public Local insertIfNotExists(Local local) {
-        Local l = findByNomeLocal(local.getDescricao());
-        if (l != null) {
-            return local;
-        }
-        return insert(local);
+        Local localByNome = findByNomeLocal(local.getDescricao());
+        return (localByNome != null) ? local : insert(local);
     }
 
     @Override
     public Local insert(Local local) {
         ContentValues values = new ContentValues();
         values.put("nome", local.getDescricao());
-        long idLocal = dbAdapter.getDatabase().insert("Local", null, values);
+        long idLocal = dbAdapter.getDatabase().insert("Locais", null, values);
         local.setId(idLocal);
         return local;
     }
@@ -40,15 +37,14 @@ public class LocalDaoImpl implements LocalDao {
     public Local findByNomeLocal(String nomeLocal) {
         Cursor cursor = null;
         try {
-            cursor = dbAdapter.getDatabase().rawQuery("select * from Locais", null);
+            cursor = dbAdapter.getDatabase().query("Locais", new String[]{"codigo", "nome"}, "nome = '"+nomeLocal+"'", null, null, null, null, "1");
+            if (cursor.moveToFirst()) {
+                Local local = cursorToLocal(cursor);
+                return local;
+            }
         } catch (Exception e) {
             Log.e(tag, e.getMessage());
-            e.printStackTrace();
-        }
-//        final Cursor cursor = dbAdapter.getDatabase().query("Local", new String[]{"codigo", "nome"}, null, null, null, null, null, null);
-        if (cursor.moveToFirst()) {
-            Local local = cursorToLocal(cursor);
-            return local;
+
         }
         return null;
     }

@@ -31,9 +31,6 @@ public class PacoteDaoImpl implements PacoteDao {
     @Override
     public Pacote insert(Pacote pacote) {
         final SQLiteDatabase database = dbAdapter.getDatabase();
-        LocalDao ld = new LocalDaoImpl(dbAdapter);
-        ld.insert(Local.create("bla"));
-
         database.beginTransaction();
         try {
             final long idPacote = insertPacote(pacote, database);
@@ -42,7 +39,6 @@ public class PacoteDaoImpl implements PacoteDao {
             database.setTransactionSuccessful();
         } catch (Exception e) {
             Log.e(PacoteDaoImpl.class.getName(), e.getMessage());
-
         } finally {
             database.endTransaction();
         }
