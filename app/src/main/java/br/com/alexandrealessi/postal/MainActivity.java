@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.TextView;
+import br.com.alexandrealessi.postal.exceptions.PostalException;
 import br.com.alexandrealessi.postal.model.database.DatabaseAdapter;
 import br.com.alexandrealessi.postal.model.database.DatabaseUtils;
 import br.com.alexandrealessi.postal.model.database.SroOpenHelper;
@@ -28,7 +29,6 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.squareup.otto.Subscribe;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -75,8 +75,18 @@ public class MainActivity extends ActionBarActivity {
 
     //TODO: este metodo serve para testes, ja que os testes com junit nao estao rodando.
     private void rodaTestes() {
-        DatabaseUtils.copyFromAsset("sss.db", "/data/data/br.com.alexandrealessi.postal/databases",getApplicationContext());
-        DatabaseUtils.copyToExternalStorage("sss.db", getApplicationContext());
+
+        try {
+            DatabaseUtils.copyFromAsset("sss.db", "/data/data/br.com.alexandrealessi.postal/databases", getApplicationContext());
+        } catch (PostalException e) {
+            Log.e(tag, e.getMessage());
+        }
+
+        try {
+            DatabaseUtils.copyToExternalStorage("sss.db", getApplicationContext());
+        } catch (PostalException e) {
+            Log.e(tag, e.getMessage());
+        }
 
         openHelper = new SroOpenHelper(getApplicationContext());
 

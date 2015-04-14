@@ -1,8 +1,7 @@
 package br.com.alexandrealessi.postal.model.database;
 
 import android.content.Context;
-import android.os.Environment;
-import com.google.common.io.Files;
+import br.com.alexandrealessi.postal.exceptions.PostalException;
 
 import java.io.*;
 import java.nio.channels.FileChannel;
@@ -15,44 +14,52 @@ import java.util.Date;
 public class DatabaseUtils {
 
 
-    public static final void copyToExternalStorage(String dbName, Context context) {
+    public static final void copyToExternalStorage(String dbName, Context context) throws PostalException {
         File sdPath = context.getExternalCacheDir();
-
         File databasePath = context.getDatabasePath(dbName);
         if (!databasePath.exists()) {
-            throw new RuntimeException("database não existe: " + dbName);
+            throw new PostalException("não pode escrever no sdcard: ");
         }
         if (!sdPath.canWrite()) {
-            throw new RuntimeException("não pode escrever no sdcard: ");
+            throw new PostalException("não pode escrever no sdcard: ");
         }
         File backup = new File(sdPath, dbName + ".bkp." + new SimpleDateFormat("yyyyMMddHHmm").format(new Date()));
+        copyFile(databasePath, backup);
+    }
 
+    public static final void copyFromAsset(String sourceDatabaseName, String destPath, Context context) throws PostalException {
+        InputStream inputStream;
         try {
-            copyFile(databasePath, backup);
+            inputStream = context.getAssets().open(sourceDatabaseName);
+        } catch (IOException e) {
+            throw new PostalException("não encontrado arquivo de banco de dados: " + sourceDatabaseName);
+        }
+
+        String outputFileName = destPath + "/" + sourceDatabaseName;
+        OutputStream outputStream;
+        try {
+            outputStream = new FileOutputStream(outputFileName);
         } catch (FileNotFoundException e) {
-            throw new RuntimeException("File not found: " + e.getMessage());
-        } catch (IOException e) {
-            throw new RuntimeException("IOException: " + e.getMessage());
+            throw new PostalException("arquivo nao encontrado: " + outputFileName);
         }
-    }
-
-    public static final void copyFromAsset(String sourceDatabaseName, String destPath, Context context) {
         try {
-            final InputStream inputStream = context.getAssets().open(sourceDatabaseName);
-            String outputFileName = destPath +"/"+ sourceDatabaseName;
-            OutputStream outputStream = new FileOutputStream(outputFileName);
             copyStream(inputStream, outputStream);
-            closeStreams(inputStream, outputStream);
 
         } catch (IOException e) {
-            throw new RuntimeException(e.getMessage());
+            throw new PostalException("erro ao copiar stream: " + e.getMessage());
+        } finally {
+            closeStreams(inputStream, outputStream);
         }
     }
 
-    private static void closeStreams(InputStream inputStream, OutputStream outputStream) throws IOException {
-        outputStream.flush();
-        outputStream.close();
-        inputStream.close();
+    private static void closeStreams(InputStream inputStream, OutputStream outputStream) {
+        try {
+            outputStream.flush();
+            outputStream.close();
+            inputStream.close();
+        } catch (IOException e) {
+            throw new PostalException(e);
+        }
     }
 
     private static void copyStream(InputStream inputStream, OutputStream outputStream) throws IOException {
@@ -64,12 +71,28 @@ public class DatabaseUtils {
     }
 
 
-    private static void copyFile(File source, File dest) throws IOException {
-        FileChannel srcChannel = new FileInputStream(source).getChannel();
-        FileChannel dstChannel = new FileOutputStream(dest).getChannel();
-        dstChannel.transferFrom(srcChannel, 0, srcChannel.size());
-        srcChannel.close();
-        dstChannel.close();
+    private static void copyFile(File source, File dest) {
+
+        FileChannel srcChannel = null;
+        FileChannel dstChannel = null;
+        try {
+            srcChannel = new FileInputStream(source).getChannel();
+            dstChannel = new FileOutputStream(dest).getChannel();
+            dstChannel.transferFrom(srcChannel, 0, srcChannel.size());
+        } catch (IOException e) {
+            throw new PostalException(e);
+        } finally {
+            closeChannels(srcChannel, dstChannel);
+        }
+    }
+
+    private static void closeChannels(FileChannel srcChannel, FileChannel dstChannel) {
+        try {
+            srcChannel.close();
+            dstChannel.close();
+        } catch (IOException e) {
+            throw new PostalException(e);
+        }
     }
 
 
